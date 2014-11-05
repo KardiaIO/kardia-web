@@ -3,10 +3,15 @@
   "version": "0.0.0",
   "description": "",
   "main": "app.js",
-  "scripts": {},
+  "scripts": {
+    "test": "gulp --verbose" 
+  },
   "author": "",
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.0"
+  },
   "dependencies": {
     "bcrypt": "^0.8.0",
     "bcrypt-nodejs": "0.0.3",

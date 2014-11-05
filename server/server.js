@@ -1,6 +1,7 @@
 var express = require('express'); // express server
 var bodyParser = require('body-parser'); // use body-parser for getting body of incoming requests
 var mongoose = require('mongoose'); // use mongoose for user authentication routes
+var zerorpc = require("zerorpc"); // message protocol for communication between servers
 
 // request handlers
 var user = require('./users/user-controller.js'); // user authentication routes
@@ -32,6 +33,7 @@ app.use(user.decode);
 
 // listens to incoming requests
 app.listen(process.env.PORT || '8080');
+console.log("Server is listening...");
 
 // exporting the express server
 module.exports = app;
