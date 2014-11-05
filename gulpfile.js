@@ -5,7 +5,8 @@ var jshint = require('gulp-jshint');
 gulp.task('lint', function(){
   return gulp.src('client/*.js')
       .pipe(jshint())
-      .pipe(jshint.reporter('default'))
+      .pipe(jshint.reporter('jshint-stylish'))
+      .pipe(jshint.reporter('fail'))
 });
 
 gulp.task('watch', function(){
