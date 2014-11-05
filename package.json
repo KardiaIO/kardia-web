@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "body-parser": "^1.9.2",
-    "express": "^4.10.1"
+    "express": "^4.10.1",
+    "nodemon": "^1.2.1",
+    "zerorpc": "^0.9.3
   }
 }
