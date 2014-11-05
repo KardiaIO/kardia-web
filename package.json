@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "main": "app.js",
-  "scripts": {},
+  "scripts": {
+    "test": "gulp --verbose" 
+  },
   "author": "",
   "license": "MIT",
   "devDependencies": {
