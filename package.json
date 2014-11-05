@@ -4,13 +4,14 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "gulp --verbose" 
+    "test": "gulp --verbose"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
+    "jshint-stylish": "^1.0.0",
     "nodemon": "^1.2.1",
     "zerorpc": "^0.9.3"
   },

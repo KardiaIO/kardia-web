@@ -1,1 +1,1 @@
-var x = "I have no semicolon!!!!!"
+var x = "I have no semicolon!!!!"
