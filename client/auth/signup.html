@@ -1,7 +1,7 @@
 <div id='signup'>
   <h1>sign up</h1>
-  <form name="signupForm" ng-submit='signup()'>
-    <input type='text' ng-model='user.username' ng-minlength="8" ng-maxlength="140" >
+  <form name="signupForm" ng-submit='signup(signupForm.$valid)'>
+    <input type='text' ng-model='user.username' ng-minlength="4" ng-maxlength="140">
     <input type="password" ng-model='user.password' ng-minlength="8" ng-maxlength="140">
     <button>sign up</button>
   </form>

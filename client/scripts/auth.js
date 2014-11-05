@@ -1,5 +1,6 @@
-// auth controller
-angular.module('ekg.auth', [])
+angular.module('ekg.auth', [
+
+])
 
 .controller('AuthController', function ($scope, $window, $state, Auth) {
 
@@ -21,20 +22,25 @@ angular.module('ekg.auth', [])
       });
   };
 
-  $scope.signup = function () {
-    Auth.signup($scope.user)
-      .then(function (token) {
-        if (token) {
-          $window.localStorage.setItem('com.ekgtracker', token);
-          $state.transitionTo('home');
-        } else {
-          $state.transitionTo('/signup');
-          alert('Username is already taken. Please select different username.');
-        }
-      })
-      .catch(function (error) {
-        alert('Error in signup function: ', error);
-      });
+  $scope.signup = function (isValid) {
+    if (isValid){
+      Auth.signup($scope.user)
+        .then(function (token) {
+          if (token) {
+            $window.localStorage.setItem('com.ekgtracker', token);
+            $state.transitionTo('home');
+          } else {
+            $state.transitionTo('/signup');
+            alert('Username is already taken. Please select different username.');
+          }
+        })
+        .catch(function (error) {
+          alert('Error in signup function: ', error);
+        });
+    } else {
+      $state.transitionTo('/signup');
+      alert('Username must be between 4 and 140 characters long and password must be between 8 and 140 characters long.');
+    }
   };
 
 })

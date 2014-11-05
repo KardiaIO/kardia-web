@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('ekg', [
-  'ekg.auth'
+  'ekg.auth',
+  'ui.router'
 ])
 
-.config(function($stateProvider, $urlRouterProvider){
+.config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
   // AngularUI Router uses the concept of states
   // Documentation: https://github.com/angular-ui/ui-router
@@ -12,20 +13,19 @@ angular.module('ekg', [
 
     .state('home', {
       url: '/home',
-      abstract: true,
       templateUrl: '/home.html'
     })
 
     .state('signin', {
       url: '/signin',
-      abstract: true,
-      templateUrl: '/auth/signin.html'
+      templateUrl: '/auth/signin.html',
+      controller: 'AuthController'
     })
 
     .state('signup', {
       url: '/signup',
-      abstract: true,
-      template: '/auth/signup.html'
+      templateUrl: '/auth/signup.html',
+      controller: 'AuthController'
     });
 
   // the default route should point to the home page
