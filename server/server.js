@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 //listens to incoming requests
 app.listen(process.env.PORT || '8080');
+console.log("Server is listening...");
 
 //exporting the express server
 module.exports = app;
