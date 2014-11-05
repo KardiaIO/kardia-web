@@ -7,6 +7,10 @@ var user = require('./users/user-controller.js'); // user authentication routes
 
 var app = express();
 
+// starting mongoDB connection
+var mongoUrl = process.env.PORT ? "INSERT mongolabs url here" : 'mongodb://localhost/ekgtracker';
+mongoose.connect(mongoUrl);
+
 // serves the static contents in the client folder
 app.use(express.static(__dirname + '/../client'));
 
