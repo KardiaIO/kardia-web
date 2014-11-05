@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ekg', [
-
+  'ekg.auth'
 ])
 
 .config(function($stateProvider, $urlRouterProvider){
