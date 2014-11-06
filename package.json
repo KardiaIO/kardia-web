@@ -2,6 +2,9 @@
   "name": "ekgtracker",
   "version": "0.0.0",
   "description": "",
+  "engines": {
+      "node": "0.10.x"
+  },
   "main": "app.js",
   "scripts": {
     "test": "gulp travis --verbose"
