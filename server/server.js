@@ -5,6 +5,7 @@ var mongoose = require('mongoose'); // use mongoose for user authentication rout
 
 // request handlers
 var user = require('./users/user-controller.js'); // user authentication routes
+var errors = require('./error-handlers.js');
 
 var app = express();
 
@@ -30,6 +31,10 @@ app.get('/users/signedin', user.checkAuth);
 // then we make sure they are signed in by getting the token from
 // the header
 app.use(user.decode);
+
+// if there are errors from the server, use these to send back the errors
+app.use(errors.errorLogger);
+app.use(errors.errorHandler);
 
 // listens to incoming requests
 app.listen(process.env.PORT || '8080');
