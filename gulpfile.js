@@ -22,3 +22,4 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default', ['lint', 'watch']);
+gulp.task('travis', ['lint']);

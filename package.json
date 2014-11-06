@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "gulp --verbose"
+    "test": "gulp travis --verbose"
   },
   "author": "",
   "license": "MIT",
