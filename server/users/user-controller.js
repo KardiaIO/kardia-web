@@ -1,4 +1,4 @@
-var User = require('./userModel.js'),
+var User = require('./user-model.js'),
     Q    = require('q'),
     jwt  = require('jwt-simple');
 
