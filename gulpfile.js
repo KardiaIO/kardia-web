@@ -10,7 +10,7 @@ var exitOnJshintError = map(function (file, cb) {
 });
 
 gulp.task('lint', function(){
-  return gulp.src('client/*.js')
+  return gulp.src('client/**/*.js')
       .pipe(jshint())
       .pipe(jshint.reporter('jshint-stylish'))
       .pipe(jshint.reporter('fail'))
