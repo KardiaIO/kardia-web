@@ -13,7 +13,7 @@ angular.module('ekg.auth', [
           $window.localStorage.setItem('com.ekgtracker', token);
           $state.transitionTo('home');
         } else {
-          $state.transitionTo('/signin');
+          $state.transitionTo('signin');
           alert('Username or password was incorrect. Please try again.');
         }
       })
@@ -30,7 +30,7 @@ angular.module('ekg.auth', [
             $window.localStorage.setItem('com.ekgtracker', token);
             $state.transitionTo('home');
           } else {
-            $state.transitionTo('/signup');
+            $state.transitionTo('signup');
             alert('Username is already taken. Please select different username.');
           }
         })
@@ -38,7 +38,7 @@ angular.module('ekg.auth', [
           alert('Error in signup function: ', error);
         });
     } else {
-      $state.transitionTo('/signup');
+      $state.transitionTo('signup');
       alert('Username must be between 4 and 140 characters long and password must be between 8 and 140 characters long.');
     }
   };
