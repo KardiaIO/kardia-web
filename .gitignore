@@ -4,6 +4,7 @@
 azure.err
 iisnode.yml
 .travis.yml
+package.json
 
 # Icon must ends with two \r.
 Icon
