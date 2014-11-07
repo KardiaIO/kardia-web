@@ -6,6 +6,18 @@
     'ui.router'
   ])
 
+  .run(function($rootScope, $state, Auth){
+
+    $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
+      if (toState.authenticate && !Auth.isAuth()){
+        // User isn’t authenticated but the state requires authentication
+        $state.transitionTo('signin');
+        event.preventDefault(); 
+      }
+    });
+
+  })
+
   .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
     // AngularUI Router uses the concept of states
@@ -14,7 +26,8 @@
 
       .state('home', {
         url: '/home',
-        templateUrl: '/home.html'
+        templateUrl: '/home.html',
+        authenticate: true
       })
 
       .state('signin', {
