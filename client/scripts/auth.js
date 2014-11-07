@@ -38,7 +38,6 @@ angular.module('ekg.auth', [
           alert('Error in signup function: ', error);
         });
     } else {
-      $state.transitionTo('signup');
       alert('Username must be between 4 and 140 characters long and password must be between 8 and 140 characters long.');
     }
   };
