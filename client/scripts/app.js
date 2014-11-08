@@ -27,7 +27,9 @@
       .state('home', {
         url: '/home',
         templateUrl: '/home.html',
-        authenticate: true
+        authenticate: true,
+        controller: 'MainController'
+
       })
 
       .state('signin', {
