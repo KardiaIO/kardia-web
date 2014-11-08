@@ -18,5 +18,5 @@
           .sortBy(function(dateCount){return dateCount.x;})
           .value();
 
-      })
+      });
     });
