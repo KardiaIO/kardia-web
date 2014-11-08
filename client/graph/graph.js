@@ -1,4 +1,7 @@
-angular.module('ekg')
+angular.module('ekg.home', [
+
+])
+
 .controller('MainController', function ($scope, $http) {
 
   $http.get('/graph/sightings.json').success(function(result){

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
+
 <html ng-app='ekg'>
+
   <head>
     <meta charset="utf-8" />
     <title>EKG Tracker</title>
     <link rel="stylesheet" href="lib/rickshaw/rickshaw.css">
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
+    <script src="lib/rickshaw/vendor/d3.v3.js"></script>
+    <script src="lib/rickshaw/rickshaw.js"></script>
   </head>
-
-  <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="lib/underscore/underscore.js"></script>
-  <script src="lib/rickshaw/vendor/d3.v3.js"></script>
-  <script src="lib/rickshaw/rickshaw.js"></script>
 
   <body>
     <div ui-view></div>
-    <script scc="scripts/home.js"></script>
     <script src="scripts/auth.js"></script>
-    <script src="scripts/app.js"></script>
     <script src="graph/graph.js"></script>
+    <script src="scripts/app.js"></script>
     <script src="graph/rickshawDirective.js"></script>
   </body>
+
 </html>

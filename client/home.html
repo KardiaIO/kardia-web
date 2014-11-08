@@ -3,18 +3,23 @@
   <button>Detail</button>
   <div id='zoomedInGraph'>
     <rickshaw-chart
-    data="sightingsByDate"
-    color="red"
-    renderer="renderer"
-    width="900"
-    height="450">
+      data="sightingsByDate"
+      color="red"
+      renderer="renderer"
+      width="900"
+      height="450">
     </rickshaw-chart>
   </div>
   <div id='longGraph'>
-    INSERT LONG GRAPH HERE
+    <rickshaw-chart
+      data="sightingsByDate"
+      color="red"
+      renderer="renderer"
+      width="900"
+      height="450">
+    </rickshaw-chart>
   </div>
   <div id='dayOfWeekContainer'>
-    INSERT DAYS OF THE WEEK BUTTONS HERE
     <button class='dayOfWeek' id='MON'>M</button>
     <button class='dayOfWeek' id='TUES'>T</button>
     <button class='dayOfWeek' id='WED'>W</button>
