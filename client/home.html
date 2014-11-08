@@ -2,7 +2,13 @@
   <button>Home</button>
   <button>Detail</button>
   <div id='zoomedInGraph'>
-    INSERT ZOOMED IN GRAPH HERE
+    <rickshaw-chart
+    data="sightingsByDate"
+    color="red"
+    renderer="renderer"
+    width="900"
+    height="450">
+    </rickshaw-chart>
   </div>
   <div id='longGraph'>
     INSERT LONG GRAPH HERE
@@ -21,3 +27,4 @@
     INSERT CLOCK + CLOCK CONTROLLER HERE
   </div>
 </div>
+
