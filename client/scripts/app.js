@@ -3,6 +3,7 @@
 
   angular.module('ekg', [
     'ekg.auth',
+    'ekg.home',
     'ui.router'
   ])
 
@@ -27,9 +28,8 @@
       .state('home', {
         url: '/home',
         templateUrl: '/home.html',
-        authenticate: true,
-        controller: 'MainController'
-
+        controller: 'MainController',
+        authenticate: true
       })
 
       .state('signin', {
