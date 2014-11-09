@@ -2,9 +2,9 @@ angular.module('ekg.home', [
   'ekg.auth'
 ])
 
-.controller('MainController', function ($scope, $http, Auth) {
+.controller('MainController', function ($scope, DataGetter, Auth) {
 
-  $http.get('/sampleData/sample1snippet.json')
+  DataGetter.getData(true)
     .success(function(result){
       $scope.sampleData1 = result;
       $scope.renderer = 'line';
@@ -13,7 +13,7 @@ angular.module('ekg.home', [
       console.log('http get error', error);
     });
 
-  $http.get('/sampleData/sample1.json')
+  DataGetter.getData()
     .success(function(result){
       $scope.sampleData2 = result;
       $scope.renderer = 'line';
@@ -22,6 +22,24 @@ angular.module('ekg.home', [
       console.log('http get error', error);
     });
 
+  $scope.getData = function(dayOfWeek, hour, min) {
+    DataGetter.getData;
+  };
+  
   $scope.signout = Auth.signout;
   
+})
+
+.factory('DataGetter', function ($http) {
+
+  return {
+    getData: function(large, dayOfWeek, hour, min) {
+      if (large) {
+        return $http.get('/sampleData/sample1snippet.json');
+      } else {
+        return $http.get('/sampleData/sample1.json');
+      }
+    }
+  };
+
 });
