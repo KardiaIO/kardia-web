@@ -18,7 +18,7 @@ gulp.task('mochaTest', function(){
 });
 
 gulp.task('concat', function() {
-  gulp.src(['**/*.js', '!node_modules/**'])
+  gulp.src(['**/*.js', '!client/lib/**', '!node_modules/**'])
     .pipe(concat({ path: 'newConcat.js'}))
     .pipe(gulp.dest('./dist'));
 });
