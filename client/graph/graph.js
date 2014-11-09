@@ -23,9 +23,16 @@ angular.module('ekg.home', [
     });
 
   $scope.getData = function(dayOfWeek, hour, min) {
-    DataGetter.getData;
+    DataGetter.getData(false, dayOfweek, hour, min)
+      .success(function(result){
+        $scope.sampleData1 = result;
+        $scope.renderer = 'line';
+      })
+      .catch(function(error){
+        console.log('http get error', error);
+      });
   };
-  
+
   $scope.signout = Auth.signout;
   
 })
