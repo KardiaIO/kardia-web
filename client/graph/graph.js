@@ -1,8 +1,8 @@
 angular.module('ekg.home', [
-
+  'ekg.auth'
 ])
 
-.controller('MainController', function ($scope, $http) {
+.controller('MainController', function ($scope, $http, Auth) {
 
   $http.get('/sampleData/sample1snippet.json')
     .success(function(result){
@@ -22,4 +22,6 @@ angular.module('ekg.home', [
       console.log('http get error', error);
     });
 
+  $scope.signout = Auth.signout;
+  
 });
