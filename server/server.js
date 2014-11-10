@@ -23,8 +23,7 @@ python.invoke("processData", [1,2,3], function(error, res, more) {
 }); 
 
 // starting mongoDB connection
-// var mongoUrl = process.env.PORT ? "mongodb://webEKGAPI:yhXk8EPXDSfy@ds051160.mongolab.com:51160/ekgapi" : 'mongodb://localhost/ekgtracker';
-var mongoUrl = "mongodb://webEKGAPI:yhXk8EPXDSfy@ds051160.mongolab.com:51160/ekgapi";
+var mongoUrl = process.env.PORT ? "mongodb://webEKGAPI:yhXk8EPXDSfy@ds051160.mongolab.com:51160/ekgapi" : 'mongodb://localhost/ekgtracker';
 
 mongoose.connect(mongoUrl);
 
