@@ -4,5 +4,5 @@ node_js:
 before_install:
   - echo "yes" | sudo add-apt-repository ppa:chris-lea/libpgm
   - sudo apt-get update
-  - sudo apt-get install libzmq-dev
+  - sudo apt-get install libzmq3-dev
   - "mkdir ~/.npm"
