@@ -7,7 +7,6 @@ client.connect("tcp://ekg-python12.cloudapp.net:4242");
 client.invoke("hello", "Node!", function(error, res, more) {
     if(error){
       throw error;
-      console.log("Python error:", error);
     }
     console.log("Response from Python:", res);
 });

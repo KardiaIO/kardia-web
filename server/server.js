@@ -17,7 +17,6 @@ var python = require('./python/pythonComm.js');
 python.invoke("processData", [1,2,3], function(error, res, more) {
   if(error){
     throw error;
-    console.log("Python server error:", error);
   } 
   console.log(res);
 }); 
