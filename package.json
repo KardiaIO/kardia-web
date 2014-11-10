@@ -3,25 +3,31 @@
   "version": "0.0.0",
   "description": "",
   "engines": {
-      "node": "0.10.x"
+    "node": "0.10.x"
   },
   "main": "app.js",
   "scripts": {
-    "test": "gulp travis --verbose"
+    "test": "gulp travis --verbose",
+    "postinstall": "bower install"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^1.9.2",
     "gulp": "^3.8.10",
+    "gulp-concat": "^2.4.1",
     "gulp-jshint": "^1.9.0",
+    "gulp-mocha": "^1.1.1",
     "jshint-stylish": "^1.0.0",
+    "mocha": "^2.0.1",
     "nodemon": "^1.2.1",
-    "map-stream": "0.0.5"
+    "request": "^2.47.0"
   },
   "dependencies": {
     "bcrypt": "^0.8.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.9.2",
+    "bower": "^1.3.12",
     "express": "^4.10.1",
     "jwt-simple": "^0.2.0",
     "mongoose": "^3.8.18",

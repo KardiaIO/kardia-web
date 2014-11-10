@@ -3,8 +3,21 @@
 
   angular.module('ekg', [
     'ekg.auth',
+    'ekg.home',
     'ui.router'
   ])
+
+  .run(function($rootScope, $state, Auth){
+
+    $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
+      if (toState.authenticate && !Auth.isAuth()){
+        // User isn’t authenticated but the state requires authentication
+        $state.transitionTo('signin');
+        event.preventDefault(); 
+      }
+    });
+
+  })
 
   .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
@@ -14,7 +27,9 @@
 
       .state('home', {
         url: '/home',
-        templateUrl: '/home.html'
+        templateUrl: '/home.html',
+        controller: 'MainController',
+        authenticate: true
       })
 
       .state('signin', {

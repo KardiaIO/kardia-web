@@ -42,6 +42,8 @@ angular.module('ekg.auth', [
     }
   };
 
+  $scope.signout = Auth.signout;
+
 })
 
 .factory('Auth', function ($http, $state, $window) {
