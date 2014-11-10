@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "0.10"
 before_install:
-  - sudo add-apt-repository ppa:chris-lea/libpgm
+  - echo "yes" | sudo add-apt-repository ppa:chris-lea/libpgm
   - sudo apt-get update
-  - sudo apt-get install libzmq-dev
+  - sudo apt-get install libzmq3-dev
   - "mkdir ~/.npm"
