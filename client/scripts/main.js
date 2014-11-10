@@ -42,9 +42,9 @@ angular.module('ekg.home', [
   return {
     getData: function(large, dayOfWeek, hour, min) {
       if (large) {
-        return $http.get('/sampleData/sample1snippet.json');
+        return $http.get('/../sampleData/sample1snippet.json');
       } else {
-        return $http.get('/sampleData/sample1.json');
+        return $http.get('/../sampleData/sample1.json');
       }
     }
   };
