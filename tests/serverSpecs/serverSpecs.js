@@ -20,7 +20,7 @@ describe('Server Tests', function(){
   it('Signup should save a new user to the database', function(done){
     var options = {
       'method': 'POST',
-      'uri': process.env.PORT ? 'http://ekgwebapp.heroku.com/users/signup' : 'http://localhost:8080/users/signup',
+      'uri': 'http://localhost:8080/users/signup',
       'json': {
         'username': 'nicktest',
         'password': 'nickpass'
