@@ -37,6 +37,7 @@ angular.module('ekg.home', [
   
 })
 
+  // Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
 
   return {
