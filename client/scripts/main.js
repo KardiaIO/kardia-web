@@ -8,6 +8,7 @@ angular.module('ekg.home', [
     DataGetter.getData(dayOfWeek, hour, min)
       .success(function(result){
         $scope.largerSnippet = result;
+        $scope.getSnippet(0); 
         $scope.renderer = 'line';
       })
       .catch(function(error){
@@ -20,7 +21,6 @@ angular.module('ekg.home', [
   };
 
   $scope.getData(1, 0, 0);
-  $scope.getSnippet(15*250/2-125); 
 
   $scope.signout = Auth.signout;
   
@@ -31,16 +31,12 @@ angular.module('ekg.home', [
 
   return {
     getData: function(dayOfWeek, hour, min) {
-      return $http({
-        method: 'GET',
-        url: '/users/data',
-        data: {
-          time: {
-            dayOfWeek: dayOfWeek,
-            hour: hour,
-            min: min
-          }
-        }
+      return $http.post('/users/data', {
+        time: {
+          dayOfWeek: dayOfWeek,
+          hour: hour,
+          min: min
+        }  
       });
     }
   };

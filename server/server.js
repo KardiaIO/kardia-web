@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 // Request handlers
-// user authentication routes
+// User authentication routes
 var user = require('./users/user-controller.js');
 // Data query routes
 var data = require('./data/data-controllers.js');
@@ -22,10 +22,6 @@ var app = express();
 //   } 
 //   console.log(res);
 // }); 
-
-var mongoUrl = process.env.PORT ? "mongodb://webEKGAPI:yhXk8EPXDSfy@ds051160.mongolab.com:51160/ekgapi" : 'mongodb://localhost/ekgtracker';
-
-mongoose.connect(mongoUrl);
 
 app.use(express.static(__dirname + '/../client'));
 
@@ -46,7 +42,7 @@ app.get('/users/signedin', user.checkAuth);
 app.use(user.decode);
 
 // These routes are for data queries
-app.get('/users/data', data.getData);
+app.post('/users/data', data.getData);
 
 // If there are errors from the server, use these to send back the errors
 app.use(errors.errorLogger);
