@@ -12,19 +12,20 @@ gulp.task('lint', function(){
 
 gulp.task('mochaTest', function(){
   return gulp.src(['tests/clientSpecs/clientSpecs.js', 'tests/serverSpecs/serverSpecs.js'])
-      .pipe(mochaTest({
-        bail: true
-      }));
+      .pipe(mochaTest())
+      .once('end', function(){
+        process.exit();
+      });
 });
 
 gulp.task('concat', function() {
-  gulp.src(['**/*.js', '!client/lib/**', '!node_modules/**'])
+  gulp.src(['**/*.js', '!client/lib/**', '!node_modules/**', '!gulpfile.js'])
     .pipe(concat({ path: 'newConcat.js'}))
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('watch', function(){
-  gulp.watch(['client/**/*.js', 'server/**/*.js', 'gulpfile.js'], ['lint']);
+  gulp.watch(['client/**/*.js', 'server/**/*.js'], ['lint']);
 });
 
 gulp.task('default', ['lint', 'mochaTest', 'concat', 'watch']);
