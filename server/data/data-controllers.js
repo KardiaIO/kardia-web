@@ -3,7 +3,7 @@ var mssql = require('mssql');
 var config = {
   user: 'ekgwebapp',
   password: 'ekgsqlserver1MSSS',
-  server: 'ekgmsss.cloudapp.net',
+  server: '104.40.3.154',
   database: 'master',
   options: {
     encrypt: true
