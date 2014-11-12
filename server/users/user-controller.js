@@ -1,7 +1,7 @@
 // Starting mongoDB connection
 var mongoose = require('mongoose');
 var mongoUrl = process.env.PORT ? "mongodb://webEKGAPI:yhXk8EPXDSfy@ds051160.mongolab.com:51160/ekgapi" : 'mongodb://localhost/ekgtracker';
-mongoose.connect(mongoUrl);
+mongoose.createConnection(mongoUrl);
 
 var User = require('./user-model.js'), // user-schema
     Q    = require('q'),  // promises library
@@ -87,9 +87,9 @@ module.exports = {
       findUser({username: user.username})
         .then(function (foundUser) {
           if (foundUser) {
-            res.send(200);
+            res.sendStatus(200);
           } else {
-            res.send(401);
+            res.sendStatus(401);
           }
         })
         .fail(function (error) {

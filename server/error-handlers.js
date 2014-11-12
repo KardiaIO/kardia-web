@@ -6,6 +6,6 @@ module.exports = {
   },
   errorHandler: function (error, req, res, next) {
     // Send error message to client
-    res.status(500).send({error: error.message});
+    res.sendStatus(500, {error: error.message});
   }
 };
