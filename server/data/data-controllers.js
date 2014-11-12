@@ -4,7 +4,7 @@ var config = {
   user: 'ekgwebapp',
   password: 'ekgsqlserver1MSSS',
   server: 'ekgmsss.cloudapp.net',
-  database: 'EKGSQLSERVER',
+  database: 'master',
   options: {
     encrypt: true
   }
@@ -19,7 +19,7 @@ module.exports = {
     // between 0 and 23), and minute (a number between 0 and 59) 
     var startTime = req.body.time;
 
-    // the username was put onto the request by the decode middleware
+    // the username was put onto the re quest by the decode middleware
     var username = req.username;
 
     // query database for the data for data from that user

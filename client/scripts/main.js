@@ -5,7 +5,7 @@ angular.module('ekg.home', [
 .controller('MainController', function ($scope, DataGetter, Auth) {
 
   $scope.getData = function(dayOfWeek, hour, min) {
-    DataGetter.getData(dayOfweek, hour, min)
+    DataGetter.getData(dayOfWeek, hour, min)
       .success(function(result){
         $scope.largerSnippet = result;
         $scope.renderer = 'line';
@@ -20,7 +20,7 @@ angular.module('ekg.home', [
   };
 
   $scope.getData(1, 0, 0);
-  $scope.getSnippet(15*250/2-125);
+  $scope.getSnippet(15*250/2-125); 
 
   $scope.signout = Auth.signout;
   
