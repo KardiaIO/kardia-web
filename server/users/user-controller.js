@@ -107,7 +107,7 @@ module.exports = {
     var user;
     if (!token) {
       // send forbidden if a token is not provided
-      return res.send(403); 
+      return res.sendStatus(403); 
     }
     try {
       // decode token and attach user to the request
