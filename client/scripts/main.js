@@ -4,34 +4,23 @@ angular.module('ekg.home', [
 
 .controller('MainController', function ($scope, DataGetter, Auth) {
 
-  DataGetter.getData(true)
-    .success(function(result){
-      $scope.sampleData1 = result;
-      $scope.renderer = 'line';
-    })
-    .catch(function(error){
-      console.log('http get error', error);
-    });
-
-  DataGetter.getData()
-    .success(function(result){
-      $scope.sampleData2 = result;
-      $scope.renderer = 'line';
-    })
-    .catch(function(error){
-      console.log('http get error', error);
-    });
-
   $scope.getData = function(dayOfWeek, hour, min) {
-    DataGetter.getData(false, dayOfweek, hour, min)
+    DataGetter.getData(dayOfweek, hour, min)
       .success(function(result){
-        $scope.sampleData1 = result;
+        $scope.largerSnippet = result;
         $scope.renderer = 'line';
       })
       .catch(function(error){
         console.log('http get error', error);
       });
   };
+
+  $scope.getSnippet = function(startIndex){
+    $scope.snippet = $scope.largerSnippet.slice(startIndex, startIndex + 250);
+  };
+
+  $scope.getData(1, 0, 0);
+  $scope.getSnippet(15*250/2-125);
 
   $scope.signout = Auth.signout;
   
@@ -41,12 +30,18 @@ angular.module('ekg.home', [
 .factory('DataGetter', function ($http) {
 
   return {
-    getData: function(large, dayOfWeek, hour, min) {
-      if (large) {
-        return $http.get('/../sampleData/sample1snippet.json');
-      } else {
-        return $http.get('/../sampleData/sample1.json');
-      }
+    getData: function(dayOfWeek, hour, min) {
+      return $http({
+        method: 'GET',
+        url: '/users/data',
+        data: {
+          time: {
+            dayOfWeek: dayOfWeek,
+            hour: hour,
+            min: min
+          }
+        }
+      });
     }
   };
 

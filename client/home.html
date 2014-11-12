@@ -4,7 +4,7 @@
   <button>Detail</button>
   <div id='zoomedInGraph'>
     <rickshaw-chart
-      data="sampleData1"
+      data="snippet"
       color="red"
       renderer="renderer"
       width="400"
@@ -13,7 +13,7 @@
   </div>
   <div id='longGraph'>
     <rickshaw-chart
-      data="sampleData2"
+      data="largerSnippet"
       color="red"
       renderer="renderer"
       width="1000"
@@ -21,13 +21,13 @@
     </rickshaw-chart>
   </div>
   <div id='dayOfWeekContainer'>
-    <button class='dayOfWeek' id='MON' ng-click='getData(1, null, null)'>M</button>
-    <button class='dayOfWeek' id='TUES' ng-click='getData(2, null, null)'>T</button>
-    <button class='dayOfWeek' id='WED' ng-click='getData(3, null, null)'>W</button>
-    <button class='dayOfWeek' id='THURS' ng-click='getData(4, null, null)'>T</button>
-    <button class='dayOfWeek' id='FRI' ng-click='getData(5, null, null)'>F</button>
-    <button class='dayOfWeek' id='SAT' ng-click='getData(6, null, null)'>S</button>
-    <button class='dayOfWeek' id='SUN' ng-click='getData(7, null, null)'>S</button>
+    <button class='dayOfWeek' id='MON' ng-click='getData(1, 0, 0)'>M</button>
+    <button class='dayOfWeek' id='TUES' ng-click='getData(2, 0, 0)'>T</button>
+    <button class='dayOfWeek' id='WED' ng-click='getData(3, 0, 0)'>W</button>
+    <button class='dayOfWeek' id='THURS' ng-click='getData(4, 0, 0)'>T</button>
+    <button class='dayOfWeek' id='FRI' ng-click='getData(5, 0, 0)'>F</button>
+    <button class='dayOfWeek' id='SAT' ng-click='getData(6, 0, 0)'>S</button>
+    <button class='dayOfWeek' id='SUN' ng-click='getData(7, 0, 0)'>S</button>
   </div>
   <div id='timeControllers'>
   </div>
