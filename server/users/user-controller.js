@@ -1,6 +1,11 @@
-var User = require('./user-model.js'),
-    Q    = require('q'),
-    jwt  = require('jwt-simple');
+// starting mongoDB connection
+var mongoose = require('mongoose');
+var mongoUrl = process.env.PORT ? "mongodb://webEKGAPI:yhXk8EPXDSfy@ds051160.mongolab.com:51160/ekgapi" : 'mongodb://localhost/ekgtracker';
+mongoose.connect(mongoUrl);
+
+var User = require('./user-model.js'), // user-schema
+    Q    = require('q'),  // promises library
+    jwt  = require('jwt-simple'); // json web tokens
 
 module.exports = {
 

@@ -1,17 +1,12 @@
 var express = require('express'); // express server
 var bodyParser = require('body-parser'); // use body-parser for getting body of incoming requests
-var mongoose = require('mongoose'); // use mongoose for user authentication routes
 
 // request handlers
 var user = require('./users/user-controller.js'); // user authentication routes
-// var data = require('./data/data-controllers.js'); // data query routes
-var errors = require('./error-handlers.js');
+var data = require('./data/data-controllers.js'); // data query routes
+var errors = require('./error-handlers.js'); // error handlers
 
 var app = express();
-
-// starting mongoDB connection
-var mongoUrl = process.env.PORT ? "mongodb://webEKGAPI:yhXk8EPXDSfy@ds051160.mongolab.com:51160/ekgapi" : 'mongodb://localhost/ekgtracker';
-mongoose.connect(mongoUrl);
 
 // serves the static contents in the client folder
 app.use(express.static(__dirname + '/../client'));
@@ -33,7 +28,7 @@ app.get('/users/signedin', user.checkAuth);
 app.use(user.decode);
 
 // these routes are for data queries
-// app.get('/users/data', data.getData);
+app.get('/users/data', data.getData);
 
 // if there are errors from the server, use these to send back the errors
 app.use(errors.errorLogger);
