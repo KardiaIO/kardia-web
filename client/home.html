@@ -31,16 +31,16 @@
   </div>
   <div id='timeControllers'>
   </div>
-</div>
 
-<div ng-app="timeShift" ng-controller="timeCtrl">
-  <h2>
-    <button ng-click="ddecrement()"> -- </button>
-    <button ng-click="decrement()"> - </button>
-    {{time.display}}
-    <button ng-click="increment()"> + </button>
-    <button ng-click="iincrement()"> ++ </button>
-    <p>raw date/time: {{time.value}}</p>
-  </h2> 
-  <p>+- increments by 1,000 seconds, ++ -- increments by 10,000 seconds.</p>
+  <div ng-app="timeShift" ng-controller="timeCtrl">
+    <h2>
+      <button ng-click="ddecrement()"> -- </button>
+      <button ng-click="decrement()"> - </button>
+      {{time.display}}
+      <button ng-click="increment()"> + </button>
+      <button ng-click="iincrement()"> ++ </button>
+      <p>raw date/time: {{time.value}}</p>
+    </h2> 
+    <p>+- increments by 1,000 seconds, ++ -- increments by 10,000 seconds.</p>
+  </div>
 </div>
