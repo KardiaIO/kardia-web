@@ -15,6 +15,7 @@
   "devDependencies": {
     "chai": "^1.9.2",
     "gulp": "^3.8.10",
+    "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.4.1",
     "gulp-jshint": "^1.9.0",
     "gulp-mocha": "^1.1.1",
