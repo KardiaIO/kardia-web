@@ -10,16 +10,16 @@ var errors = require('./error-handlers.js');
 var app = express();
 
 // Python server connection
-var python = require('./python/pythonComm.js');
+// var python = require('./python/pythonComm.js');
 
-// sends some data to Python, Python squares it - this is simply part
-// of testing the python connection and can be removed later
-python.invoke("processData", [1,2,3], function(error, res, more) {
-  if(error){
-    throw error;
-  } 
-  console.log(res);
-}); 
+// // sends some data to Python, Python squares it - this is simply part
+// // of testing the python connection and can be removed later
+// python.invoke("processData", [1,2,3], function(error, res, more) {
+//   if(error){
+//     throw error;
+//   } 
+//   console.log(res);
+// }); 
 
 // starting mongoDB connection
 var mongoUrl = process.env.PORT ? "mongodb://webEKGAPI:yhXk8EPXDSfy@ds051160.mongolab.com:51160/ekgapi" : 'mongodb://localhost/ekgtracker';

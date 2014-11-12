@@ -4,31 +4,43 @@
   <button>Detail</button>
   <div id='zoomedInGraph'>
     <rickshaw-chart
-      data="sampleData1"
-      color="red"
-      renderer="renderer"
-      width="400"
-      height="400">
-    </rickshaw-chart>
-  </div>
-  <div id='longGraph'>
-    <rickshaw-chart
-      data="sampleData2"
-      color="red"
-      renderer="renderer"
-      width="1000"
-      height="100">
-    </rickshaw-chart>
-  </div>
-  <div id='dayOfWeekContainer'>
-    <button class='dayOfWeek' id='MON' ng-click='getData(1, null, null)'>M</button>
-    <button class='dayOfWeek' id='TUES' ng-click='getData(2, null, null)'>T</button>
-    <button class='dayOfWeek' id='WED' ng-click='getData(3, null, null)'>W</button>
-    <button class='dayOfWeek' id='THURS' ng-click='getData(4, null, null)'>T</button>
-    <button class='dayOfWeek' id='FRI' ng-click='getData(5, null, null)'>F</button>
-    <button class='dayOfWeek' id='SAT' ng-click='getData(6, null, null)'>S</button>
-    <button class='dayOfWeek' id='SUN' ng-click='getData(7, null, null)'>S</button>
-  </div>
-  <div id='timeControllers'>
-  </div>
+    data="sampleData1"
+    color="red"
+    renderer="renderer"
+    width="400"
+    height="400">
+  </rickshaw-chart>
+</div>
+<div id='longGraph'>
+  <rickshaw-chart
+  data="sampleData2"
+  color="red"
+  renderer="renderer"
+  width="1000"
+  height="100">
+</rickshaw-chart>
+</div>
+<div id='dayOfWeekContainer'>
+  <button class='dayOfWeek' id='MON' ng-click='getData(1, null, null)'>M</button>
+  <button class='dayOfWeek' id='TUES' ng-click='getData(2, null, null)'>T</button>
+  <button class='dayOfWeek' id='WED' ng-click='getData(3, null, null)'>W</button>
+  <button class='dayOfWeek' id='THURS' ng-click='getData(4, null, null)'>T</button>
+  <button class='dayOfWeek' id='FRI' ng-click='getData(5, null, null)'>F</button>
+  <button class='dayOfWeek' id='SAT' ng-click='getData(6, null, null)'>S</button>
+  <button class='dayOfWeek' id='SUN' ng-click='getData(7, null, null)'>S</button>
+</div>
+<div ng-app="timeShift" ng-controller="timeCtrl">
+  <h2>
+    <button ng-click="ddecrement()"> -- </button>
+    <button ng-click="decrement()"> - </button>
+    {{time.display}}
+    <button ng-click="increment()"> + </button>
+    <button ng-click="iincrement()"> ++ </button>
+    <p>raw date/time: {{time.value}}</p>
+  </h2> 
+  <p>+- increments by 1,000 seconds, ++ -- increments by 10,000 seconds.</p>
+</div>
+
+<div id='timeControllers'>
+</div>
 </div>
