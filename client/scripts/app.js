@@ -44,7 +44,7 @@
         controller: 'AuthController'
       });
 
-    // the default route should point to the home page
+    // The default route should point to the home page
     // which contains the graphs
     $urlRouterProvider.otherwise('/home');
 
@@ -54,9 +54,9 @@
   })
 
   .factory('AttachTokens', function ($window) {
-    // this is an $httpInterceptor. its job is to stop all out going request
-    // then look in local storage and find the user's token
-    // then add it to the header so the server can validate the request
+    // This is an $httpInterceptor. Its job is to stop all out going requests
+    // then look in local storage and find the user's token.
+    // Then, add it to the header so the server can validate the request
     var attach = {
       request: function (object) {
         var jwt = $window.localStorage.getItem('com.ekgtracker');

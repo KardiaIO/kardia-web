@@ -1,6 +1,4 @@
-angular.module('ekg.auth', [
-
-])
+angular.module('ekg.auth', [])
 
 .controller('AuthController', function ($scope, $window, $state, Auth) {
 
