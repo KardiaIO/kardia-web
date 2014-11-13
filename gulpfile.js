@@ -28,7 +28,7 @@ gulp.task('clean', function(){
 });
 
 gulp.task('concat', function() {
-  return gulp.src(['**/*.js', '!client/lib/**', '!node_modules/**', '!gulpfile.js'])
+  return gulp.src(['**/*.js', '!client/lib/**', '!node_modules/**', '!gulpfile.js', '!client/design/**'])
     .pipe(concat({ path: 'newConcat.js'}))
     .pipe(gulp.dest('./dist'));
 });
