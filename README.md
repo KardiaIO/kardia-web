@@ -8,4 +8,4 @@ To view our commented code, please click [here](http://www.explainjs.com/explain
 
 App Architecture
 ============
-![alt text](http://www.gliffy.com/go/publish/image/6494909/L.png"App Architecture")
+![alt text](http://www.gliffy.com/go/publish/image/6494909/L.png "App Architecture")
