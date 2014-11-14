@@ -17,7 +17,10 @@ angular.module('ekg.home', [
   };
 
   $scope.getSnippet = function(startIndex){
-    $scope.snippet = $scope.largerSnippet.slice(startIndex, startIndex + 250);
+    $scope.snippet = {
+      results: $scope.largerSnippet.results.slice(startIndex, startIndex + 250),
+      indicators: $scope.largerSnippet.indicators.slice(startIndex, startIndex + 250)
+    };
   };
 
   $scope.getData(1, 0, 0);

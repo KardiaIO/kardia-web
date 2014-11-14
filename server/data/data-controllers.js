@@ -40,10 +40,15 @@ module.exports = {
       if (err) next(new Error(err));
 
       var request = new mssql.Request();
-      request.query('select x, y1 as y, y2 from SampleData.dbo.chfdb_chf01_275_processed', function(err, results){
+      request.query('select x, y from SampleData.dbo.processedSampleEKG1', function(err, results){
         // Passes any errors to the error handler
-        if (err) next(new Error(err));
-        res.json(results);
+        if (err) next(new Error('Error in first query' + err));
+        request.query('select x, maxIndicator as y from SampleData.dbo.processedSampleEKG1', function(err, indicators){
+          res.json({
+            results: results,
+            indicators: indicators
+          });
+        })
       });
 
     });
