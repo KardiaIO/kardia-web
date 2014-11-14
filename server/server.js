@@ -17,8 +17,8 @@ var app = express();
 // Sends some data to Python, Python squares it - this is simply part
 // of testing the python connection and can be removed later
 // python.invoke("processData", [1,2,3], function(error, res, more) {
-  // if(error){
-    // throw error;
+//   if(error){
+//     throw error;
 //   } 
 //   console.log(res);
 // }); 
