@@ -1,4 +1,4 @@
-// connect to the Microsoft SQL Server instance on Azure VM
+// Connect to the Microsoft SQL Server instance on Azure VM
 var mssql = require('mssql');
 var config = {
   user: 'ekgwebapp',
@@ -13,23 +13,35 @@ var config = {
 module.exports = {
 
   getData: function(req, res, next){
-    // the time property in the request body should be an object 
-    // that contains three properties: day of week (a number
-    // between 1 and 7 with 1 = Monday, 7 = Sunday), hour (a number
-    // between 0 and 23), and minute (a number between 0 and 59) 
+    // The time property in the request body should be an object 
+    // that contains three properties: 
+    //     1) day of week (0-6, Sunday-Monday)
+    //     2) hour (0-23)
+    //     3) minute (0-59)
+
     var startTime = req.body.time;
 
-    // the username was put onto the re quest by the decode middleware
+    var year = (new Date()).getFullYear();
+    var month = (new Date()).getMonth();
+    var utc = new Date(year, month, req.body.time.dayOfWeek, req.body.time.hour, req.body.time.minute);
+    // Fake data - just to make something appear on screen:
+    // var utc = new Date(year, month, 2, 15, 3);
+
+    /**************************************************************************/
+    /* Get request with json data in certain range ( 1 minute )
+    /**************************************************************************/
+
+    // The username was put onto the request by the decode middleware
     var username = req.username;
 
-    // query database for the data for data from that user
+    // Query database for the data from that user
     mssql.connect(config, function(err){
-      // passes any errors to the error handler
+      // Passes any errors to the error handler
       if (err) next(new Error(err));
 
       var request = new mssql.Request();
       request.query('select x, y1 as y, y2 from SampleData.dbo.chfdb_chf01_275_processed', function(err, results){
-        // passes any errors to the error handler
+        // Passes any errors to the error handler
         if (err) next(new Error(err));
         res.json(results);
       });
