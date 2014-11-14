@@ -4,7 +4,8 @@
   angular.module('ekg', [
     'ekg.auth',
     'ekg.home',
-    'ui.router'
+    'ui.router',
+    'ngMaterial'
   ])
 
   .run(function($rootScope, $state, Auth){
