@@ -12,7 +12,7 @@ var errors = require('./error-handlers.js');
 var app = express();
 
 // Python server connection
-// var python = require('./python/pythonComm.js');
+var python = require('./python/pythonComm.js');
 
 // Sends some data to Python, Python squares it - this is simply part
 // of testing the python connection and can be removed later
