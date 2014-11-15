@@ -4,26 +4,24 @@ var mongoose = require('mongoose');
 
 // Request handlers
 // User authentication routes
-var user = require('./users/user-controller.js');
+var user = require('./server/users/user-controller.js');
 // Data query routes
-var data = require('./data/data-controllers.js');
-var errors = require('./error-handlers.js');
+var data = require('./server/data/data-controllers.js');
+var errors = require('./server/error-handlers.js');
 
 var app = express();
 
 // Python server connection
-var python = require('./python/pythonComm.js');
+var python = require('./server/python/pythonComm.js');
 
-// Sends some data to Python, Python squares it - this is simply part
-// of testing the python connection and can be removed later
-// python.invoke("processData", [1,2,3], function(error, res, more) {
-//   if(error){
-//     throw error;
-//   } 
-//   console.log(res);
-// }); 
+python.invoke("hello", "Node!", function(error, res, more) {
+    if(error){
+      throw error;
+    }
+    console.log("Response from Python:", res);
+});
 
-app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname + '/client'));
 
 // For every incoming request, the following will parse the 
 // body of the request for its contents before passing them
