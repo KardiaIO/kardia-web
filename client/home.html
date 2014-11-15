@@ -1,4 +1,4 @@
-<div id='home'>
+<div id='home' ng-controller="MainController">
   <a href='#/signin' ng-click='signout()'>sign out</a>
   <button>Home</button>
   <button>Detail</button>
@@ -22,27 +22,26 @@
       height="100">
     </rickshaw-chart>
   </div>
-  <div id='dayOfWeekContainer'>
-    <button class='dayOfWeek' id='MON' ng-click='getData(1, 0, 0)'>M</button>
-    <button class='dayOfWeek' id='TUES' ng-click='getData(2, 0, 0)'>T</button>
-    <button class='dayOfWeek' id='WED' ng-click='getData(3, 0, 0)'>W</button>
-    <button class='dayOfWeek' id='THURS' ng-click='getData(4, 0, 0)'>T</button>
-    <button class='dayOfWeek' id='FRI' ng-click='getData(5, 0, 0)'>F</button>
-    <button class='dayOfWeek' id='SAT' ng-click='getData(6, 0, 0)'>S</button>
-    <button class='dayOfWeek' id='SUN' ng-click='getData(0, 0, 0)'>S</button>
-  </div>
-  <div id='timeControllers'>
-  </div>
+  <div class="timeButtons" ng-controller="TimeController">
+    <div id='dayOfWeekContainer'>
+      <button class='dayOfWeek' id='MON' ng-click='getData(1, time.hour, time.minute)'>M</button>
+      <button class='dayOfWeek' id='TUES' ng-click='getData(2, time.hour, time.minute)'>T</button>
+      <button class='dayOfWeek' id='WED' ng-click='getData(3, time.hour, time.minute)'>W</button>
+      <button class='dayOfWeek' id='THURS' ng-click='getData(4, time.hour, time.minute)'>T</button>
+      <button class='dayOfWeek' id='FRI' ng-click='getData(5, time.hour, time.minute)'>F</button>
+      <button class='dayOfWeek' id='SAT' ng-click='getData(6, time.hour, time.minute)'>S</button>
+      <button class='dayOfWeek' id='SUN' ng-click='getData(0, time.hour, time.minute)'>S</button>
+    </div>
 
-  <div ng-controller="timeCtrl">
-    <h2>
-      <button ng-click="ddecrement()"> -- </button>
-      <button ng-click="decrement()"> - </button>
-      {{time.display}}
-      <button ng-click="increment()"> + </button>
-      <button ng-click="iincrement()"> ++ </button>
-      <p>raw date/time: {{time.value}}</p>
-    </h2> 
-    <p>+- increments by 1,000 seconds, ++ -- increments by 10,000 seconds.</p>
+    <div>
+      <h2>
+        <!-- First update the clock time, then send a request for new data to update graph -->
+        <button ng-click="updateDisplayTime('--'); getData(time.dayOfWeek, time.hour, time.minute)"> -- </button>
+        <button ng-click="updateDisplayTime('-'); getData(time.dayOfWeek, time.hour, time.minute)"> - </button>
+        {{display}}
+        <button ng-click="updateDisplayTime('+'); getData(time.dayOfWeek, time.hour, time.minute)"> + </button>
+        <button ng-click="updateDisplayTime('++'); getData(time.dayOfWeek, time.hour, time.minute)"> ++ </button>
+      </h2> 
+    </div>
   </div>
 </div>
