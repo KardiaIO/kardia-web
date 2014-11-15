@@ -41,7 +41,7 @@
   </div>
   <div class="timeButtons" ng-controller="TimeController">
     <div layout="horizontal" layout-align="center" id='dayOfWeekContainer'style="margin: 18px;">
-     
+
       <md-button class="md-raised" id='MON' ng-click='getData(1, time.hour, time.minute)'>MON</md-button>
       <md-button class="md-raised" id='TUES' ng-click='getData(2, time.hour, time.minute)'>TUE</md-button>
       <md-button class="md-raised" id='WED' ng-click='getData(3, time.hour, time.minute)'>WED</md-button>
@@ -57,7 +57,7 @@
       <!-- First update the clock time, then send a request for new data to update graph -->
       <button ng-click="updateDisplayTime('--'); getData(time.dayOfWeek, time.hour, time.minute)"> -- </button>
       <button ng-click="updateDisplayTime('-'); getData(time.dayOfWeek, time.hour, time.minute)"> - </button>
-      {{display}}
+        <span style="margin: 4px;">{{display}}</span>
       <button ng-click="updateDisplayTime('+'); getData(time.dayOfWeek, time.hour, time.minute)"> + </button>
       <button ng-click="updateDisplayTime('++'); getData(time.dayOfWeek, time.hour, time.minute)"> ++ </button>
     </div>
