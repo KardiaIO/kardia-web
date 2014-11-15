@@ -45,7 +45,7 @@ module.exports = {
             results: results,
             indicators: indicators
           });
-        })
+        });
       });
 
     });
