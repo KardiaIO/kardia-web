@@ -10,7 +10,7 @@ var data = require('./server/data/data-controllers.js');
 var errors = require('./server/error-handlers.js');
 
 var app = express();
-
+/*
 // Python server connection
 var python = require('./server/python/pythonComm.js');
 
@@ -20,7 +20,7 @@ python.invoke("hello", "Node!", function(error, res, more) {
     }
     console.log("Response from Python:", res);
 });
-
+*/
 app.use(express.static(__dirname + '/client'));
 
 // For every incoming request, the following will parse the 
