@@ -18,15 +18,12 @@ module.exports = {
     //     1) day of week (0-6, Sunday-Monday)
     //     2) hour (0-23)
     //     3) minute (0-59)
-
     var startTime = req.body.time;
 
     var year = (new Date()).getFullYear();
     var month = (new Date()).getMonth();
     var utc = new Date(year, month, req.body.time.dayOfWeek, req.body.time.hour, req.body.time.minute);
-    // Fake data - just to make something appear on screen:
-    // var utc = new Date(year, month, 2, 15, 3);
-
+    
     /**************************************************************************/
     /* Get request with json data in certain range ( 1 minute )
     /**************************************************************************/
@@ -48,7 +45,7 @@ module.exports = {
             results: results,
             indicators: indicators
           });
-        })
+        });
       });
 
     });
