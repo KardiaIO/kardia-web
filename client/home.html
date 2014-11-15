@@ -1,8 +1,25 @@
+
+
 <div id='home' ng-controller="MainController">
-  <a href='#/signin' ng-click='signout()'>sign out</a>
-  <button>Home</button>
-  <button>Detail</button>
-  <div id='zoomedInGraph'>
+  <div layout="horizontal" layout-align="center">
+    <div  style="width: 400px;"> </div>
+
+      <md-tabs selected="data.selectedIndex" center>
+        <md-tab id="tab1" aria-controls="tab1-content">
+          Home
+        </md-tab>
+        <md-tab id="tab3" aria-controls="tab3-content">
+          Details
+        </md-tab>
+      </md-tabs>
+
+    <div style="width: 400px;  ">
+<!--       <a href='#/signin' ng-click='signout()'>sign out</a>
+ -->    </div>
+  </div>
+
+
+  <div layout="horizontal" layout-align="center" id='zoomedInGraph'>
     <rickshaw-chart
       data="snippet"
       color1="red"
@@ -12,36 +29,37 @@
       height="400">
     </rickshaw-chart>
   </div>
-  <div id='longGraph'>
+  <div layout="horizontal" layout-align="center" id='longGraph'>
     <rickshaw-chart
-      data="largerSnippet"
-      color1="red"
-      color2="blue"
-      renderer="renderer"
-      width="1000"
-      height="100">
-    </rickshaw-chart>
+    data="largerSnippet"
+    color1="red"
+    color2="blue"
+    renderer="renderer"
+    width="1000"
+    height="100">
+  </rickshaw-chart>
   </div>
   <div class="timeButtons" ng-controller="TimeController">
-    <div id='dayOfWeekContainer'>
-      <button class='dayOfWeek' id='MON' ng-click='getData(1, time.hour, time.minute)'>M</button>
-      <button class='dayOfWeek' id='TUES' ng-click='getData(2, time.hour, time.minute)'>T</button>
-      <button class='dayOfWeek' id='WED' ng-click='getData(3, time.hour, time.minute)'>W</button>
-      <button class='dayOfWeek' id='THURS' ng-click='getData(4, time.hour, time.minute)'>T</button>
-      <button class='dayOfWeek' id='FRI' ng-click='getData(5, time.hour, time.minute)'>F</button>
-      <button class='dayOfWeek' id='SAT' ng-click='getData(6, time.hour, time.minute)'>S</button>
-      <button class='dayOfWeek' id='SUN' ng-click='getData(0, time.hour, time.minute)'>S</button>
+    <div layout="horizontal" layout-align="center" id='dayOfWeekContainer'style="margin: 18px;">
+     
+      <md-button class="md-raised" id='MON' ng-click='getData(1, time.hour, time.minute)'>MON</md-button>
+      <md-button class="md-raised" id='TUES' ng-click='getData(2, time.hour, time.minute)'>TUE</md-button>
+      <md-button class="md-raised" id='WED' ng-click='getData(3, time.hour, time.minute)'>WED</md-button>
+      <md-button class="md-raised" id='THURS' ng-click='getData(4, time.hour, time.minute)'>THR</md-button>
+      <md-button class="md-raised" id='FRI' ng-click='getData(5, time.hour, time.minute)'>FRI</md-button>
+      <md-button class="md-raised" id='SAT' ng-click='getData(6, time.hour, time.minute)'>SAT</md-button>
+      <md-button class="md-raised" id='SUN' ng-click='getData(0, time.hour, time.minute)'>SUN</md-button>
     </div>
+  </div>
+  <div class="timeButtons" ng-controller="TimeController">
 
-    <div>
-      <h2>
-        <!-- First update the clock time, then send a request for new data to update graph -->
-        <button ng-click="updateDisplayTime('--'); getData(time.dayOfWeek, time.hour, time.minute)"> -- </button>
-        <button ng-click="updateDisplayTime('-'); getData(time.dayOfWeek, time.hour, time.minute)"> - </button>
-        {{display}}
-        <button ng-click="updateDisplayTime('+'); getData(time.dayOfWeek, time.hour, time.minute)"> + </button>
-        <button ng-click="updateDisplayTime('++'); getData(time.dayOfWeek, time.hour, time.minute)"> ++ </button>
-      </h2> 
+    <div layout="horizontal" layout-align="center" style="margin: 18px;">
+      <!-- First update the clock time, then send a request for new data to update graph -->
+      <button ng-click="updateDisplayTime('--'); getData(time.dayOfWeek, time.hour, time.minute)"> -- </button>
+      <button ng-click="updateDisplayTime('-'); getData(time.dayOfWeek, time.hour, time.minute)"> - </button>
+      {{display}}
+      <button ng-click="updateDisplayTime('+'); getData(time.dayOfWeek, time.hour, time.minute)"> + </button>
+      <button ng-click="updateDisplayTime('++'); getData(time.dayOfWeek, time.hour, time.minute)"> ++ </button>
     </div>
   </div>
 </div>
