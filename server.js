@@ -11,7 +11,7 @@ var errors = require('./server/error-handlers.js');
 
 var app = express();
 
-Python server connection
+// Python server connection
 var python = require('./server/python/pythonComm.js');
 
 python.invoke("hello", "Node!", function(error, res, more) {
