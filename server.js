@@ -21,7 +21,7 @@ python.invoke("hello", "Node!", function(error, res, more) {
     console.log("Response from Python:", res);
 });
 
-app.use(express.static(__dirname + './client'));
+app.use(express.static(__dirname + '/client'));
 
 // For every incoming request, the following will parse the 
 // body of the request for its contents before passing them
