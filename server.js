@@ -14,12 +14,9 @@ var app = express();
 // Python server connection
 var python = require('./server/python/pythonComm.js');
 
-python.invoke("hello", "Node!", function(error, res, more) {
-    if(error){
-      throw error;
-    }
-    console.log("Response from Python:", res);
-});
+// Email server notification
+var email = require('./server/problematic/rhythmNotification.js');
+// email.arrhythmiaNotify('Chao', 'chao.xue.mit@gmail.com', null);
 
 app.use(express.static(__dirname + '/client'));
 
