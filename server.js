@@ -26,6 +26,10 @@ var app = express();
 //     console.log("Response from Python:", res);
 // });
 
+// Email server notification
+// var email = require('./server/problematic/rhythmNotification.js');
+// email.arrhythmiaNotify('Chao', 'chao.xue.mit@gmail.com', null);
+
 app.use(express.static(__dirname + '/client'));
 
 // var python = require('./python/pythonComm.js');
@@ -38,8 +42,6 @@ app.use(express.static(__dirname + '/client'));
 //   } 
 //   console.log(res);
 // }); 
-
-app.use(express.static(__dirname + '/../client'));
 
 // For every incoming request, the following will parse the 
 // body of the request for its contents before passing them
