@@ -1,3 +1,6 @@
+
+
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../fonts/glyphicons-halflings-regular.eot');
@@ -6,12 +9,12 @@
 * {
   box-sizing: border-box;
 }
-/*body {
+body {
   font-family: 'Open Sans';
   background: #F0F1F0;
   font-size: 1em;
   text-align: center;
-}*/
+}
 button {
   width: 250px;
   height: 50px;
@@ -68,7 +71,7 @@ button {
 .sign-up {
   background: #fcfcfc;
   width: 400px;
-  height: 500px;
+  height: 800px;
   color: #F0F1F0;
   font-weight: bold;
 }
@@ -91,7 +94,7 @@ button {
 .login {
   background: #1BBA9A;
   width: 400px;
-  height: 400px;
+  height: 540px;
   color: #F0F1F0;
   font-weight: bold;
 }
@@ -160,3 +163,5 @@ form button {
   color: #1BBA9A;
   text-decoration: none;
 }
+
+*/

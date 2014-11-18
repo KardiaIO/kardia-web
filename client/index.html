@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="lib/angular-material/themes/default-theme.css">
     <link rel="stylesheet" href="lib/angular-material/themes/teal-theme.css">
     <link rel="stylesheet" href="lib/rickshaw/rickshaw.css">
-    <link rel="stylesheet" href="style.css">
+<!--     <link rel="stylesheet" href="style.css"> -->
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="lib/underscore/underscore.js"></script>
@@ -27,18 +27,18 @@
   </head>
 
   <body>
-    <div  ng-controller="SignInCtrl">
+    <div ng-controller="SignInCtrl">
       <div class="container">
         <button ng-morph-modal="example1" > login </button>
       </div>
     </div>
 
     <div ui-view></div>
-    <script src="scripts/auth.js"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/rickshawDirective.js"></script>
-    <script src="scripts/timeShift.js"></script>
+    <script src="components/signin/auth.js"></script>
+    <script src="main.js"></script>
+    <script src="app.js"></script>
+    <script src="components/analysis/rickshawDirective.js"></script>
+    <script src="components/analysis/timeShift.js"></script>
   </body>
 
 </html>
