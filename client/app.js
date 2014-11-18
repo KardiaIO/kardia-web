@@ -5,7 +5,8 @@
     'ekg.auth',
     'ekg.home',
     'ui.router',
-    'ngMaterial'
+    'ngMaterial',
+    'ngMorph'
   ])
 
   .run(function($rootScope, $state, Auth){
@@ -28,20 +29,20 @@
 
       .state('home', {
         url: '/home',
-        templateUrl: '/home.html',
+        templateUrl: 'components/analysis/home.html',
         controller: 'MainController',
         authenticate: true
       })
 
       .state('signin', {
         url: '/signin',
-        templateUrl: '/auth/signin.html',
+        templateUrl: 'components/signin/signin.html',
         controller: 'AuthController'
       })
 
       .state('signup', {
         url: '/signup',
-        templateUrl: '/auth/signup.html',
+        templateUrl: 'components/signin/signup.html',
         controller: 'AuthController'
       });
 
@@ -53,6 +54,17 @@
     $httpProvider.interceptors.push('AttachTokens');
 
   })
+  
+  .controller('SignInCtrl', ['$scope', function ($scope) {
+    $scope.example1 = {
+      closeEl: '.close',
+      modal: {
+        templateUrl: 'components/signin/loginform.html'
+      }
+    };
+
+
+  }])
 
   .factory('AttachTokens', function ($window) {
     // This is an $httpInterceptor. Its job is to stop all out going requests
