@@ -38,8 +38,12 @@ angular.module('ekg.home', [
       results: $scope.largerSnippet.results.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength),
       indicators: $scope.largerSnippet.indicators.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength)
     };
-    if (forward) longGraphStartIndex += 10;
-    if (!forward && longGraphStartIndex - 10 >= 0) longGraphStartIndex -= 10;
+    if (forward) longGraphStartIndex += 5;
+    if (!forward && longGraphStartIndex - 5 >= 0) longGraphStartIndex -= 5;
+  };
+
+  function updateDisplayInterval(forward, interval){
+
   };
 
   $scope.fastForward = function(){
