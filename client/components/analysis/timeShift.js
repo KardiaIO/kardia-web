@@ -11,16 +11,16 @@
       $scope.updateDisplayTime = function(degree) {
         switch(degree) {
           case '--':
-            displayedTime = moment(displayedTime).subtract(30, 'minutes'); 
+            displayedTime = moment(displayedTime).subtract(30, 'minutes');
             break; 
           case '-': 
-            displayedTime = moment(displayedTime).subtract(1, 'minute'); 
+            displayedTime = moment(displayedTime).subtract(1, 'minute');
             break; 
           case '+': 
-            displayedTime = moment(displayedTime).add(1, 'minute'); 
+            displayedTime = moment(displayedTime).add(1, 'minute');
             break; 
           case '++': 
-            displayedTime = moment(displayedTime).add(30, 'minutes'); 
+            displayedTime = moment(displayedTime).add(30, 'minutes');
             break;
         }
         // Update factory to reflect what the clock shows
