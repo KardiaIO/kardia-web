@@ -26,34 +26,6 @@ var app = express();
 //     console.log("Response from Python:", res);
 // });
 
-// Email server notification
-// var python = require('./server/python/pythonComm.js');
-
-// // Email server notification
-// var email = require('./server/problematic/rhythmNotification.js');
-// email.arrhythmiaNotify('Chao', 'chao.xue.mit@gmail.com', null);
-// var python = require('./server/python/pythonComm.js');
-
-// python.invoke("hello", "Node!", function(error, res, more) {
-//     if(error){
-//       throw error;
-//     }
-//     console.log("Response from Python:", res);
-// });
-
-var python = require('./python/pythonComm.js');
-
-// Sends some data to Python, Python squares it - this is simply part
-// of testing the python connection and can be removed later
-// python.invoke("processData", [1,2,3], function(error, res, more) {
-//   if(error){
-//     throw error;
-//   } 
-//   console.log(res);
-// }); 
-
-*/
-
 app.use(express.static(__dirname + '/client'));
 
 // var python = require('./python/pythonComm.js');
