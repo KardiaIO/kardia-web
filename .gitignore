@@ -3,8 +3,7 @@
 .LSOverride
 azure.err
 iisnode.yml
-.travis.yml
-package.json
+npm-debug.log
 
 # Icon must ends with two \r.
 Icon
