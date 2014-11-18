@@ -5,7 +5,7 @@
     .controller('TimeController', function($scope, TimeFactory){
       // Attach Factory to scope, so it's accessible from html
       $scope.time = TimeFactory;
-      $scope.display = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+      $scope.display = moment().format("dddd, MMMM Do YYYY, h:mm a");
       var displayedTime = TimeFactory.value;
 
       $scope.updateDisplayTime = function(degree) {
@@ -28,7 +28,7 @@
         TimeFactory.minute = displayedTime.minutes();
         TimeFactory.dayOfWeek = displayedTime.day();
         // Update time displayed on app
-        $scope.display = moment(displayedTime).format("dddd, MMMM Do YYYY, h:mm:ss a");
+        $scope.display = moment(displayedTime).format("dddd, MMMM Do YYYY, h:mm a");
       };
     })
 
