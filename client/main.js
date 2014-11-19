@@ -4,9 +4,9 @@ angular.module('ekg.home', [
 
 .controller('MainController', function ($scope, DataGetter, Auth, TimeFactory) {
 
-  $scope.getData = function(dayOfWeek, hour, minute) {
+  $scope.getData = function(date, hour, minute) {
 
-    DataGetter.getData(dayOfWeek, hour, minute)
+    DataGetter.getData(date, hour, minute)
       .success(function(result){
         $scope.largerSnippet = result;
         $scope.getSnippet(0); 
@@ -25,7 +25,7 @@ angular.module('ekg.home', [
   };
 
   // Initialized data with current time
-  $scope.getData(TimeFactory.dayOfWeek, TimeFactory.hour, TimeFactory.minute);
+  $scope.getData(TimeFactory.date, TimeFactory.hour, TimeFactory.minute);
 
   $scope.signout = Auth.signout;
   
@@ -35,10 +35,10 @@ angular.module('ekg.home', [
 .factory('DataGetter', function ($http) {
 
   return {
-    getData: function(dayOfWeek, hour, minute) {
+    getData: function(date, hour, minute) {
       return $http.post('/users/data', {
         time: {
-          dayOfWeek: dayOfWeek,
+          date: date,
           hour: hour,
           minute: minute
         }  
