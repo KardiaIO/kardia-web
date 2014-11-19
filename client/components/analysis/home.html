@@ -1,5 +1,4 @@
 
-
 <div id='home' ng-controller="MainController">
   <div layout="horizontal" layout-align="center">
     <div  style="width: 400px;"> </div>
@@ -42,7 +41,6 @@
   <!-- The timeButtons div wraps both nested divs, which are responsible for changing the clock when a user clicks a button -->
   <div class="timeButtons" ng-controller="TimeController">
     <div layout="horizontal" layout-align="center" id='dayOfWeekContainer'style="margin: 18px;">
-
       <md-button aria-label='' class="md-raised" id='MON' ng-click='updateDisplayTime(1); getData(time.date, time.hour, time.minute)'>MON</md-button>
       <md-button aria-label='' class="md-raised" id='TUES' ng-click='updateDisplayTime(2); getData(time.date, time.hour, time.minute)'>TUE</md-button>
       <md-button aria-label='' class="md-raised" id='WED' ng-click='updateDisplayTime(3); getData(time.date, time.hour, time.minute)'>WED</md-button>
@@ -54,11 +52,11 @@
 
     <div layout="horizontal" layout-align="center" style="margin: 18px;">
       <!-- First update the clock time, then send a request for new data to update graph -->
-      <button ng-click="updateDisplayTime('--'); getData(time.date, time.hour, time.minute)"> -- </button>
-      <button ng-click="updateDisplayTime('-'); getData(time.date, time.hour, time.minute)"> - </button>
-        <span style="margin: 4px;">{{display}}</span>
-      <button ng-click="updateDisplayTime('+'); getData(time.date, time.hour, time.minute)"> + </button>
-      <button ng-click="updateDisplayTime('++'); getData(time.date, time.hour, time.minute)"> ++ </button>
+      <button ng-click="updateDisplayTime('--'); fastBackward()"> -- </button>
+      <button ng-click="updateDisplayTime('-'); playBackward()"> - </button>
+      <button ng-click="stopPlay()"> STOP </button>
+      <button ng-click="updateDisplayTime('+'); playForward()"> + </button>
+      <button ng-click="updateDisplayTime('++'); fastForward()"> ++ </button>
     </div>
   </div><!-- End timeButtons wrapper div -->
 </div>
