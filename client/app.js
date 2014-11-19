@@ -5,8 +5,7 @@
     'ekg.auth',
     'ekg.home',
     'ui.router',
-    'ngMaterial',
-    'ngMorph'
+    'ngMaterial'
   ])
 
   .run(function($rootScope, $state, Auth){
