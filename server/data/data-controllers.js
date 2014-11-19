@@ -43,7 +43,7 @@ module.exports = {
       var request = new mssql.Request();
 
       request.query('select * from SampleData.dbo.duplicatedSampleEKG1'
-        + ' where x between ' + startTime + ' and ' + startTime + 30000, 
+        + ' where x >= ' + startTime + ' and x <' + startTime + 30000, 
         function(err, results){
         // Passes any errors to the error handler
         if (err) next(new Error('Error in first query' + err));

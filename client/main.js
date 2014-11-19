@@ -22,10 +22,14 @@ angular.module('ekg.home', [
     $scope.getData(time);
     if (forward) time += 30000;
     if (!forward && time - 30000 >= 0) time -= 30000;
+    var totalTimeInMinutes = Math.floor(time / 60000);
+    var minute = totalTimeInMinutes % 60;
+    var hour = ((totalTimeInMinutes - minute) / 60) % 24;
+    var dayOfWeek = Math.floor(totalTimeInMinutes / 60 / 24) % 7;
     $scope.time = {
-      dayOfWeek: ((time - ((time - Math.floor(time / 60000) % 60) / 60) % 24) / 24) % 7,
-      hour: ((time - Math.floor(time / 60000) % 60) / 60) % 24,
-      minute: Math.floor(time / 60000) % 60
+      dayOfWeek: dayOfWeek,
+      hour: hour,
+      minute: minute
     };
   };
 
@@ -43,7 +47,7 @@ angular.module('ekg.home', [
   };
 
   function updateDisplayInterval(forward, interval){
-
+    
   };
 
   $scope.fastForward = function(){

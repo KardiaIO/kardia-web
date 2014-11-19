@@ -40,16 +40,17 @@
             while (newDate.day() !== degree) {
               newDate = moment(newDate).subtract(1, 'day');
             }
-        }
-        // Update factory to reflect what the clock shows
-        TimeFactory.hour = displayedTime.hour();
-        TimeFactory.minute = displayedTime.minutes();
-        TimeFactory.dayOfWeek = displayedTime.day();
-        TimeFactory.date = displayedTime.date();
-        // Update time displayed on app
-        $scope.display = moment(displayedTime).format("dddd, MMMM Do YYYY, h:mm a");
-      };
-    })
+            displayedTime = moment(newDate);
+          }
+      } // End switch
+      // Update factory to reflect what the clock shows
+      TimeFactory.hour = displayedTime.hour();
+      TimeFactory.minute = displayedTime.minutes();
+      TimeFactory.dayOfWeek = displayedTime.day();
+      TimeFactory.date = displayedTime.date();
+      // Update time displayed on app
+      $scope.display = moment(displayedTime).format("dddd, MMMM Do YYYY, h:mm a");
+    };
   })
 
   .factory('TimeFactory', function() {
