@@ -47,6 +47,7 @@
         TimeFactory.hour = displayedTime.hour();
         TimeFactory.minute = displayedTime.minutes();
         TimeFactory.dayOfWeek = displayedTime.day();
+        TimeFactory.date = displayedTime.date();
         // Update time displayed on app
         $scope.display = moment(displayedTime).format("dddd, MMMM Do YYYY, h:mm a");
       };
@@ -58,6 +59,7 @@
 
       return {
         value: value,
+        date: value.date(),
         dayOfWeek: value.day(),
         hour: value.hour(),
         minute: value.minutes()

@@ -18,14 +18,13 @@ module.exports = {
     //     1) day of week (0-6, Sunday-Monday)
     //     2) hour (0-23)
     //     3) minute (0-59)
-    var startTime = req.body.time;
-
+    var requestedTime = req.body.time;
+    
     var year = (new Date()).getFullYear();
     var month = (new Date()).getMonth();
-    var utc = new Date(year, month, req.body.time.dayOfWeek, req.body.time.hour, req.body.time.minute);
-    
+    var utc = Date.UTC(year, month, requestedTime.date, requestedTime.hour, requestedTime.minute);
     /**************************************************************************/
-    /* Get request with json data in certain range ( 1 minute )
+    /* TODO: Get request with json data in certain range ( 1 minute )
     /**************************************************************************/
 
     // The username was put onto the request by the decode middleware
