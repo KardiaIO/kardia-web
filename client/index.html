@@ -10,7 +10,18 @@
     <link rel="stylesheet" href="lib/angular-material/themes/default-theme.css">
     <link rel="stylesheet" href="lib/angular-material/themes/teal-theme.css">
     <link rel="stylesheet" href="lib/rickshaw/rickshaw.css">
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+    <link href="lib/bootstrap-material-design/dist/css/material-wfont.min.css" rel="stylesheet">
 <!--     <link rel="stylesheet" href="style.css"> -->
+  </head>
+
+  <body>
+
+    <div ui-view></div>
+
+    <!-- javascript -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="lib/underscore/underscore.js"></script>
@@ -22,16 +33,21 @@
     <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/hammerjs/hammer.js"></script>
     <script src="lib/angular-material/angular-material.js"></script>
+    <!-- bootstrap material design -->
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script src="lib/bootstrap-material-design/dist/js/material.min.js"></script>
 
-  </head>
-
-  <body>
-    <div ui-view></div>
     <script src="components/signin/auth.js"></script>
     <script src="main.js"></script>
     <script src="app.js"></script>
     <script src="components/analysis/rickshawDirective.js"></script>
     <script src="components/analysis/timeShift.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.material.init();  // required for bootstrap-material-design
+        });
+    </script>
   </body>
 
 </html>
