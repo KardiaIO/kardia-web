@@ -9,6 +9,7 @@ angular.module('ekg.home')
     restrict: 'E',
     link: function postLink(scope, element, attrs) {
       scope.$watchCollection('[data, renderer]', function(newVal, oldVal){
+        console.log('watcher running');
         if(!newVal[0]){
           return;
         }

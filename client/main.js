@@ -2,7 +2,7 @@ angular.module('ekg.home', [
   'ekg.auth'
 ])
 
-.controller('MainController', function ($scope, DataGetter, Auth, TimeFactory) {
+.controller('MainController', function ($scope, $interval, DataGetter, Auth, TimeFactory) {
 
   $scope.time = TimeFactory;
   $scope.dataArray = {
@@ -47,48 +47,64 @@ angular.module('ekg.home', [
   };
 
   function updateDisplayInterval(forward, interval){
-    
+
   };
 
   $scope.fastForward = function(){
-    window.clearInterval(graphInterval);
-    window.clearInterval(serverInterval);
-    graphInterval = window.setInterval(changeGraphInterval, 10, true);
-    serverInterval = window.setInterval(grabDataInterval, 3000, true);
+    $interval.cancel(graphInterval);
+    $interval.cancel(serverInterval);
+    graphInterval = $interval(function(){
+      changeGraphInterval(true);
+    }, 10);
+    serverInterval = $interval(function(){
+      grabDataInterval(true);
+    }, 3000);
   };
 
   $scope.playForward = function(){
-    window.clearInterval(graphInterval);
-    window.clearInterval(serverInterval);
-    graphInterval = window.setInterval(changeGraphInterval, 30, true);
-    serverInterval = window.setInterval(grabDataInterval, 9000, true);
+    $interval.cancel(graphInterval);
+    $interval.cancel(serverInterval);
+    graphInterval = $interval(function(){
+      changeGraphInterval(true);
+    }, 30);
+    serverInterval = $interval(function(){
+      grabDataInterval(true);
+    }, 9000);
   };
 
   $scope.playBackward = function(){
-    window.clearInterval(graphInterval);
-    window.clearInterval(serverInterval);
-    graphInterval = window.setInterval(changeGraphInterval, 30, false);
-    serverInterval = window.setInterval(grabDataInterval, 9000, false);
+    $interval.cancel(graphInterval);
+    $interval.cancel(serverInterval);
+    graphInterval = $interval(function(){
+      changeGraphInterval(false);
+    }, 30);
+    serverInterval = $interval(function(){
+      grabDataInterval(false);
+    }, 9000);
   };
 
   $scope.fastBackward = function(){
-    window.clearInterval(graphInterval);
-    window.clearInterval(serverInterval);
-    graphInterval = window.setInterval(changeGraphInterval, 10, false);
-    serverInterval = window.setInterval(grabDataInterval, 3000, false);
+    $interval.cancel(graphInterval);
+    $interval.cancel(serverInterval);
+    graphInterval = $interval(function(){
+      changeGraphInterval(false);
+    }, 10);
+    serverInterval = $interval(function(){
+      grabDataInterval(false);
+    }, 3000);
   };
 
   $scope.stopPlay = function(){
-    window.clearInterval(graphInterval);
-    window.clearInterval(serverInterval);
+    $interval.cancel(graphInterval);
+    $interval.cancel(serverInterval);
   }
 
   $scope.getData = function(time) {
     DataGetter.getData(time)
       .success(function(result){
         $scope.dataArray = {
-          results: $scope.dataArray.results.concat(result.results),
-          indicators: $scope.dataArray.indicators.concat(result.indicators)
+          results: $scope.dataArray.results.concat(result),
+          indicators: $scope.dataArray.indicators.concat(result)
         };
       })
       .catch(function(error){
@@ -129,9 +145,10 @@ angular.module('ekg.home', [
 .factory('DataGetter', function ($http) {
   return {
     getData: function(time) {
-      return $http.post('/users/data', {
-        time: time
-      });
+      return $http.get('/sampleData/sample1.json');
+      //return $http.post('/users/data', {
+      //  time: time
+      //});
     }
   };
 });
