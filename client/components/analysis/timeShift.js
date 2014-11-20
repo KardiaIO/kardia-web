@@ -8,9 +8,9 @@
     // Display variable is updated on button clicks
     $scope.display = moment().format("dddd, MMMM Do YYYY, h:mm a");
     // The currentDay variable keeps a reference to the actual current day
-    var currentDay = TimeFactory.value;
+    var currentDay = TimeFactory.getTime('value');
     // Temp variable for adding and subtracting time; $scope.display uses this variable
-    var displayedTime = TimeFactory.value;
+    var displayedTime = TimeFactory.getTime('value');
 
     $scope.updateDisplayTime = function(degree) {
       switch(degree) {
@@ -43,11 +43,13 @@
             displayedTime = moment(newDate);
           }
       } // End switch
+
       // Update factory to reflect what the clock shows
-      TimeFactory.hour = displayedTime.hour();
-      TimeFactory.minute = displayedTime.minutes();
-      TimeFactory.dayOfWeek = displayedTime.day();
-      TimeFactory.date = displayedTime.date();
+      TimeFactory.setTime('hour', displayedTime.hour());
+      TimeFactory.setTime('minute', displayedTime.minutes());
+      TimeFactory.setTime('dayOfWeek', displayedTime.day());
+      TimeFactory.setTime('date', displayedTime.date());
+
       // Update time displayed on app
       $scope.display = moment(displayedTime).format("dddd, MMMM Do YYYY, h:mm a");
     };
@@ -56,13 +58,22 @@
   .factory('TimeFactory', function() {
     // Moment object of current time for initial load
     var value = moment();
-
-    return {
+    
+    var clockTime = {
       value: value,
       date: value.date(),
       dayOfWeek: value.day(),
       hour: value.hour(),
       minute: value.minutes()
+    };
+
+    return {
+      getTime: function(timeInterval){
+        return clockTime[timeInterval];
+      },
+      setTime: function(timeInterval, value){
+        clockTime[timeInterval] = value;
+      }
     };
   });
 })();

@@ -41,13 +41,17 @@
   <!-- The timeButtons div wraps both nested divs, which are responsible for changing the clock when a user clicks a button -->
   <div class="timeButtons" ng-controller="TimeController">
     <div layout="horizontal" layout-align="center" id='dayOfWeekContainer'style="margin: 18px;">
-      <md-button aria-label='' class="md-raised" id='MON' ng-click='updateDisplayTime(1); getData(time.date, time.hour, time.minute)'>MON</md-button>
-      <md-button aria-label='' class="md-raised" id='TUES' ng-click='updateDisplayTime(2); getData(time.date, time.hour, time.minute)'>TUE</md-button>
-      <md-button aria-label='' class="md-raised" id='WED' ng-click='updateDisplayTime(3); getData(time.date, time.hour, time.minute)'>WED</md-button>
-      <md-button aria-label='' class="md-raised" id='THURS' ng-click='updateDisplayTime(4); getData(time.date, time.hour, time.minute)'>THR</md-button>
-      <md-button aria-label='' class="md-raised" id='FRI' ng-click='updateDisplayTime(5); getData(time.date, time.hour, time.minute)'>FRI</md-button>
-      <md-button aria-label='' class="md-raised" id='SAT' ng-click='updateDisplayTime(6); getData(time.date, time.hour, time.minute)'>SAT</md-button>
-      <md-button aria-label='' class="md-raised" id='SUN' ng-click='updateDisplayTime(0); getData(time.date, time.hour, time.minute)'>SUN</md-button>
+      <md-button aria-label='' class="md-raised" id='MON' ng-click="updateDisplayTime(1); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">MON</md-button>
+      <md-button aria-label='' class="md-raised" id='TUES' ng-click="updateDisplayTime(2); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">TUE</md-button>
+      <md-button aria-label='' class="md-raised" id='WED' ng-click="updateDisplayTime(3); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">WED</md-button>
+      <md-button aria-label='' class="md-raised" id='THURS' ng-click="updateDisplayTime(4); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">THR</md-button>
+      <md-button aria-label='' class="md-raised" id='FRI' ng-click="updateDisplayTime(5); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">FRI</md-button>
+      <md-button aria-label='' class="md-raised" id='SAT' ng-click="updateDisplayTime(6); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">SAT</md-button>
+      <md-button aria-label='' class="md-raised" id='SUN' ng-click="updateDisplayTime(0); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">SUN</md-button>
+    </div>
+
+    <div layout="horizontal" layout-align="center" id="displayedTimeContainer" style="margin: 18px;">
+      {{display}}
     </div>
 
     <div layout="horizontal" layout-align="center" style="margin: 18px;">
