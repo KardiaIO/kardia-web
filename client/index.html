@@ -10,7 +10,52 @@
     <link rel="stylesheet" href="lib/angular-material/themes/default-theme.css">
     <link rel="stylesheet" href="lib/angular-material/themes/teal-theme.css">
     <link rel="stylesheet" href="lib/rickshaw/rickshaw.css">
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+    <link href="lib/bootstrap-material-design/dist/css/material-wfont.min.css" rel="stylesheet">
 <!--     <link rel="stylesheet" href="style.css"> -->
+  </head>
+
+  <body>
+    <div class="navbar btn-material-teal">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="javascript:void(0)">EKG Tracker</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-warning-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="javascript:void(0)">Triage</a></li>
+          <li><a href="javascript:void(0)">Analysis</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
+            <ul class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+              <form method="post" action="login" accept-charset="UTF-8">
+                <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
+                <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
+                <input class="btn btn-material-teal btn-primary" type="submit" id="sign-in" value="Sign In">
+                <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
+                <input class="btn btn-material-teal btn-primary" type="submit" id="sign-up" value="Sign Up">
+                <input class="btn btn-material-teal btn-primary" type="button" id="sign-in-google" value="Sign In with Google">
+              </form>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div><!-- nav bar -->
+
+    <div ui-view></div>
+
+    <div class="row btn-material-teal">
+      <label style="text-align:center;margin-top:5px">footer</label>
+    </div>
+
+    <!-- javascript -->
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
@@ -18,28 +63,26 @@
     <script src="lib/rickshaw/vendor/d3.v3.js"></script>
     <script src="lib/rickshaw/rickshaw.js"></script>
     <script src="lib/moment/min/moment.min.js"></script>
-    <script src="lib/angular-morph/dist/angular-morph.min.js"></script>
     <!-- following four are angular material dependencies -->
     <script src="lib/angular-aria/angular-aria.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
     <script src="lib/hammerjs/hammer.js"></script>
     <script src="lib/angular-material/angular-material.js"></script>
+    <!-- bootstrap material design -->
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script src="lib/bootstrap-material-design/dist/js/material.min.js"></script>
 
-  </head>
-
-  <body>
-    <div ng-controller="SignInCtrl">
-      <div class="container">
-        <button ng-morph-modal="example1" > login </button>
-      </div>
-    </div>
-
-    <div ui-view></div>
     <script src="components/signin/auth.js"></script>
     <script src="main.js"></script>
     <script src="app.js"></script>
     <script src="components/analysis/rickshawDirective.js"></script>
     <script src="components/analysis/timeShift.js"></script>
+    <script>
+      $(document).ready(function() {
+          $.material.init();  // required for bootstrap-material-design
+      });
+    </script>
   </body>
 
 </html>

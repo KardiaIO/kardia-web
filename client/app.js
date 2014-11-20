@@ -5,8 +5,7 @@
     'ekg.auth',
     'ekg.home',
     'ui.router',
-    'ngMaterial',
-    'ngMorph'
+    'ngMaterial'
   ])
 
   .run(function($rootScope, $state, Auth){
@@ -54,17 +53,6 @@
     $httpProvider.interceptors.push('AttachTokens');
 
   })
-  
-  .controller('SignInCtrl', ['$scope', function ($scope) {
-    $scope.example1 = {
-      closeEl: '.close',
-      modal: {
-        templateUrl: 'components/signin/loginform.html'
-      }
-    };
-
-
-  }])
 
   .factory('AttachTokens', function ($window) {
     // This is an $httpInterceptor. Its job is to stop all out going requests
