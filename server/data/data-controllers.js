@@ -3,7 +3,7 @@ var mssql = require('mssql');
 var config = {
   user: 'ekgwebapp',
   password: 'ekgsqlserver1MSSS',
-  server: '104.40.3.154',
+  server: 'ekgsql.cloudapp.net',
   database: 'master',
   options: {
     encrypt: true
@@ -25,8 +25,9 @@ module.exports = {
     var utc = Date.UTC(year, month, requestedTime.date, requestedTime.hour, requestedTime.minute);*/
 
     // The time property in the request body should be a number
-    // that indicates the number of ms since the start of the graph
-    var startTime = req.body.time % 1000000; // We currently only have 1000000 ms of actual data
+    // that indicates the UTC ms time
+    var startTime = req.body.time;
+    startTime -= 1400000000000;
 
     /**************************************************************************/
     /* TODO: Get request with json data in certain range ( 1 minute )
@@ -41,21 +42,22 @@ module.exports = {
       if (err) next(new Error(err));
 
       var request = new mssql.Request();
-      request.query('select * from SampleData.dbo.duplicatedSampleEKG1'
-        + ' where x >= ' + startTime + ' and x < ' + parseInt(startTime) + 30000, 
+      request.query('select * from SampleData.dbo.sampleEKG'
+        + ' where x >= ' + startTime + ' and x < ' + parseInt(startTime) + 30000
+        + ' and x % 8 = 0 and maxIndicator = 0', 
         function(err, results){
         // Passes any errors to the error handler
         if (err) next(new Error('Error in first query' + err));
         res.json({
           results: results.map(function(item){
             return {
-              x: item.x,
+              x: item.x + 1400000000000,
               y: item.y
             };
           }),
           indicators: results.map(function(item){
             return {
-              x: item.x,
+              x: item.x + 1400000000000,
               y: item.maxIndicator
             };
           })
