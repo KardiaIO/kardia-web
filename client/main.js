@@ -4,7 +4,6 @@ angular.module('ekg.home', [
 
 .controller('MainController', function ($scope, $interval, DataGetter, Auth, TimeFactory) {
 
-  $scope.time = TimeFactory;
   $scope.dataArray = {
     results: [],
     indicators: []
@@ -16,21 +15,21 @@ angular.module('ekg.home', [
   var longGraphLength = 2500;
   var shortGraphStartIndex = 750;
   var shortGraphLength = 250;
+  var time = 1400000000000;
 
   function grabDataInterval(forward){
-    var time = (($scope.time.dayOfWeek * 24 + $scope.time.hour) * 60 + $scope.time.minute) * 60000;
     $scope.getData(time);
     if (forward) time += 30000;
-    if (!forward && time - 30000 >= 0) time -= 30000;
-    var totalTimeInMinutes = Math.floor(time / 60000);
-    var minute = totalTimeInMinutes % 60;
-    var hour = ((totalTimeInMinutes - minute) / 60) % 24;
-    var dayOfWeek = Math.floor(totalTimeInMinutes / 60 / 24) % 7;
-    $scope.time = {
-      dayOfWeek: dayOfWeek,
-      hour: hour,
-      minute: minute
-    };
+    if (!forward && time - 30000 >= 1400000000000) time -= 30000;
+    // var totalTimeInMinutes = Math.floor(time / 60000);
+    // var minute = totalTimeInMinutes % 60;
+    // var hour = ((totalTimeInMinutes - minute) / 60) % 24;
+    // var dayOfWeek = Math.floor(totalTimeInMinutes / 60 / 24) % 7;
+    // $scope.time = {
+    //   dayOfWeek: dayOfWeek,
+    //   hour: hour,
+    //   minute: minute
+    // };
   };
 
   function changeGraphInterval(forward){
@@ -42,8 +41,8 @@ angular.module('ekg.home', [
       results: $scope.largerSnippet.results.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength),
       indicators: $scope.largerSnippet.indicators.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength)
     };
-    if (forward) longGraphStartIndex += 5;
-    if (!forward && longGraphStartIndex - 5 >= 0) longGraphStartIndex -= 5;
+    if (forward) longGraphStartIndex += 100;
+    if (!forward && longGraphStartIndex - 100 >= 0) longGraphStartIndex -= 100;
   };
 
   function updateDisplayInterval(forward, interval){
@@ -58,7 +57,7 @@ angular.module('ekg.home', [
     }, 10);
     serverInterval = $interval(function(){
       grabDataInterval(true);
-    }, 3000);
+    }, 1500);
   };
 
   $scope.playForward = function(){
@@ -66,10 +65,10 @@ angular.module('ekg.home', [
     $interval.cancel(serverInterval);
     graphInterval = $interval(function(){
       changeGraphInterval(true);
-    }, 30);
+    }, 100);
     serverInterval = $interval(function(){
       grabDataInterval(true);
-    }, 9000);
+    }, 5000);
   };
 
   $scope.playBackward = function(){
@@ -77,10 +76,10 @@ angular.module('ekg.home', [
     $interval.cancel(serverInterval);
     graphInterval = $interval(function(){
       changeGraphInterval(false);
-    }, 30);
+    }, 100);
     serverInterval = $interval(function(){
       grabDataInterval(false);
-    }, 9000);
+    }, 5000);
   };
 
   $scope.fastBackward = function(){
@@ -91,7 +90,7 @@ angular.module('ekg.home', [
     }, 10);
     serverInterval = $interval(function(){
       grabDataInterval(false);
-    }, 3000);
+    }, 1500);
   };
 
   $scope.stopPlay = function(){
@@ -103,8 +102,8 @@ angular.module('ekg.home', [
     DataGetter.getData(time)
       .success(function(result){
         $scope.dataArray = {
-          results: $scope.dataArray.results.concat(result),
-          indicators: $scope.dataArray.indicators.concat(result)
+          results: $scope.dataArray.results.concat(result.results),
+          indicators: $scope.dataArray.indicators.concat(result.indicators)
         };
       })
       .catch(function(error){
@@ -113,7 +112,7 @@ angular.module('ekg.home', [
   };
 
   // Initialized data with current time
-  $scope.getData(0);
+  $scope.getData(1400000000000);
   grabDataInterval(true);
   changeGraphInterval(true);
 
@@ -139,16 +138,16 @@ angular.module('ekg.home', [
         };
       })
     });
- */
+  */
 })
   // Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
   return {
     getData: function(time) {
-      return $http.get('/sampleData/sample1.json');
-      //return $http.post('/users/data', {
-      //  time: time
-      //});
+      console.log('Get Data at time = ', time);
+      return $http.post('/users/data', {
+       time: time
+      });
     }
   };
 });
