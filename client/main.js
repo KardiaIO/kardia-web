@@ -4,7 +4,6 @@ angular.module('ekg.home', [
 
 .controller('MainController', function ($scope, $interval, DataGetter, Auth, TimeFactory) {
 
-  $scope.time = TimeFactory;
   $scope.dataArray = {
     results: [],
     indicators: []
@@ -55,7 +54,7 @@ angular.module('ekg.home', [
     $interval.cancel(serverInterval);
     graphInterval = $interval(function(){
       changeGraphInterval(true);
-    }, 5);
+    }, 10);
     serverInterval = $interval(function(){
       grabDataInterval(true);
     }, 1500);
@@ -66,10 +65,10 @@ angular.module('ekg.home', [
     $interval.cancel(serverInterval);
     graphInterval = $interval(function(){
       changeGraphInterval(true);
-    }, 50);
+    }, 100);
     serverInterval = $interval(function(){
       grabDataInterval(true);
-    }, 15000);
+    }, 5000);
   };
 
   $scope.playBackward = function(){
@@ -77,10 +76,10 @@ angular.module('ekg.home', [
     $interval.cancel(serverInterval);
     graphInterval = $interval(function(){
       changeGraphInterval(false);
-    }, 50);
+    }, 100);
     serverInterval = $interval(function(){
       grabDataInterval(false);
-    }, 15000);
+    }, 5000);
   };
 
   $scope.fastBackward = function(){
@@ -88,7 +87,7 @@ angular.module('ekg.home', [
     $interval.cancel(serverInterval);
     graphInterval = $interval(function(){
       changeGraphInterval(false);
-    }, 5);
+    }, 10);
     serverInterval = $interval(function(){
       grabDataInterval(false);
     }, 1500);
@@ -103,8 +102,8 @@ angular.module('ekg.home', [
     DataGetter.getData(time)
       .success(function(result){
         $scope.dataArray = {
-          results: $scope.dataArray.results.concat(result),
-          indicators: $scope.dataArray.indicators.concat(result)
+          results: $scope.dataArray.results.concat(result.results),
+          indicators: $scope.dataArray.indicators.concat(result.indicators)
         };
       })
       .catch(function(error){
@@ -139,12 +138,13 @@ angular.module('ekg.home', [
         };
       })
     });
- */
+  */
 })
   // Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
   return {
     getData: function(time) {
+      console.log('Get Data at time = ', time);
       return $http.post('/users/data', {
        time: time
       });

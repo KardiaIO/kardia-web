@@ -4,7 +4,7 @@ var config = {
   user: 'ekgwebapp',
   password: 'ekgsqlserver1MSSS',
   server: 'ekgsql.cloudapp.net',
-  database: 'master',
+  database: 'SampleData',
   options: {
     encrypt: true
   }
@@ -39,15 +39,15 @@ module.exports = {
     // Query database for the data from that user
     mssql.connect(config, function(err){
       // Passes any errors to the error handler
-      if (err) next(new Error(err));
+      if (err) next(new Error('connection error ' + err));
 
       var request = new mssql.Request();
       request.query('select * from SampleData.dbo.sampleEKG'
-        + ' where x >= ' + startTime + ' and x < ' + parseInt(startTime) + 30000
-        + ' and x % 8 = 0 and maxIndicator = 0', 
+        + ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 30000)
+        + ' and (x % 8 = 0 or maxIndicator = 1)', 
         function(err, results){
         // Passes any errors to the error handler
-        if (err) next(new Error('Error in first query' + err));
+        if (err) next(new Error('Error in query' + err));
         res.json({
           results: results.map(function(item){
             return {
