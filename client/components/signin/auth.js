@@ -24,7 +24,7 @@ angular.module('ekg.auth', [])
     if ($scope.user.password === $scope.user.cpassword) {
       if ($scope.user.username.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
         if ($scope.user.password.length >= 6) {
-          if ($scope.user.first.length > 0 || $scope.user.last.length > 0){
+          if ($scope.user.first.length > 0 && $scope.user.last.length > 0){
             isValid = true;
           } else {
             alert('Please enter your first and last names');
