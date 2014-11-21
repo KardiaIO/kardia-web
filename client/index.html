@@ -36,10 +36,13 @@
             <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
             <ul class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;" ng-controller="AuthController">
               <form accept-charset="UTF-8" name="signinForm" ng-submit='signin()'>
-                <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="username" ng-model='user.username'>
+                <input style="margin-bottom: 15px;" type="email" class="form-control" placeholder="email" ng-model='user.username'>
                 <input style="margin-bottom: 15px;" type="password" class="form-control" placeholder="Password" ng-model='user.password'>
                 <input class="btn btn-material-teal btn-block" type="submit" id="sign-in" value="Sign In">
-                <input style="margin-bottom: 15px;" type="password" class="form-control"  placeholder="Password" id="password" name="password">
+                <p>plase confirm password</p>
+                <input style="margin-bottom: 15px;" type="password" class="form-control" placeholder="Password" ng-model='user.password'>
+                <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="first name" ng-model='user.username'>
+                <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="last name" ng-model='user.username'>
                 <input class="btn btn-material-teal btn-block" type="submit" id="sign-up" value="Sign Up">
                 <input class="btn btn-material-teal btn-block" type="button" id="sign-in-google" value="Sign In with Google">
               </form>
