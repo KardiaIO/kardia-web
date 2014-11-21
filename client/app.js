@@ -33,6 +33,11 @@
         authenticate: true
       })
 
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'components/signin/welcome.html'      
+      })
+
       .state('triage', {
         url: '/triage',
         templateUrl: 'components/triage/mdTriage.html'      

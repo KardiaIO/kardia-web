@@ -13,11 +13,11 @@
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
     <link href="lib/bootstrap-material-design/dist/css/material-wfont.min.css" rel="stylesheet">
-<!--     <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-    <div class="navbar btn-material-teal" >
+    <header class="navbar btn-material-teal" >
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
           <span class="icon-bar"></span>
@@ -39,7 +39,7 @@
                 <input style="margin-bottom: 15px;" type="email" class="form-control" placeholder="email" ng-model='user.username'>
                 <input style="margin-bottom: 15px;" type="password" class="form-control" placeholder="Password" ng-model='user.password'>
                 <input class="btn btn-material-teal btn-block" type="submit" id="sign-in" value="Sign In">
-                <p>plase confirm password</p>
+                <p>Please confirm password</p>
                 <input style="margin-bottom: 15px;" type="password" class="form-control" placeholder="Password" ng-model='user.password'>
                 <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="first name" ng-model='user.username'>
                 <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="last name" ng-model='user.username'>
@@ -50,13 +50,13 @@
           </li>
         </ul>
       </div>
-    </div><!-- nav bar -->
+    </header><!-- nav bar -->
 
     <div ui-view></div>
 
-    <div class="row btn-material-teal">
+    <footer class="row btn-material-teal">
       <label style="text-align:center;margin-top:5px">footer</label>
-    </div>
+    </footer>
 
     <!-- javascript -->
     <script src="lib/jquery/dist/jquery.min.js"></script>
