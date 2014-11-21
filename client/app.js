@@ -13,7 +13,7 @@
     $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
       if (toState.authenticate && !Auth.isAuth()){
         // User isn’t authenticated but the state requires authentication
-        $state.transitionTo('signin');
+        $state.transitionTo('welcome');
         event.preventDefault(); 
       }
     });
@@ -33,26 +33,15 @@
         authenticate: true
       })
 
+      .state('triage', {
+        url: '/triage',
+        templateUrl: 'components/triage/mdTriage.html',
+        authenticate: true    
+      })
+
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'components/signin/welcome.html'      
-      })
-
-      .state('triage', {
-        url: '/triage',
-        templateUrl: 'components/triage/mdTriage.html'      
-      })
-
-      .state('signin', {
-        url: '/signin',
-        templateUrl: 'components/signin/signin.html',
-        controller: 'AuthController'
-      })
-
-      .state('signup', {
-        url: '/signup',
-        templateUrl: 'components/signin/signup.html',
-        controller: 'AuthController'
       });
 
     // The default route should point to the home page
