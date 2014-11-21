@@ -27,7 +27,7 @@ angular.module('ekg.auth', [])
           if ($scope.user.first.length > 0 && $scope.user.last.length > 0){
             isValid = true;
           } else {
-            alert('Please enter your first and last names');
+            alert('Please enter your first and last names.');
           }
         } else {
           alert('Your password needs to be at least 6 characters long.');
@@ -88,7 +88,7 @@ angular.module('ekg.auth', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.ekgtracker');
-    $state.transitionTo('signin');
+    $state.transitionTo('welcome');
   };
 
   return {
