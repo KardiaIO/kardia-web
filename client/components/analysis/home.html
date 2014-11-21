@@ -41,6 +41,7 @@
   <!-- The timeButtons div wraps both nested divs, which are responsible for changing the clock when a user clicks a button -->
   <div class="timeButtons" ng-controller="TimeController">
     <div layout="horizontal" layout-align="center" id='dayOfWeekContainer'style="margin: 18px;">
+      <!-- getData uses getters and setters of the Time Factory to ping the server with the right time --> 
       <md-button aria-label='' class="md-raised" id='MON' ng-click="updateDisplayTime(1); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">MON</md-button>
       <md-button aria-label='' class="md-raised" id='TUES' ng-click="updateDisplayTime(2); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">TUE</md-button>
       <md-button aria-label='' class="md-raised" id='WED' ng-click="updateDisplayTime(3); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">WED</md-button>
