@@ -27,7 +27,7 @@ angular.module('ekg.auth', [])
           if ($scope.user.first.length > 0 && $scope.user.last.length > 0){
             isValid = true;
           } else {
-            alert('Please enter your first and last names.');
+            alert('Please enter your first and last name.');
           }
         } else {
           alert('Your password needs to be at least 6 characters long.');
@@ -45,7 +45,7 @@ angular.module('ekg.auth', [])
             $window.localStorage.setItem('com.ekgtracker', token);
             $state.transitionTo('triage');
           } else {
-            alert('Username is already taken. Please select different username.');
+            alert('Your email is already registered.');
           }
         })
         .catch(function (error) {
