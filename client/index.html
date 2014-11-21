@@ -28,8 +28,8 @@
       </div>
       <div class="navbar-collapse collapse navbar-warning-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="#/triage">Triage</a></li>
-          <li><a href="#/home">Analysis</a></li>
+          <li ng-cloak ng-show='isAuth()'><a href="#/triage">Triage</a></li>
+          <li ng-cloak ng-show='isAuth()'><a href="#/home">Analysis</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li ng-cloak ng-show='isAuth()'><a href='#/signin' id="signout" ng-click='signout()'>Sign Out</a>
