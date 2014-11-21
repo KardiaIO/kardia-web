@@ -45,10 +45,6 @@ angular.module('ekg.home', [
     if (!forward && longGraphStartIndex - 100 >= 0) longGraphStartIndex -= 100;
   };
 
-  function updateDisplayInterval(forward, interval){
-
-  };
-
   $scope.fastForward = function(){
     $interval.cancel(graphInterval);
     $interval.cancel(serverInterval);
@@ -140,13 +136,13 @@ angular.module('ekg.home', [
     });
   */
 })
-  // Retrieves ekg data from node server
+// Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
   return {
     getData: function(time) {
       console.log('Get Data at time = ', time);
       return $http.post('/users/data', {
-       time: time
+        time: time
       });
     }
   };
