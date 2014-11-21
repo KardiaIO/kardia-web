@@ -17,7 +17,7 @@
   </head>
 
   <body>
-    <header class="navbar btn-material-teal" >
+    <header class="navbar btn-material-teal" ng-controller="AuthController">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
           <span class="icon-bar"></span>
@@ -32,9 +32,10 @@
           <li><a href="#/home">Analysis</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
+          <li ng-show='isAuth()'><a href='#/signin' ng-click='signout()'>Sign Out</a>
+          <li ng-hide='isAuth()' class="dropdown">
             <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
-            <ul class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;" ng-controller="AuthController">
+            <ul class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
               <form accept-charset="UTF-8" name="signinForm" >
                 <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="email" ng-model='user.username'>
                 <input style="margin-bottom: 15px;" type="password" class="form-control" placeholder="password" ng-model='user.password'>

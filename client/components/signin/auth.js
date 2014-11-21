@@ -54,6 +54,8 @@ angular.module('ekg.auth', [])
     }
   };
 
+  $scope.isAuth = Auth.isAuth;
+
   $scope.signout = Auth.signout;
 
 })
