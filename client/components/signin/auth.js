@@ -9,9 +9,8 @@ angular.module('ekg.auth', [])
       .then(function (token) {
         if (token) {
           $window.localStorage.setItem('com.ekgtracker', token);
-          $state.transitionTo('home');
+          $state.transitionTo('triage');
         } else {
-          $state.transitionTo('signin');
           alert('Username or password was incorrect. Please try again.');
         }
       })
@@ -20,23 +19,38 @@ angular.module('ekg.auth', [])
       });
   };
 
-  $scope.signup = function (isValid) {
+  $scope.signup = function () {
+    var isValid = false;
+    if ($scope.user.password === $scope.user.cpassword) {
+      if ($scope.user.username.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+        if ($scope.user.password.length >= 6) {
+          if ($scope.user.first.length > 0 && $scope.user.last.length > 0){
+            isValid = true;
+          } else {
+            alert('Please enter your first and last names');
+          }
+        } else {
+          alert('Your password needs to be at least 6 characters long.');
+        }
+      } else {
+        alert('Your email address is invalid.');
+      }
+    } else {
+      alert('Your passwords do not match.');
+    }
     if (isValid){
       Auth.signup($scope.user)
         .then(function (token) {
           if (token) {
             $window.localStorage.setItem('com.ekgtracker', token);
-            $state.transitionTo('home');
+            $state.transitionTo('triage');
           } else {
-            $state.transitionTo('signup');
             alert('Username is already taken. Please select different username.');
           }
         })
         .catch(function (error) {
           alert('Error in signup function: ', error);
         });
-    } else {
-      alert('Username must be between 4 and 140 characters long and password must be between 8 and 140 characters long.');
     }
   };
 

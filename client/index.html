@@ -42,7 +42,7 @@
                 <input style="margin-bottom: 15px;" type="password" class="form-control" placeholder="confirm password" ng-model="user.cpassword">
                 <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="first name" ng-model='user.first'>
                 <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="last name" ng-model='user.last'>
-                <input class="btn btn-material-teal btn-block" id="sign-up" ng-click="signup(signupForm.$valid)" value="Sign Up">
+                <input class="btn btn-material-teal btn-block" id="sign-up" ng-click="signup()" value="Sign Up">
                 <input class="btn btn-material-teal btn-block" type="button" id="sign-in-google" value="Sign In with Google">
               </form>
             </ul>
@@ -75,9 +75,9 @@
     <script src="lib/bootstrap-material-design/dist/js/ripples.min.js"></script>
     <script src="lib/bootstrap-material-design/dist/js/material.min.js"></script>
 
-    <script src="components/signin/auth.js"></script>
-    <script src="main.js"></script>
     <script src="app.js"></script>
+    <script src="main.js"></script>
+    <script src="components/signin/auth.js"></script>
     <script src="components/analysis/rickshawDirective.js"></script>
     <script src="components/analysis/timeShift.js"></script>
     <script src="components/triage/highcharts/highcharts.js"></script>
