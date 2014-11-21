@@ -2,13 +2,14 @@ angular.module('ekg.home', [
   'ekg.auth'
 ])
 
-.controller('MainController', function ($scope, $interval, DataGetter, Auth, TimeFactory) {
+.controller('MainController', function ($scope, $interval, $timeout, DataGetter, Auth, TimeFactory) {
 
   $scope.dataArray = {
     results: [],
     indicators: []
   };
   $scope.renderer = 'line';
+
   var graphInterval;
   var serverInterval;
   var longGraphStartIndex = 0;
@@ -17,19 +18,9 @@ angular.module('ekg.home', [
   var shortGraphLength = 250;
   var time = 1420000000000;
 
-  function grabDataInterval(forward){
+  function grabDataInterval(){
     $scope.getData(time);
-    if (forward) time += 30000;
-    if (!forward && time - 30000 >= 1420000000000) time -= 30000;
-    // var totalTimeInMinutes = Math.floor(time / 60000);
-    // var minute = totalTimeInMinutes % 60;
-    // var hour = ((totalTimeInMinutes - minute) / 60) % 24;
-    // var dayOfWeek = Math.floor(totalTimeInMinutes / 60 / 24) % 7;
-    // $scope.time = {
-    //   dayOfWeek: dayOfWeek,
-    //   hour: hour,
-    //   minute: minute
-    // };
+    time += 30000;
   };
 
   function changeGraphInterval(forward){
@@ -43,6 +34,7 @@ angular.module('ekg.home', [
     };
     if (forward) longGraphStartIndex += 100;
     if (!forward && longGraphStartIndex - 100 >= 0) longGraphStartIndex -= 100;
+    if (!forward && longGraphStartIndex - 100 < 0) $interval.cancel(graphInterval);
   };
 
   $scope.fastForward = function(){
@@ -64,7 +56,7 @@ angular.module('ekg.home', [
     }, 100);
     serverInterval = $interval(function(){
       grabDataInterval(true);
-    }, 5000);
+    }, 3000);
   };
 
   $scope.playBackward = function(){
@@ -73,9 +65,6 @@ angular.module('ekg.home', [
     graphInterval = $interval(function(){
       changeGraphInterval(false);
     }, 100);
-    serverInterval = $interval(function(){
-      grabDataInterval(false);
-    }, 5000);
   };
 
   $scope.fastBackward = function(){
@@ -84,9 +73,6 @@ angular.module('ekg.home', [
     graphInterval = $interval(function(){
       changeGraphInterval(false);
     }, 10);
-    serverInterval = $interval(function(){
-      grabDataInterval(false);
-    }, 1500);
   };
 
   $scope.stopPlay = function(){
@@ -94,13 +80,16 @@ angular.module('ekg.home', [
     $interval.cancel(serverInterval);
   }
 
-  $scope.getData = function(time) {
+  $scope.getData = function(time, callback) {
     DataGetter.getData(time)
       .success(function(result){
         $scope.dataArray = {
           results: $scope.dataArray.results.concat(result.results),
           indicators: $scope.dataArray.indicators.concat(result.indicators)
         };
+        if (callback) {
+          callback(result);
+        }
       })
       .catch(function(error){
         console.log('http get error', error);
@@ -108,33 +97,13 @@ angular.module('ekg.home', [
   };
 
   // Initialized data with current time
-  $scope.getData(1420000000000);
-  grabDataInterval(true);
-  changeGraphInterval(true);
+  $scope.getData(1420000000000, function(){
+    changeGraphInterval(true);
+  });
 
   // Signout function
   $scope.signout = Auth.signout;
-  /*
-  jQuery('#longGraph')
-    .mousedown(function(event){
-      console.log('in mousedown call back');
-      var startingX = event.clientX;
-      jQuery(window).mousemove(function(event){
-        var drag = event.clientX - startingX;
-        if ($scope.longGraphStartX + drag/10 < 0) {
-          $scope.longGraphStartX = 0;
-        } else if ($scope.longGraphStartX + drag/10 + $scope.longGraphLength > $scope.data.length) {
-          $scope.longGraphStartX = $scope.data.length - $scope.longGraphLength;
-        } else {
-          $scope.longGraphStartX = $scope.longGraphStartX + drag/10;
-        }
-        $scope.largerSnippet = {
-          results:$scope.data.results.slice($scope.longGraphStartX, $scope.longGraphStartX + $scope.longGraphLength),
-          indicators:$scope.data.indicators.slice($scope.longGraphStartX, $scope.longGraphStartX + $scope.longGraphLength)
-        };
-      })
-    });
-  */
+
 })
 // Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
