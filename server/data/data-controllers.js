@@ -27,7 +27,7 @@ module.exports = {
     // The time property in the request body should be a number
     // that indicates the UTC ms time
     var startTime = req.body.time;
-    startTime -= 1400000000000;
+    startTime -= 1420000000000;
 
     /**************************************************************************/
     /* TODO: Get request with json data in certain range ( 1 minute )
@@ -51,13 +51,13 @@ module.exports = {
         res.json({
           results: results.map(function(item){
             return {
-              x: item.x + 1400000000000,
+              x: item.x + 1420000000000,
               y: item.y
             };
           }),
           indicators: results.map(function(item){
             return {
-              x: item.x + 1400000000000,
+              x: item.x + 1420000000000,
               y: item.maxIndicator
             };
           })

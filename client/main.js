@@ -15,12 +15,12 @@ angular.module('ekg.home', [
   var longGraphLength = 2500;
   var shortGraphStartIndex = 750;
   var shortGraphLength = 250;
-  var time = 1400000000000;
+  var time = 1420000000000;
 
   function grabDataInterval(forward){
     $scope.getData(time);
     if (forward) time += 30000;
-    if (!forward && time - 30000 >= 1400000000000) time -= 30000;
+    if (!forward && time - 30000 >= 1420000000000) time -= 30000;
     // var totalTimeInMinutes = Math.floor(time / 60000);
     // var minute = totalTimeInMinutes % 60;
     // var hour = ((totalTimeInMinutes - minute) / 60) % 24;
@@ -108,7 +108,7 @@ angular.module('ekg.home', [
   };
 
   // Initialized data with current time
-  $scope.getData(1400000000000);
+  $scope.getData(1420000000000);
   grabDataInterval(true);
   changeGraphInterval(true);
 
