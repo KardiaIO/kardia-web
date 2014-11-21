@@ -32,17 +32,17 @@
           <li><a href="#/home">Analysis</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li ng-show='isAuth()'><a href='#/signin' ng-click='signout()'>Sign Out</a>
-          <li ng-hide='isAuth()' class="dropdown">
+          <li ng-cloak ng-show='isAuth()'><a href='#/signin' id="signout" ng-click='signout()'>Sign Out</a>
+          <li ng-cloak ng-hide='isAuth()' class="dropdown">
             <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
-            <ul class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+            <ul class="dropdown-menu">
               <form accept-charset="UTF-8" name="signinForm" >
-                <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="email" ng-model='user.username'>
-                <input style="margin-bottom: 15px;" type="password" class="form-control" placeholder="password" ng-model='user.password'>
+                <input type="text" class="form-control" placeholder="email" ng-model='user.username'>
+                <input type="password" class="form-control" placeholder="password" ng-model='user.password'>
                 <input class="btn btn-material-teal btn-block" id="sign-in" ng-click="signin()" value="Sign In">
-                <input style="margin-bottom: 15px;" type="password" class="form-control" placeholder="confirm password" ng-model="user.cpassword">
-                <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="first name" ng-model='user.first'>
-                <input style="margin-bottom: 15px;" type="text" class="form-control" placeholder="last name" ng-model='user.last'>
+                <input type="password" class="form-control" placeholder="confirm password" ng-model="user.cpassword">
+                <input type="text" class="form-control" placeholder="first name" ng-model='user.first'>
+                <input type="text" class="form-control" placeholder="last name" ng-model='user.last'>
                 <input class="btn btn-material-teal btn-block" id="sign-up" ng-click="signup()" value="Sign Up">
                 <input class="btn btn-material-teal btn-block" type="button" id="sign-in-google" value="Sign In with Google">
               </form>
@@ -55,7 +55,7 @@
     <div ui-view></div>
 
     <footer class="row btn-material-teal">
-      <label style="text-align:center;margin-top:5px">footer</label>
+      <label style="text-align:center;margin-top:5px"></label>
     </footer>
 
     <!-- javascript -->
