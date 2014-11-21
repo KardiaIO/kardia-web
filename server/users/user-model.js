@@ -13,7 +13,9 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  salt: String
+  salt: String,
+  firstName: String,
+  lastName: String
 });
 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
