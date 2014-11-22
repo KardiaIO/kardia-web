@@ -43,8 +43,8 @@ module.exports = {
 
       var request = new mssql.Request();
       request.query('select * from SampleData.dbo.sampleEKG'
-        + ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 30000)
-        + ' and (x % 8 = 0 or maxIndicator = 1)', 
+        + ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 100000)
+        + ' and (x % 16 = 0 or maxIndicator = 1)', 
         function(err, results){
         // Passes any errors to the error handler
         if (err) next(new Error('Error in query' + err));

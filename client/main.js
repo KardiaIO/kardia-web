@@ -13,9 +13,9 @@ angular.module('ekg.home', [
   var graphInterval;
   var serverInterval;
   var longGraphStartIndex = 0;
-  var longGraphLength = 2500;
-  var shortGraphStartIndex = 750;
-  var shortGraphLength = 250;
+  var longGraphLength = 750;
+  var shortGraphStartIndex = 350;
+  var shortGraphLength = 50;
   var time = 1420000000000;
 
   function grabDataInterval(){
@@ -32,9 +32,10 @@ angular.module('ekg.home', [
       results: $scope.largerSnippet.results.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength),
       indicators: $scope.largerSnippet.indicators.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength)
     };
-    if (forward) longGraphStartIndex += 100;
-    if (!forward && longGraphStartIndex - 100 >= 0) longGraphStartIndex -= 100;
-    if (!forward && longGraphStartIndex - 100 < 0) $interval.cancel(graphInterval);
+    if (forward) longGraphStartIndex += 25;
+    if (!forward && longGraphStartIndex - 25 >= 0) longGraphStartIndex -= 25;
+    if (!forward && longGraphStartIndex - 25 < 0) $interval.cancel(graphInterval);
+    TimeFactory.setTime($scope.largerSnippet.results[0].x, angular.element(document.querySelector('.timeButtons')).scope());
   };
 
   $scope.fastForward = function(){
@@ -45,7 +46,7 @@ angular.module('ekg.home', [
     }, 10);
     serverInterval = $interval(function(){
       grabDataInterval(true);
-    }, 1500);
+    }, 1000);
   };
 
   $scope.playForward = function(){
@@ -56,7 +57,7 @@ angular.module('ekg.home', [
     }, 100);
     serverInterval = $interval(function(){
       grabDataInterval(true);
-    }, 3000);
+    }, 2000);
   };
 
   $scope.playBackward = function(){
