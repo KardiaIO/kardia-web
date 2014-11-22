@@ -26,6 +26,7 @@ body {
 .dropdown-menu {
   padding: 15px;
   padding-bottom: 0px;
+  width: 250px;
 }
 
 form input {
