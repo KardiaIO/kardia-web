@@ -10,17 +10,18 @@ angular.module('ekg.home', [
   };
   $scope.renderer = 'line';
 
+  var oboeObject;
   var graphInterval;
   var serverInterval;
   var longGraphStartIndex = 0;
-  var longGraphLength = 2500;
-  var shortGraphStartIndex = 750;
-  var shortGraphLength = 250;
+  var longGraphLength = 1000;
+  var shortGraphStartIndex = 350;
+  var shortGraphLength = 50;
   var time = 1420000000000;
 
   function grabDataInterval(){
     $scope.getData(time);
-    time += 30000;
+    time += 200000;
   };
 
   function changeGraphInterval(forward){
@@ -45,7 +46,7 @@ angular.module('ekg.home', [
     }, 10);
     serverInterval = $interval(function(){
       grabDataInterval(true);
-    }, 1500);
+    }, 3000);
   };
 
   $scope.playForward = function(){
@@ -56,7 +57,7 @@ angular.module('ekg.home', [
     }, 100);
     serverInterval = $interval(function(){
       grabDataInterval(true);
-    }, 3000);
+    }, 5000);
   };
 
   $scope.playBackward = function(){
@@ -82,16 +83,20 @@ angular.module('ekg.home', [
 
   $scope.getData = function(time, callback) {
     DataGetter.getData(time)
-      .success(function(result){
-        $scope.dataArray = {
-          results: $scope.dataArray.results.concat(result.results),
-          indicators: $scope.dataArray.indicators.concat(result.indicators)
-        };
+      // Oboe allows us to have access to each object inside the JSON object
+      // We grab any object with an x, y, and indicator property and add each data point
+      // to the data array
+      .node('{x y indicator}', function(heartbeat){
+        $scope.dataArray.results.push({x: heartbeat.x, y: heartbeat.y});
+        $scope.dataArray.indicators.push({x: heartbeat.x, y: heartbeat.indicator});
+      })
+      .done(function(){
+        // Initial load only passes a callback
         if (callback) {
-          callback(result);
+          callback();
         }
       })
-      .catch(function(error){
+      .fail(function(error){
         console.log('http get error', error);
       });
   };
@@ -99,6 +104,8 @@ angular.module('ekg.home', [
   // Initialized data with current time
   $scope.getData(1420000000000, function(){
     changeGraphInterval(true);
+    // Oboe is outside of Angular context, so we manually $digest
+    $scope.$digest();
   });
 
   // Signout function
@@ -107,12 +114,31 @@ angular.module('ekg.home', [
 })
 // Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
+  var jwt = window.localStorage.getItem('com.ekgtracker');
   return {
     getData: function(time) {
-      console.log('Get Data at time = ', time);
-      return $http.post('/users/data', {
-        time: time
+      return oboe({
+        url: '/users/data',
+        method: 'POST',
+        headers: {
+          'x-access-token': jwt,
+          'Allow-Control-Allow-Origin': '*'
+        },
+        body: {
+          time: time
+        },
+        withCredentials: true
       });
     }
   };
+
+
+  // return {
+  //   getData: function(time) {
+  //     console.log('Get Data at time = ', time);
+  //     return $http.post('/users/data', {
+  //       time: time
+  //     });
+  //   }
+  // };
 });

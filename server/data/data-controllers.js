@@ -43,25 +43,18 @@ module.exports = {
 
       var request = new mssql.Request();
       request.query('select * from SampleData.dbo.sampleEKG'
-        + ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 30000)
-        + ' and (x % 8 = 0 or maxIndicator = 1)', 
+        + ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 200000)
+        + ' and (x % 16 = 0 or maxIndicator = 1)', 
         function(err, results){
         // Passes any errors to the error handler
         if (err) next(new Error('Error in query' + err));
-        res.json({
-          results: results.map(function(item){
+        res.json(results.map(function(item){
             return {
               x: item.x + 1420000000000,
-              y: item.y
+              y: item.y,
+              indicator: item.maxIndicator
             };
-          }),
-          indicators: results.map(function(item){
-            return {
-              x: item.x + 1420000000000,
-              y: item.maxIndicator
-            };
-          })
-        });
+        }));
       });
 
     });
