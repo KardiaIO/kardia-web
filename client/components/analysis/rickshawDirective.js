@@ -22,7 +22,10 @@ angular.module('ekg.home')
             width: attrs.width,
             height: attrs.height,
             min: 'auto',
-            series: [{data: scope.data.results, color: attrs.color1}, {data: scope.data.indicators, color: attrs.color2}],
+            series: [
+              {data: scope.data.results, color: attrs.color1}
+              // {data: scope.data.indicators, color: attrs.color2}
+            ],
             renderer: scope.renderer
           });
         } else {
@@ -31,7 +34,10 @@ angular.module('ekg.home')
             width: attrs.width,
             height: attrs.height,
             min: 'auto',
-            series: [{data: scope.data.results, color: attrs.color1}, {data: scope.data.indicators, color: attrs.color2}],
+            series: [
+              {data: scope.data.results, color: attrs.color1}
+              // {data: scope.data.indicators, color: attrs.color2}
+            ],
             renderer: scope.renderer
           });
           graph.render();
