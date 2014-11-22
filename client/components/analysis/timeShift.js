@@ -2,6 +2,49 @@
   "use strict";
 
   angular.module('ekg.home')
+  .controller('TimeController', function ($scope, TimeFactory) {
+
+    $scope.display = '';
+    TimeFactory.setTime(1420000000000, $scope);
+
+  })
+
+  .factory('TimeFactory', function(){
+    
+    var dateObject;
+    var clockTime;
+    var displayOptions = {
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric', 
+      hour: 'numeric', 
+      minute: 'numeric', 
+      second: 'numeric'
+    };
+
+    return {
+      setTime: function(UTC, context) {
+        dateObject = new Date(UTC);
+        clockTime = {
+          date: dateObject.getDate(),
+          day: dateObject.getDay(),
+          hour: dateObject.getHours(),
+          minute: dateObject.getMinutes()
+        };
+        context.display = dateObject.toLocaleDateString('en-US', displayOptions);
+      },
+      getTime: function() {
+        return {
+          clockTime: clockTime,
+          dateObject: dateObject
+        };
+      }
+    };
+
+  });
+
+  /*
   .controller('TimeController', function($scope, TimeFactory){
     // Attach Factory to scope, so it's accessible from html
     $scope.time = TimeFactory;
@@ -58,6 +101,7 @@
   .factory('TimeFactory', function() {
     // Moment object of current time for initial load
     var value = moment();
+    console.log(value);
     
     var clockTime = {
       value: value,
@@ -71,9 +115,10 @@
       getTime: function(timeInterval){
         return clockTime[timeInterval];
       },
-      setTime: function(timeInterval, value){
+      setTime: function(time){
         clockTime[timeInterval] = value;
       }
     };
   });
+*/
 })();
