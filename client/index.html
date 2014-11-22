@@ -41,12 +41,11 @@
               <form accept-charset="UTF-8" name="signinForm" >
                 <input type="text" class="form-control" placeholder="email" ng-model='user.username'>
                 <input type="password" class="form-control" placeholder="password" ng-model='user.password'>
-                <input class="btn btn-material-teal btn-block" id="sign-in" ng-click="signin()" value="Sign In">
+                <button class="btn btn-material-teal btn-block" id="sign-in" ng-click="signin()" value="Sign In">Sign In</button>
                 <input type="password" class="form-control" placeholder="confirm password" ng-model="user.cpassword">
                 <input type="text" class="form-control" placeholder="first name" ng-model='user.first'>
                 <input type="text" class="form-control" placeholder="last name" ng-model='user.last'>
-                <input class="btn btn-material-teal btn-block" id="sign-up" ng-click="signup()" value="Sign Up">
-                <input class="btn btn-material-teal btn-block" type="button" id="sign-in-google" value="Sign In with Google">
+                <button class="btn btn-material-teal btn-block" id="sign-up" ng-click="signup()" value="Sign Up">Sign Up</button>
               </form>
             </ul>
           </li>
