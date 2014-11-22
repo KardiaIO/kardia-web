@@ -20,7 +20,7 @@ angular.module('ekg.home', [
 
   function grabDataInterval(){
     $scope.getData(time);
-    time += 30000;
+    time += 100000;
   };
 
   function changeGraphInterval(forward){
