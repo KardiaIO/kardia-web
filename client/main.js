@@ -14,7 +14,7 @@ angular.module('ekg.home', [
   var graphInterval;
   var serverInterval;
   var longGraphStartIndex = 0;
-  var longGraphLength = 1000;
+  var longGraphLength = 750;
   var shortGraphStartIndex = 350;
   var shortGraphLength = 50;
   var time = 1420000000000;
@@ -33,9 +33,10 @@ angular.module('ekg.home', [
       results: $scope.largerSnippet.results.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength),
       indicators: $scope.largerSnippet.indicators.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength)
     };
-    if (forward) longGraphStartIndex += 100;
-    if (!forward && longGraphStartIndex - 100 >= 0) longGraphStartIndex -= 100;
-    if (!forward && longGraphStartIndex - 100 < 0) $interval.cancel(graphInterval);
+    if (forward) longGraphStartIndex += 25;
+    if (!forward && longGraphStartIndex - 25 >= 0) longGraphStartIndex -= 25;
+    if (!forward && longGraphStartIndex - 25 < 0) $interval.cancel(graphInterval);
+    TimeFactory.setTime($scope.largerSnippet.results[0].x, angular.element(document.querySelector('.timeButtons')).scope());
   };
 
   $scope.fastForward = function(){
@@ -115,6 +116,7 @@ angular.module('ekg.home', [
 // Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
   var jwt = window.localStorage.getItem('com.ekgtracker');
+  
   return {
     getData: function(time) {
       return oboe({
@@ -131,14 +133,4 @@ angular.module('ekg.home', [
       });
     }
   };
-
-
-  // return {
-  //   getData: function(time) {
-  //     console.log('Get Data at time = ', time);
-  //     return $http.post('/users/data', {
-  //       time: time
-  //     });
-  //   }
-  // };
 });

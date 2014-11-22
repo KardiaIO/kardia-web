@@ -39,11 +39,11 @@
 
     <div layout="horizontal" layout-align="center" style="margin: 18px;">
       <!-- First update the clock time, then send a request for new data to update graph -->
-      <button ng-click="updateDisplayTime('--'); fastBackward()"> -- </button>
-      <button ng-click="updateDisplayTime('-'); playBackward()"> - </button>
+      <button ng-click="fastBackward()"> -- </button>
+      <button ng-click="playBackward()"> - </button>
       <button ng-click="stopPlay()"> STOP </button>
-      <button ng-click="updateDisplayTime('+'); playForward()"> + </button>
-      <button ng-click="updateDisplayTime('++'); fastForward()"> ++ </button>
+      <button ng-click="playForward()"> + </button>
+      <button ng-click="fastForward()"> ++ </button>
     </div>
   </div><!-- End timeButtons wrapper div -->
 </div>
