@@ -16,12 +16,10 @@ angular.module('ekg.home')
         
         element[0].innerHTML ='';
 
+        // When new data is loaded, graph is configured with new data instead of rerendering
         if (graph){
           graph.config({
             element: element[0],
-            width: attrs.width,
-            height: attrs.height,
-            min: 'auto',
             series: [
               {data: scope.data.results, color: attrs.color1}
               // {data: scope.data.indicators, color: attrs.color2}
@@ -29,19 +27,49 @@ angular.module('ekg.home')
             renderer: scope.renderer
           });
         } else {
+          // Render graph on initial load
           var graph = new Rickshaw.Graph({
             element: element[0],
             width: attrs.width,
             height: attrs.height,
-            min: 'auto',
+            min: -0.5,
+            max: 0.7,
             series: [
               {data: scope.data.results, color: attrs.color1}
               // {data: scope.data.indicators, color: attrs.color2}
             ],
             renderer: scope.renderer
           });
-          graph.render();
         }
+        
+        // Add y-axis axes
+        var yAxis = new Rickshaw.Graph.Axis.Y({
+            graph: graph
+        });
+
+        // Create x-axis axes with no text
+        var format = function(n) {
+          var map = {
+            0: '',
+            1: '',
+            2: '',
+            3: '',
+            4: ''
+          };
+          return map[n];
+        }
+
+        var x_ticks = new Rickshaw.Graph.Axis.X( {
+          graph: graph,
+          pixelsPerTick: 200,
+          tickFormat: format
+        } );
+
+        // Render graph and axes
+        yAxis.render();
+        x_ticks.render();
+        graph.render();
+
       });
     }
   };
