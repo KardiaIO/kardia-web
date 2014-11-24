@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var favicon = require('serve-favicon');
 
 // Request handlers
 // User authentication routes
@@ -19,6 +20,7 @@ var app = express();
 // email.arrhythmiaNotify('Chao', 'chao.xue.mit@gmail.com', null);
 
 app.use(express.static(__dirname + '/client'));
+app.use(favicon(__dirname + '/favicon.ico'));
 
 // var python = require('./python/pythonComm.js');
 
