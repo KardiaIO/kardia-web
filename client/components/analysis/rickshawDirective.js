@@ -15,7 +15,6 @@ angular.module('ekg.home')
         }
         
         element[0].innerHTML ='';
-
         // When new data is loaded, graph is configured with new data instead of rerendering
         if (graph){
           graph.config({
@@ -32,8 +31,8 @@ angular.module('ekg.home')
             element: element[0],
             width: attrs.width,
             height: attrs.height,
-            min: -0.5,
-            max: 0.7,
+            min: attrs.min,
+            max: attrs.max,
             series: [
               {data: scope.data.results, color: attrs.color1}
               // {data: scope.data.indicators, color: attrs.color2}
@@ -41,10 +40,10 @@ angular.module('ekg.home')
             renderer: scope.renderer
           });
         }
-        
+
         // Add y-axis axes
         var yAxis = new Rickshaw.Graph.Axis.Y({
-            graph: graph
+          graph: graph
         });
 
         // Create x-axis axes with no text

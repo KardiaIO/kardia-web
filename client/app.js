@@ -42,6 +42,12 @@
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'components/signin/welcome.html'      
+      })
+
+      .state('chart', {
+        url: '/chart',
+        templateUrl: 'components/analysis/chart.html',
+        controller: 'chartController'
       });
 
     // The default route should point to the home page

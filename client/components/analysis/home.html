@@ -11,19 +11,23 @@
         color2="blue"
         renderer="renderer"
         width="400"
-        height="400">
+        height="400"    
+        min="-0.5"
+        max="0.7">
       </rickshaw-chart>
     </div>
-    <div layout="horizontal" layout-align="center" id='longGraph'>
+    <a layout="horizontal" layout-align="center" href="#/chart" id='longGraph'>
       <rickshaw-chart
       data="largerSnippet"
       color1="red"
       color2="blue"
       renderer="renderer"
       width="1000"
-      height="100">
+      height="100"
+      min="-0.5"
+      max="0.7">
       </rickshaw-chart>
-    </div>
+    </a>
 
     <!-- The timeButtons div wraps both nested divs, which are responsible for changing the clock when a user clicks a button -->
     <div class="timeButtons" ng-controller="TimeController">
