@@ -1,50 +1,55 @@
-
 <div id='home' ng-controller="MainController">
-  <div layout="horizontal" layout-align="center" id='zoomedInGraph'>
-    <rickshaw-chart
-      data="snippet"
+  <div ng-show="loading" id='loadingSpinner' layout="column" layout-align="center">
+    <!-- Colors of spinner: teal spinner (#26a69a) on 'white' background (#eeeeee) -->
+    <img ng-src="components/images/loading.gif">
+  </div>
+  <div ng-hide="loading" id='loadingWrapper'>
+    <div layout="horizontal" layout-align="center" id='zoomedInGraph'>
+      <rickshaw-chart
+        data="snippet"
+        color1="red"
+        color2="blue"
+        renderer="renderer"
+        width="400"
+        height="400">
+      </rickshaw-chart>
+    </div>
+    <div layout="horizontal" layout-align="center" id='longGraph'>
+      <rickshaw-chart
+      data="largerSnippet"
       color1="red"
       color2="blue"
       renderer="renderer"
-      width="400"
-      height="400">
-    </rickshaw-chart>
-  </div>
-  <div layout="horizontal" layout-align="center" id='longGraph'>
-    <rickshaw-chart
-    data="largerSnippet"
-    color1="red"
-    color2="blue"
-    renderer="renderer"
-    width="1000"
-    height="100">
-    </rickshaw-chart>
-  </div>
-  
-  <!-- The timeButtons div wraps both nested divs, which are responsible for changing the clock when a user clicks a button -->
-  <div class="timeButtons" ng-controller="TimeController">
-    <div layout="horizontal" layout-align="center" id='dayOfWeekContainer'style="margin: 18px;">
-      <!-- getData uses getters and setters of the Time Factory to ping the server with the right time --> 
-      <md-button aria-label='' class="md-raised" id='MON' ng-click="updateDisplayTime(1); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">MON</md-button>
-      <md-button aria-label='' class="md-raised" id='TUES' ng-click="updateDisplayTime(2); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">TUE</md-button>
-      <md-button aria-label='' class="md-raised" id='WED' ng-click="updateDisplayTime(3); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">WED</md-button>
-      <md-button aria-label='' class="md-raised" id='THURS' ng-click="updateDisplayTime(4); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">THR</md-button>
-      <md-button aria-label='' class="md-raised" id='FRI' ng-click="updateDisplayTime(5); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">FRI</md-button>
-      <md-button aria-label='' class="md-raised" id='SAT' ng-click="updateDisplayTime(6); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">SAT</md-button>
-      <md-button aria-label='' class="md-raised" id='SUN' ng-click="updateDisplayTime(0); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">SUN</md-button>
+      width="1000"
+      height="100">
+      </rickshaw-chart>
     </div>
 
-    <div layout="horizontal" layout-align="center" id="displayedTimeContainer" style="margin: 18px;">
-      {{display}}
-    </div>
+    <!-- The timeButtons div wraps both nested divs, which are responsible for changing the clock when a user clicks a button -->
+    <div class="timeButtons" ng-controller="TimeController">
+      <div layout="horizontal" layout-align="center" id='dayOfWeekContainer'style="margin: 18px;">
+        <!-- getData uses getters and setters of the Time Factory to ping the server with the right time -->
+        <md-button aria-label='' class="md-raised" id='MON' ng-click="updateDisplayTime(1); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">MON</md-button>
+        <md-button aria-label='' class="md-raised" id='TUES' ng-click="updateDisplayTime(2); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">TUE</md-button>
+        <md-button aria-label='' class="md-raised" id='WED' ng-click="updateDisplayTime(3); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">WED</md-button>
+        <md-button aria-label='' class="md-raised" id='THURS' ng-click="updateDisplayTime(4); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">THR</md-button>
+        <md-button aria-label='' class="md-raised" id='FRI' ng-click="updateDisplayTime(5); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">FRI</md-button>
+        <md-button aria-label='' class="md-raised" id='SAT' ng-click="updateDisplayTime(6); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">SAT</md-button>
+        <md-button aria-label='' class="md-raised" id='SUN' ng-click="updateDisplayTime(0); getData(time.getTime('date'), time.getTime('hour'), time.getTime('minute'))">SUN</md-button>
+      </div>
 
-    <div layout="horizontal" layout-align="center" style="margin: 18px;">
-      <!-- First update the clock time, then send a request for new data to update graph -->
-      <button ng-click="fastBackward()"> -- </button>
-      <button ng-click="playBackward()"> - </button>
-      <button ng-click="stopPlay()"> STOP </button>
-      <button ng-click="playForward()"> + </button>
-      <button ng-click="fastForward()"> ++ </button>
-    </div>
-  </div><!-- End timeButtons wrapper div -->
+      <div layout="horizontal" layout-align="center" id="displayedTimeContainer" style="margin: 18px;">
+        {{display}}
+      </div>
+
+      <div layout="horizontal" layout-align="center" style="margin: 18px;">
+        <!-- First update the clock time, then send a request for new data to update graph -->
+        <button ng-click="fastBackward()"> -- </button>
+        <button ng-click="playBackward()"> - </button>
+        <button ng-click="stopPlay()"> STOP </button>
+        <button ng-click="playForward()"> + </button>
+        <button ng-click="fastForward()"> ++ </button>
+      </div>
+    </div><!-- End timeButtons wrapper div -->
+  </div><!-- End loadingWrapper -->
 </div>
