@@ -32,7 +32,7 @@
           hour: dateObject.getHours(),
           minute: dateObject.getMinutes()
         };
-        context.display = dateObject.toLocaleDateString('en-US', displayOptions);
+        if (context) context.display = dateObject.toLocaleDateString('en-US', displayOptions);
       },
       getTime: function() {
         return {

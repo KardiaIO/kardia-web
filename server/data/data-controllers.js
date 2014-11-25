@@ -49,19 +49,23 @@ module.exports = {
 
     var username = req.username;
     var startTime = req.body.time;
+    startTime -= 1420000000000;
 
-    var request = new mssql.Request();
-    request.query('select top 24 interval from SampleData.dbo.SamplePeakIntervals'
-      + ' where x > ' + startTime, function(err, results){
-      if (err) next(new Error('Error in query ' + err));
-      var row = 0;
-      res.json(results.map(function(item){
-        row++;
-        return {
-          x: row,
-          y: item.interval
-        };
-      }));
+    mssql.connect(config, function(err){
+      var request = new mssql.Request();
+      request.query('select top 24 interval from SampleData.dbo.SamplePeakIntervals'
+        + ' where x > ' + startTime
+        + ' order by x', function(err, results){
+        if (err) next(new Error('Error in query ' + err));
+        var row = 0;
+        res.json(results.map(function(item){
+          row++;
+          return {
+            x: row,
+            y: item.interval
+          };
+        }));
+      });
     });
 
   }
