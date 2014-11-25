@@ -49,8 +49,11 @@ app.get('/users/signedin', user.checkAuth);
 // the header
 app.use(user.decode);
 
-// These routes are for data queries
+// This route is for data queries
 app.post('/users/data', data.getData);
+
+// This route is for data analysis results
+app.post('/users/analysis', data.getAnalysisResults);
 
 // If there are errors from the server, use these to send back the errors
 app.use(errors.errorLogger);
