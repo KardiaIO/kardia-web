@@ -9,6 +9,7 @@ angular.module('ekg.home', [
     indicators: []
   };
   $scope.renderer = 'line';
+  $scope.loading = true;
 
   var oboeObject;
   var graphInterval;
@@ -88,6 +89,7 @@ angular.module('ekg.home', [
       // We grab any object with an x, y, and indicator property and add each data point
       // to the data array
       .node('{x y indicator}', function(heartbeat){
+        $scope.loading = false;
         $scope.dataArray.results.push({x: heartbeat.x, y: heartbeat.y});
         $scope.dataArray.indicators.push({x: heartbeat.x, y: heartbeat.indicator});
       })
