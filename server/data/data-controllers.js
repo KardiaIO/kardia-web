@@ -32,17 +32,38 @@ module.exports = {
         + ' and (x % 16 = 0 or maxIndicator = 1)', 
         function(err, results){
         // Passes any errors to the error handler
-        if (err) next(new Error('Error in query' + err));
+        if (err) next(new Error('Error in query ' + err));
         res.json(results.map(function(item){
-            return {
-              x: item.x + 1420000000000,
-              y: item.y,
-              indicator: item.maxIndicator
-            };
+          return {
+            x: item.x + 1420000000000,
+            y: item.y,
+            indicator: item.maxIndicator
+          };
         }));
       });
 
     });
+  },
+
+  getAnalysisResults: function(req, res, next){
+
+    var username = req.username;
+    var startTime = req.body.time;
+
+    var request = new mssql.Request();
+    request.query('select top 24 interval from SampleData.dbo.SamplePeakIntervals'
+      + ' where x > ' + startTime, function(err, results){
+      if (err) next(new Error('Error in query ' + err));
+      var row = 0;
+      res.json(results.map(function(item){
+        row++;
+        return {
+          x: row,
+          y: item.interval
+        };
+      }));
+    });
+
   }
 
 };
