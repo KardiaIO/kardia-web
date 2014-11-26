@@ -23,7 +23,7 @@ angular.module('ekg.home', [
   function grabDataInterval(){
     $scope.getData(time);
     time += 200000;
-  };
+  }
 
   function changeGraphInterval(forward){
     $scope.largerSnippet = {
@@ -38,7 +38,7 @@ angular.module('ekg.home', [
     if (!forward && longGraphStartIndex - 25 >= 0) longGraphStartIndex -= 25;
     if (!forward && longGraphStartIndex - 25 < 0) $interval.cancel(graphInterval);
     TimeFactory.setTime($scope.largerSnippet.results[0].x, angular.element(document.querySelector('.timeButtons')).scope());
-  };
+  }
 
   $scope.fastForward = function(){
     $interval.cancel(graphInterval);
@@ -81,7 +81,7 @@ angular.module('ekg.home', [
   $scope.stopPlay = function(){
     $interval.cancel(graphInterval);
     $interval.cancel(serverInterval);
-  }
+  };
 
   $scope.getData = function(time, callback) {
     DataGetter.getData(time)

@@ -27,7 +27,7 @@ angular.module('ekg.home')
           });
         } else {
           // Render graph on initial load
-          var graph = new Rickshaw.Graph({
+          graph = new Rickshaw.Graph({
             element: element[0],
             width: attrs.width,
             height: attrs.height,
@@ -56,7 +56,7 @@ angular.module('ekg.home')
             4: ''
           };
           return map[n];
-        }
+        };
 
         var x_ticks = new Rickshaw.Graph.Axis.X( {
           graph: graph,

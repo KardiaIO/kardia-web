@@ -1,8 +1,21 @@
+notifications:
+  email:
+    recipients:
+      - nicklitwin88@gmail.com
+    on_success: change
+    on_failure: always
 language: node_js
 node_js:
   - "0.10"
+# services: mongodb
+branches:
+  only:
+    - master
 before_install:
-  - echo "yes" | sudo add-apt-repository ppa:chris-lea/libpgm
+  # install zeromq
+  - echo "yes" | sudo add-apt-repository ppa:chris-lea/libpgm 
   - sudo apt-get update
   - sudo apt-get install libzmq3-dev
-  - "mkdir ~/.npm"
+# before_script:
+  # - sleep 15
+  # - until nc -z localhost 27017 ; do echo Waiting for MongoDB; sleep 1; done
