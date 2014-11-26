@@ -19,3 +19,5 @@ before_install:
   - sudo apt-get install libzmq3-dev
   # might not need to make npm directory anymore
   - "mkdir ~/.npm" 
+before_script:
+  - sleep 15
