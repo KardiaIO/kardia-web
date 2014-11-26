@@ -11,8 +11,8 @@
   .run(function($rootScope, $state, Auth){
 
     $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
+      // Check if the user is authenticated when the state requires authentication
       if (toState.authenticate && !Auth.isAuth()){
-        // User isn’t authenticated but the state requires authentication
         $state.transitionTo('welcome');
         event.preventDefault(); 
       }
