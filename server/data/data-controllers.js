@@ -68,6 +68,35 @@ module.exports = {
       });
     });
 
+  },
+
+  getLorenzResults: function(req, res, next){
+
+    var username = req.username;
+    var startTime = req.body.time;
+    startTime -= 1420000000000;
+
+    mssql.connect(config, function(err){
+      var request = new mssql.Request();
+      request.query('select distinct top 15 a.interval as x, b.interval as y'
+        +' from'
+        +'   ('
+        +'   select ROW_NUMBER() OVER (ORDER BY X) as row, * '
+        +'   from SampleData.dbo.SamplePeakIntervals'
+        +'   where x > ' + startTime
+        +'   ) a'
+        +' join '
+        +'   ('
+        +'   select ROW_NUMBER() OVER (ORDER BY X) as row, * '
+        +'   from SampleData.dbo.SamplePeakIntervals'
+        +'   ) b'
+        +'   on a.row = b.row - 1'
+        +' order by 1', function(err, results){
+        if (err) next(new Error('Error in query ' + err));
+        res.json(results);
+      });
+    });
+
   }
 
 };
