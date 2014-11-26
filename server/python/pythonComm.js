@@ -14,11 +14,19 @@ client.invoke("hello", "Node!", function(error, res, more) {
 // Sends some data to Python, Python squares it - this is simply part
 // of testing the python connection and can be removed later
 
-client.invoke("processData", [1,2,3], function(error, res, more) {
+client.invoke("nodeRequest", '0', '5000', function(error, res, more) {
   if(error){
+    console.log("THIS IS ERROR", error);
     throw error;
   } 
-  console.log(res);
+  console.log("PYTHON SEZ:", res);
 });
+
+// client.invoke("processData", [1,2,3], function(error, res, more) {
+//   if(error){
+//     throw error;
+//   } 
+//   console.log(res);
+// });
 
 module.exports = client;
