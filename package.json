@@ -7,7 +7,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "test": "gulp travis --verbose",
+    "test": "gulp test --verbose",
     "start": "node server.js",
     "postinstall": "bower install"
   },
