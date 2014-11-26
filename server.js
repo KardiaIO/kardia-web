@@ -54,6 +54,7 @@ app.post('/users/data', data.getData);
 
 // This route is for data analysis results
 app.post('/users/analysis', data.getAnalysisResults);
+app.post('/users/lorenz', data.getLorenzResults);
 
 // If there are errors from the server, use these to send back the errors
 app.use(errors.errorLogger);
