@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var request = require('request');
 var jwt = require('jwt-simple');
 // Require the user controller so we have access to the mongoose connection
-var dbConnection = require('../../server/users/user-controller');
+// var dbConnection = require('../../server/users/user-controller');
 var User = require('../../server/users/user-model');
 
 describe('Server Tests', function(){
@@ -27,6 +27,7 @@ describe('Server Tests', function(){
 
       request(options, function(error, res, body){
         if (error) {
+          console.log('error in request call');
           throw error;
           done();
         } else {
