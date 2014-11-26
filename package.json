@@ -5,9 +5,10 @@
   "engines": {
     "node": "0.10.x"
   },
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "gulp travis --verbose",
+    "start": "node server.js",
     "postinstall": "bower install"
   },
   "author": "",

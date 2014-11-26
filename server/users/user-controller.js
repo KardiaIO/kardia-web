@@ -1,7 +1,9 @@
 // Starting mongoDB connection
+console.log('Inside user-controller');
 var mongoose = require('mongoose');
 var mongoUrl = "mongodb://127.0.0.1:27017/test" || "mongodb://webEKGAPI:yhXk8EPXDSfy@ds053140.mongolab.com:53140/ekgmongo";
 mongoose.connect(mongoUrl);
+console.log('after mongoose connect');
 
 var User = require('./user-model.js'), // user-schema
     Q    = require('q'),  // promises library
