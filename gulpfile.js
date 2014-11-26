@@ -67,7 +67,7 @@ gulp.task('build', [
 ]);
 
 // Task for travis
-gulp.task('travis', [
+gulp.task('test', [
   // 'lint'
   'mochaTest'
 ]);
