@@ -8,7 +8,8 @@ var User = require('../../server/users/user-model');
 describe('Server Tests', function(){
 
   describe('User Login Tests', function(){
-
+    console.log("REQUEST: ", request);
+    console.log("JWT: ", jwt);
     // Delete test user
     User.findOneAndRemove({username: 'nicktest'}, function(err, obj) {
       if (err) {
