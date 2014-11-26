@@ -1,4 +1,6 @@
 angular.module('ekg.home')
+// The rickshawChart is responsible for producing the long and short graphs of the EKG 
+// on the main "analysis" view but not for the interval or lorenz detailed analysis views.
 .directive('rickshawChart', function () {
   return {
     scope: {
@@ -10,11 +12,14 @@ angular.module('ekg.home')
     link: function postLink(scope, element, attrs) {
       var graph;
       scope.$watchCollection('[data, renderer]', function(newVal, oldVal){
+        
         if(!newVal[0]){
           return;
         }
         
+        // The element we are inserting the rickShaw graph into must be emptied. 
         element[0].innerHTML ='';
+
         // When new data is loaded, graph is configured with new data instead of rerendering
         if (graph){
           graph.config({
