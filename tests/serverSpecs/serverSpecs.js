@@ -35,6 +35,7 @@ describe('Server Tests', function(){
             if (err) {
               throw err;
             } else if (body && body.token) {
+              console.log('there is a TOKEN');
               var user = jwt.decode(body.token, 'secret').username;
               expect(user).to.equal('nicktest');
               done();
@@ -56,15 +57,26 @@ describe('Server Tests', function(){
       };
 
       request(options, function(error, res, body) {
+        console.log('in request');
         if (error) {
+        console.log('in error');
+
           throw error;
           done();
         } else {
+        console.log('in no error');
+
           User.findOne({username: 'nicktest'}, function(err, obj){
+        console.log('in in user');
+
             if (err) {
+              console.log('in user error');
               throw err;
             } else {
+              console.log('in user found');
+              console.log("Token please? ", body.token);
               var user = jwt.decode(body.token, 'secret').username;
+              console.log('user is: ', user);
               expect(user).to.equal('nicktest');
               done();
             }
