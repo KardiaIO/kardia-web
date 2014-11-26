@@ -18,7 +18,7 @@ gulp.task('lint', function(){
     'server/**/*.js',
     'gulpfile.js',
     '!client/lib/**',
-    '!client/design/**'
+    '!client/components/triage/highcharts/highcharts.js'
     ])
       .pipe(jshint())
       .pipe(jshint.reporter('jshint-stylish'))

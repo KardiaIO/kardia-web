@@ -7,6 +7,8 @@ notifications:
 language: node_js
 node_js:
   - "0.10"
+services:
+  - mongodb
 branches:
   only:
     - master

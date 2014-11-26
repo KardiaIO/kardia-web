@@ -27,9 +27,9 @@ module.exports = {
       if (err) next(new Error('connection error ' + err));
 
       var request = new mssql.Request();
-      request.query('select * from SampleData.dbo.sampleEKG'
-        + ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 200000)
-        + ' and (x % 16 = 0 or maxIndicator = 1)', 
+      request.query('select * from SampleData.dbo.sampleEKG' +
+        ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 200000) +
+        ' and (x % 16 = 0 or maxIndicator = 1)', 
         function(err, results){
         // Passes any errors to the error handler
         if (err) next(new Error('Error in query ' + err));
