@@ -20,4 +20,3 @@ before_install:
   - "mkdir ~/.npm" 
 before_script:
   - sleep 15
-  - mongo test

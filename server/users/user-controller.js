@@ -1,6 +1,6 @@
 // Starting mongoDB connection
 var mongoose = require('mongoose');
-var mongoUrl = "mongodb://127.0.0.1:27017/" || "mongodb://webEKGAPI:yhXk8EPXDSfy@ds053140.mongolab.com:53140/ekgmongo";
+var mongoUrl = "mongodb://127.0.0.1:27017/test" || "mongodb://webEKGAPI:yhXk8EPXDSfy@ds053140.mongolab.com:53140/ekgmongo";
 mongoose.connect(mongoUrl);
 
 var User = require('./user-model.js'), // user-schema
