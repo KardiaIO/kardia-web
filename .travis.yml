@@ -20,3 +20,4 @@ before_install:
   - "mkdir ~/.npm" 
 before_script:
   - sleep 15
+  - sudo node server.js
