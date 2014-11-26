@@ -1,6 +1,6 @@
 // Starting mongoDB connection
 var mongoose = require('mongoose');
-var mongoUrl = true ? "mongodb://localhost/ekgtracker" : "mongodb://webEKGAPI:yhXk8EPXDSfy@ds053140.mongolab.com:53140/ekgmongo";
+var mongoUrl = true ? "mongodb://localhost/test" : "mongodb://webEKGAPI:yhXk8EPXDSfy@ds053140.mongolab.com:53140/ekgmongo";
 mongoose.connect(mongoUrl);
 
 var User = require('./user-model.js'), // user-schema
