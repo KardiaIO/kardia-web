@@ -19,5 +19,4 @@ before_install:
   # might not need to make npm directory anymore
   - "mkdir ~/.npm" 
 before_script:
-  - sleep 15
-  - node server.js
+  - until nc -z localhost 27017 ; do echo Waiting for MongoDB; sleep 1; done
