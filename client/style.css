@@ -30,3 +30,9 @@ body {
 form input {
   margin-bottom: 15px;
 }
+
+/* Font Awesome sizing */
+.fa {
+  font-size: 32px;
+  width: 50px;
+}
