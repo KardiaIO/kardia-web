@@ -36,3 +36,81 @@ form input {
   font-size: 32px;
   width: 50px;
 }
+
+/* NEW CLOCK CODE */
+
+.face {
+  margin:30px auto;
+  border-radius:50%;
+  background-color:#26a69a;
+  height:100px;
+  width:100px;
+  position:relative;
+}
+
+.center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-4px;
+  margin-left:-4px;
+  border-radius:50%;
+  height:8px;
+  width:8px;
+  background-color:#333;
+}
+
+.seconds-hand {
+  position:absolute;
+  left:50%;
+  top:4px;
+  margin-left:-1px;
+  width:2px;
+  height:45px;
+  background-color:#F03C3C;
+  -webkit-webkit-webkit-transform-origin: bottom center;
+  -moz-webkit-webkit-transform-origin: bottom center;
+  -ms-webkit-webkit-transform-origin: bottom center;
+  -o-webkit-webkit-transform-origin: bottom center;
+  transform-origin: bottom center;
+}
+
+.minute-hand {
+  position:absolute;
+  left:50%;
+  top:4px;
+  margin-left:-2px;
+  width:4px;
+  height:45px;
+  background-color:#333;
+  -webkit-webkit-webkit-transform-origin: bottom center;
+  -moz-webkit-webkit-transform-origin: bottom center;
+  -ms-webkit-webkit-transform-origin: bottom center;
+  -o-webkit-webkit-transform-origin: bottom center;
+  transform-origin: bottom center;
+}
+
+.hour-hand {
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin-left:-2px;
+  margin-top:-30px;
+  width:4px;
+  height:30px;
+  background-color:#333;
+  
+  -webkit-webkit-webkit-transform-origin: bottom center;
+  -moz-webkit-webkit-transform-origin: bottom center;
+  -ms-webkit-webkit-transform-origin: bottom center;
+  -o-webkit-webkit-transform-origin: bottom center;
+  transform-origin: bottom center; 
+}
+
+.smooth {
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  -ms-transition: all .1s linear;
+  -o-transition: all .1s linear;
+  transition: all .1s linear;
+}
