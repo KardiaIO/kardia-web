@@ -13,7 +13,7 @@ var errors = require('./server/error-handlers.js');
 var app = express();
 
 //Python server connection
-var python = require('./server/python/pythonComm.js');
+// var python = require('./server/python/pythonComm.js');
 
 // // Email server notification
 // var email = require('./server/problematic/rhythmNotification.js');
