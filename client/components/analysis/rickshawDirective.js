@@ -10,41 +10,27 @@ angular.module('ekg.home')
     template: '<div></div>',
     restrict: 'E',
     link: function postLink(scope, element, attrs) {
-      var graph;
       scope.$watchCollection('[data, renderer]', function(newVal, oldVal){
         
         if(!newVal[0]){
           return;
         }
-        
         // The element we are inserting the rickShaw graph into must be emptied. 
         element[0].innerHTML ='';
 
-        // When new data is loaded, graph is configured with new data instead of rerendering
-        if (graph){
-          graph.config({
-            element: element[0],
-            series: [
-              {data: scope.data.results, color: attrs.color1}
-              // {data: scope.data.indicators, color: attrs.color2}
-            ],
-            renderer: scope.renderer
-          });
-        } else {
-          // Render graph on initial load
-          graph = new Rickshaw.Graph({
-            element: element[0],
-            width: attrs.width,
-            height: attrs.height,
-            min: attrs.min,
-            max: attrs.max,
-            series: [
-              {data: scope.data.results, color: attrs.color1}
-              // {data: scope.data.indicators, color: attrs.color2}
-            ],
-            renderer: scope.renderer
-          });
-        }
+        // Render graph on initial load
+        var graph = new Rickshaw.Graph({
+          element: element[0],
+          width: attrs.width,
+          height: attrs.height,
+          min: attrs.min,
+          max: attrs.max,
+          series: [
+            {data: scope.data.results, color: attrs.color1}
+            // {data: scope.data.indicators, color: attrs.color2}
+          ],
+          renderer: scope.renderer
+        });
 
         // Add y-axis axes
         var yAxis = new Rickshaw.Graph.Axis.Y({
