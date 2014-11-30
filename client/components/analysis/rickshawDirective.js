@@ -14,7 +14,6 @@ angular.module('ekg.home')
         if(!newVal[0]){
           return;
         }
-        
         // The element we are inserting the rickShaw graph into must be emptied. 
         element[0].innerHTML ='';
 
