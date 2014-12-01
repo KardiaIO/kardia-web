@@ -4,19 +4,19 @@
     <img ng-src="components/images/loading.gif">
   </div>
   <div ng-hide="loading" id='loadingWrapper'>
-    <div layout="horizontal" layout-align="center" id='zoomedInGraph'>
+    <div layout="horizontal" layout-align="center" id='zoomedInGraph' style="margin-bottom: 50px;">
       <rickshaw-chart
         data="snippet"
         color1="red"
         color2="blue"
         renderer="renderer"
-        width="400"
-        height="400"    
+        width="300"
+        height="300"    
         min="-0.5"
         max="0.7">
       </rickshaw-chart>
     </div>
-    <span layout="horizontal" layout-align="center" id='longGraph'>
+    <div layout="horizontal" layout-align="center" id='longGraph'>
       <rickshaw-chart
       data="largerSnippet"
       color1="red"
@@ -27,7 +27,7 @@
       min="-0.5"
       max="0.7">
       </rickshaw-chart>
-    </span>
+    </div>
 
     <div class="panel panel-primary" style="position: absolute;left: 100px; top: 150px;">
       <div class="panel-heading">
