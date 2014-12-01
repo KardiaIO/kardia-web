@@ -40,42 +40,51 @@
     </div>
 
     <!-- The timeButtons div wraps both nested divs, which are responsible for changing the clock when a user clicks a button -->
-    <div class="timeButtons" ng-controller="TimeController">
+    <div class="timeButtons" ng-controller="TimeController" layout="row" layout-align="center center">
+      <div id="buttonContainer" style="margin-top: 50px; margin-right: 50px; height: 180px;">
+        <!-- BEGIN DAY OF WEEK BUTTONS -->
+        <div id='dayOfWeekContainer' style="margin-left: 15px;">
+          <!-- getData uses getters and setters of the Time Factory to ping the server with the right time -->
+          <md-button class="md-raised" id='MON' aria-label=''>MON</md-button>
+          <md-button class="md-raised" id='TUES' aria-label=''>TUE</md-button>
+          <md-button class="md-raised" id='WED' aria-label=''>WED</md-button>
+          <md-button class="md-raised" id='THURS' aria-label=''>THR</md-button>
+          <md-button class="md-raised" id='FRI' aria-label=''>FRI</md-button>
+          <md-button class="md-raised" id='SAT' aria-label=''>SAT</md-button>
+          <md-button class="md-raised" id='SUN' aria-label=''>SUN</md-button>
+        </div>
+        <!-- END DAY OF WEEK BUTTONS -->
 
-      <div layout="horizontal" layout-align="center" id='dayOfWeekContainer'style="margin: 18px;">
-        <!-- getData uses getters and setters of the Time Factory to ping the server with the right time -->
-        <md-button class="md-raised" id='MON' aria-label=''>MON</md-button>
-        <md-button class="md-raised" id='TUES' aria-label=''>TUE</md-button>
-        <md-button class="md-raised" id='WED' aria-label=''>WED</md-button>
-        <md-button class="md-raised" id='THURS' aria-label=''>THR</md-button>
-        <md-button class="md-raised" id='FRI' aria-label=''>FRI</md-button>
-        <md-button class="md-raised" id='SAT' aria-label=''>SAT</md-button>
-        <md-button class="md-raised" id='SUN' aria-label=''>SUN</md-button>
-      </div>
+        <!-- BEGIN PLAY BUTTONS -->
+        <div id="playButtons" style="margin-top: 20px;">
+          <!-- First update the clock time, then send a request for new data to update graph -->
+          <md-button class="md-raised" ng-click="fastBackward()" aria-label=''><span style="padding-right: 7px;" class="fa fa-backward"></span></md-button>
+          <!-- Style is padding-left and not padding-right because icon is rotated 180 degrees -->
+          <md-button class="md-raised" ng-click="playBackward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play fa-rotate-180"></span></md-button>
+          <md-button class="md-raised" ng-click="stopPlay()" aria-label=''><span class="fa fa-stop"></span></md-button>
+          <md-button class="md-raised" ng-click="playForward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play"></span></md-button>
+          <md-button class="md-raised" ng-click="fastForward()" aria-label=''><span style="padding-left: 7px;" class="fa fa-forward"></span></md-button>
+        </div>
+        <!-- END PLAY BUTTONS -->
+      </div><!-- end button container -->
 
-      <div layout="horizontal" layout-align="center" id="displayedTimeContainer" style="margin: 18px;">
-        {{display}}
-      </div>
+      <div id="clockContainer" style="margin-top: -60px; height: 180px;">
+        <!-- BEGIN CLOCK DISPLAY -->
+        <div class="face">
+          <div class="hour-hand"></div>
+          <div class="minute-hand"></div>
+          <div class="seconds-hand"></div>
+          <div class="center"></div>
+        </div>
+        <!-- END CLOCK DISPLAY -->
 
-      <div layout="horizontal" layout-align="center" style="margin: 18px;">
-        <!-- First update the clock time, then send a request for new data to update graph -->
-        <md-button class="md-raised" ng-click="fastBackward()" aria-label=''><span style="padding-right: 7px;" class="fa fa-backward"></span></md-button>
-        <!-- Style is padding-left and not padding-right because icon is rotated 180 degrees -->
-        <md-button class="md-raised" ng-click="playBackward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play fa-rotate-180"></span></md-button>
-        <md-button class="md-raised" ng-click="stopPlay()" aria-label=''><span class="fa fa-stop"></span></md-button>
-        <md-button class="md-raised" ng-click="playForward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play"></span></md-button>
-        <md-button class="md-raised" ng-click="fastForward()" aria-label=''><span style="padding-left: 7px;" class="fa fa-forward"></span></md-button>
-      </div>
-
-      <!-- NEW CLOCK CODE -->
-      <div class="face" layout="horizontal" layout-align="center">
-        <div class="hour-hand"></div>
-        <div class="minute-hand"></div>
-        <div class="seconds-hand"></div>
-        <div class="center"></div>
-      </div>
-      <!-- END NEW CLOCK CODE -->
-
+        <!-- BEGIN DATE DISPLAY -->
+        <div id="displayedTimeContainer" style="margin-top: -15px; margin-left: 20px;">
+          <!-- {{display}} -->
+          12/30/14
+        </div>
+        <!-- END DATE DISPLAY -->
+      </div><!--  End clockContainer-->
     </div><!-- End timeButtons wrapper div -->
   </div><!-- End loadingWrapper -->
 </div>
