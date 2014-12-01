@@ -10,6 +10,7 @@
 
   .run(function($rootScope, $state, Auth){
 
+    // On each state change, Angular will check for authentication
     $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
       // Check if the user is authenticated when the state requires authentication
       if (toState.authenticate && !Auth.isAuth()){
@@ -42,14 +43,8 @@
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'components/signin/welcome.html'      
-      })
-
-      .state('chart', {
-        url: '/chart',
-        templateUrl: 'components/analysis/chart.html',
-        controller: 'chartController'
       });
-
+      
     // The default route should point to the home page
     // which contains the graphs
     $urlRouterProvider.otherwise('/home');

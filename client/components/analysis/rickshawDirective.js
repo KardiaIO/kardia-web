@@ -25,8 +25,8 @@ angular.module('ekg.home')
           min: attrs.min,
           max: attrs.max,
           series: [
-            {data: scope.data.results, color: attrs.color1}
-            // {data: scope.data.indicators, color: attrs.color2}
+            {data: scope.data.results, color: attrs.color1},
+            {data: scope.data.indicators, color: attrs.color2}
           ],
           renderer: scope.renderer
         });

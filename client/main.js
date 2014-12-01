@@ -31,9 +31,7 @@ angular.module('ekg.home', [
   function changeGraphInterval(forward){
     $scope.largerSnippet = {
       results: $scope.dataArray.results.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength),
-      indicators: $scope.dataArray.indicators.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength)/*.filter(function(item){
-        return item.y === 1;
-      })*/
+      indicators: $scope.dataArray.indicators.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength)
     };
     $scope.snippet = {
       results: $scope.largerSnippet.results.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength),
