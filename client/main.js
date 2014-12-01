@@ -31,9 +31,7 @@ angular.module('ekg.home', [
   function changeGraphInterval(forward){
     $scope.largerSnippet = {
       results: $scope.dataArray.results.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength),
-      indicators: $scope.dataArray.indicators.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength)/*.filter(function(item){
-        return item.y === 1;
-      })*/
+      indicators: $scope.dataArray.indicators.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength)
     };
     $scope.snippet = {
       results: $scope.largerSnippet.results.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength),
@@ -118,6 +116,18 @@ angular.module('ekg.home', [
 
   // Signout function
   $scope.signout = Auth.signout;
+
+  // Toggle appearance of R peak labeling data
+  $scope.toggleR = function() {
+    var indicatorLines = jQuery('path[stroke="blue"]');
+    for (var i = 0; i < indicatorLines.length; i++){
+      if (indicatorLines[i].className.baseVal.indexOf('hidden') === -1) {
+        indicatorLines[i].className.baseVal += ' hidden';
+      } else {
+        indicatorLines[i].className.baseVal = 'path';
+      }
+    }
+  };
 
 })
 // Retrieves ekg data from node server
