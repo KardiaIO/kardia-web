@@ -117,6 +117,18 @@ angular.module('ekg.home', [
   // Signout function
   $scope.signout = Auth.signout;
 
+  // Toggle appearance of R peak labeling data
+  $scope.toggleR = function() {
+    var indicatorLines = jQuery('path[stroke="blue"]');
+    for (var i = 0; i < indicatorLines.length; i++){
+      if (indicatorLines[i].className.baseVal.indexOf('hidden') === -1) {
+        indicatorLines[i].className.baseVal += ' hidden';
+      } else {
+        indicatorLines[i].className.baseVal = 'path';
+      }
+    }
+  };
+
 })
 // Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
