@@ -26,16 +26,23 @@
     var clockTime;
 
     // The displayOptions dictates the format of the time display. 
-    var displayOptions = {
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric', 
-      hour: 'numeric', 
-      minute: 'numeric', 
-      second: 'numeric'
-    };
 
+    // Old display for date and time, format: Tuesday, December 30, 2014, 8:35:32 pm
+    // var displayOptions = {
+    //   weekday: 'long', 
+    //   year: 'numeric', 
+    //   month: 'long', 
+    //   day: 'numeric', 
+    //   hour: 'numeric', 
+    //   minute: 'numeric', 
+    //   second: 'numeric'
+    // };
+
+    var displayOptions = {
+      year: '2-digit', 
+      month: '2-digit', 
+      day: '2-digit'
+    };
 
       /* NEW CLOCK CODE */
       Number.prototype.map = function ( in_min , in_max , out_min , out_max ) {
