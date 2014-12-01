@@ -16,6 +16,7 @@ angular.module('ekg.home')
     getResults.getChartData(TimeFactory.getTime().dateObject.getTime())
       .then(function(results){
 
+        document.querySelector("#frequencyChart").innerHTML ='';
         // The graph will be inserted to the div element with id "frequencyChart"
         var graph = new Rickshaw.Graph( {
           element: document.querySelector("#frequencyChart"),
@@ -67,6 +68,7 @@ angular.module('ekg.home')
   $scope.getLorenzData = function(){
     getResults.getLorenzData(TimeFactory.getTime().dateObject.getTime())
       .then(function(results){
+        document.querySelector("#lorenzChart").innerHTML ='';
         var graph = new Rickshaw.Graph( {
           element: document.querySelector("#lorenzChart"),
           width: 400,
@@ -95,7 +97,7 @@ angular.module('ekg.home')
             };
             return map[n];
           }
-        });      
+        });
         yAxis.render();
         x_ticks.render();
         graph.render();

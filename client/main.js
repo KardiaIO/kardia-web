@@ -4,6 +4,9 @@ angular.module('ekg.home', [
 
 .controller('MainController', function ($scope, $interval, $timeout, DataGetter, Auth, TimeFactory) {
 
+  // $scope.dataArray stores the data from the server on the client
+  // There are two datasets, one containing all the raw EKG voltage
+  // and the other containing the indicators of where 
   $scope.dataArray = {
     results: [],
     indicators: []
@@ -28,7 +31,9 @@ angular.module('ekg.home', [
   function changeGraphInterval(forward){
     $scope.largerSnippet = {
       results: $scope.dataArray.results.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength),
-      indicators: $scope.dataArray.indicators.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength)
+      indicators: $scope.dataArray.indicators.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength)/*.filter(function(item){
+        return item.y === 1;
+      })*/
     };
     $scope.snippet = {
       results: $scope.largerSnippet.results.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength),
