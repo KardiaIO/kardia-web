@@ -3,7 +3,7 @@
 
   angular.module('ekg', [
     'ekg.auth',
-    'ekg.home',
+    'ekg.analysis',
     'ekg.choose',
     'ekg.api',
     'ui.router',
@@ -16,7 +16,7 @@
     $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
       // Check if the user is authenticated when the state requires authentication
       if (toState.authenticate && !Auth.isAuth()){
-        $state.transitionTo('welcome');
+        $state.transitionTo('user');
         event.preventDefault(); 
       }
     });
@@ -29,23 +29,24 @@
     // Documentation: https://github.com/angular-ui/ui-router
     $stateProvider
 
-      .state('analysis', {
+      .state('user.analysis', {
         url: '/analysis',
         templateUrl: 'components/web/analysis/analysis.html',
         controller: 'MainController',
         authenticate: true
       })
 
-      .state('triage', {
+      .state('user.triage', {
         url: '/triage',
         templateUrl: 'components/web/triage/mdTriage.html',
         authenticate: true    
       })
 
-      // .state('welcome', {
-      //   url: '/welcome',
-      //   templateUrl: 'components/signin/welcome.html'      
-      // })
+      .state('user', {
+        url: '/user',
+        templateUrl: 'components/signin/welcome.html',
+        controller: 'AuthController'      
+      })
 
       .state('choose', {
         url: '/',

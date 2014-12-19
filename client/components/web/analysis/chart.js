@@ -1,4 +1,4 @@
-angular.module('ekg.home')
+angular.module('ekg.analysis')
 // The chartController produces RickShaw graphs for the interval and lorenz
 // charts. It utilizes the getResults factory to make http calls and take
 // the data from the http call to create the RickShaw graph.

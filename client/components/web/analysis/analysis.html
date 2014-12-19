@@ -1,45 +1,9 @@
-<header class="navbar btn-material-teal" ng-controller="AuthController">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a href="#/choose"><img src="/components/web/images/mainLogoTrans.png" style="float:left"></a>
-    <a class="navbar-brand" href="#/triage" style="font-weight: bold; font-size: 20px;">EKG Tracker</a>
-
-  </div>
-  <div class="navbar-collapse collapse navbar-warning-collapse" style="font-weight: bold;">
-    <ul class="nav navbar-nav">
-      <li ng-cloak ng-show='isAuth()'><a href="#/triage">Triage</a></li>
-      <li ng-cloak ng-show='isAuth()'><a href="#/analysis">Analysis</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li ng-cloak ng-show='isAuth()'><a href='#/triage' id="signout" ng-click='signout()'>Sign Out</a>
-      <li ng-cloak ng-show='!isAuth()' class="dropdown">
-        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <form accept-charset="UTF-8" name="signinForm" >
-            <input type="text" class="form-control" placeholder="email" ng-model='user.username'>
-            <input type="password" class="form-control" placeholder="password" ng-model='user.password'>
-            <button class="btn btn-material-teal btn-block" id="sign-in" ng-click="signin()" value="Sign In">Sign In</button>
-            <input type="password" class="form-control" placeholder="confirm password" ng-model="user.cpassword">
-            <input type="text" class="form-control" placeholder="first name" ng-model='user.first'>
-            <input type="text" class="form-control" placeholder="last name" ng-model='user.last'>
-            <button class="btn btn-material-teal btn-block" id="sign-up" ng-click="signup()" value="Sign Up">Sign Up</button>
-          </form>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</header><!-- nav bar -->
-
 <div ng-controller="AuthController">
 
   <div ng-show="isAuth()" id='analysis' ng-controller="MainController">
     <div ng-show="loading" id='loadingSpinner' layout="column" layout-align="center">
       <!-- Colors of spinner: teal spinner (#26a69a) on 'white' background (#eeeeee) -->
-      <img ng-src="components/images/loading.gif">
+      <img ng-src="components/web/images/loading.gif">
     </div>
 
     <div ng-hide="loading" id='loadingWrapper'>

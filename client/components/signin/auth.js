@@ -11,7 +11,7 @@ angular.module('ekg.auth', [])
         // We will put this token into local storage.
         if (token) {
           $window.localStorage.setItem('com.ekgtracker', token);
-          // $state.transitionTo('triage');
+          $state.transitionTo('user.triage');
         } else {
           alert('Username or password was incorrect. Please try again.');
         }
@@ -50,7 +50,7 @@ angular.module('ekg.auth', [])
         .then(function (token) {
           if (token) {
             $window.localStorage.setItem('com.ekgtracker', token);
-            $state.transitionTo('triage');
+            $state.transitionTo('user.triage');
           } else {
             alert('Your email is already registered.');
           }
@@ -101,7 +101,7 @@ angular.module('ekg.auth', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.ekgtracker');
-    $state.transitionTo('welcome');
+    $state.transitionTo('user');
   };
 
   return {

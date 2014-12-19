@@ -1,6 +1,6 @@
 angular.module('ekg.api', [])
 
-.controller('APIController', function ($scope) {
+.controller('APIController', function ($scope, Auth) {
   $scope.generateKey = function() {
   	//return generated API key and store it to user's mongodb obj
   	console.log("Here's your API key! Keep it safe!");
