@@ -4,6 +4,7 @@
   angular.module('ekg', [
     'ekg.auth',
     'ekg.home',
+    'ekg.choose',
     'ui.router',
     'ngMaterial'
   ])
@@ -40,14 +41,20 @@
         authenticate: true    
       })
 
-      .state('welcome', {
-        url: '/welcome',
-        templateUrl: 'components/signin/welcome.html'      
+      // .state('welcome', {
+      //   url: '/welcome',
+      //   templateUrl: 'components/signin/welcome.html'      
+      // })
+
+      .state('choose', {
+        url: '/choose',
+        templateUrl: 'components/choose/choose.html',
+        controller: 'ChooseController'     
       });
-      
+
     // The default route should point to the home page
     // which contains the graphs
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/choose');
 
     //We add $httpInterceptor into the array
     $httpProvider.interceptors.push('AttachTokens');
