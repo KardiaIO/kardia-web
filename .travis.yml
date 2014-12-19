@@ -1,11 +1,12 @@
 notifications:
   email:
     recipients:
-      - nicklitwin88@gmail.com
+      - kardiaapp@gmail.com
     on_success: change
     on_failure: always
 language: node_js
 node_js:
+  - "0.11"
   - "0.10"
 # services: mongodb
 branches:
@@ -13,9 +14,10 @@ branches:
     - master
 before_install:
   # install zeromq
-  - echo "yes" | sudo add-apt-repository ppa:chris-lea/libpgm 
-  - sudo apt-get update
-  - sudo apt-get install libzmq3-dev
-# before_script:
-  # - sleep 15
-  # - until nc -z localhost 27017 ; do echo Waiting for MongoDB; sleep 1; done
+  # - echo "yes" | sudo add-apt-repository ppa:chris-lea/libpgm 
+  # - sudo apt-get update
+  # - sudo apt-get install libzmq3-dev
+before_script:
+  - npm install -g gulp
+
+script: gulp ci

@@ -32,11 +32,11 @@ gulp.task('mochaTest', function(){
     // server specs dont run with mongo in travis at the moment
     // 'tests/serverSpecs/serverSpecs.js'
     ])
-    .pipe(mochaTest());
+    .pipe(mochaTest({reporter: list}));
 });
 
 gulp.task('clean', function(){
-  return gulp.src('dist/newConcat.js', {read: false})
+  return gulp.src('./dist/*', {read: false})
     .pipe(clean());
 });
 
@@ -71,4 +71,7 @@ gulp.task('test', [
   // 'lint'
   'mochaTest'
 ]);
+
+// Travis CI testing task.  .travis.yml calls this task.
+gulp.task('ci', ['build']);
 
