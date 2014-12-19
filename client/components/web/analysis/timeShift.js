@@ -1,7 +1,7 @@
 ;(function(){
   "use strict";
 
-  angular.module('ekg.home')
+  angular.module('ekg.analysis')
   // The TimeController controls the time that is displayed on the "analysis" view. 
   .controller('TimeController', function ($scope, TimeFactory) {
 

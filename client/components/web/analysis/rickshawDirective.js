@@ -1,4 +1,4 @@
-angular.module('ekg.home')
+angular.module('ekg.analysis')
 // The rickshawChart is responsible for producing the long and short graphs of the EKG 
 // on the main "analysis" view but not for the interval or lorenz detailed analysis views.
 .directive('rickshawChart', function () {
