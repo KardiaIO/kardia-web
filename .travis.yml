@@ -14,9 +14,9 @@ branches:
     - master
 before_install:
   # install zeromq
-  # - echo "yes" | sudo add-apt-repository ppa:chris-lea/libpgm 
-  # - sudo apt-get update
-  # - sudo apt-get install libzmq3-dev
+  - echo "yes" | sudo add-apt-repository ppa:chris-lea/libpgm 
+  - sudo apt-get update
+  - sudo apt-get install libzmq3-dev
 before_script:
   - npm install -g gulp
 

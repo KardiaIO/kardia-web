@@ -27,9 +27,9 @@ module.exports = {
       if (err) next(new Error('connection error ' + err));
 
       var request = new mssql.Request();
-      request.query('select * from SampleData.dbo.sampleEKG'
-        + ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 200000)
-        + ' and (x % 16 = 0 or maxIndicator = 1)', 
+      request.query('select * from SampleData.dbo.sampleEKG' + 
+        ' where x >= ' + startTime + ' and x < ' + (parseInt(startTime) + 200000) +
+        ' and (x % 16 = 0 or maxIndicator = 1)', 
         function(err, results){
         // Passes any errors to the error handler
         if (err) next(new Error('Error in query ' + err));
@@ -53,9 +53,9 @@ module.exports = {
 
     mssql.connect(config, function(err){
       var request = new mssql.Request();
-      request.query('select top 24 interval from SampleData.dbo.SamplePeakIntervals'
-        + ' where x > ' + startTime
-        + ' order by x', function(err, results){
+      request.query('select top 24 interval from SampleData.dbo.SamplePeakIntervals' +
+        ' where x > ' + startTime +
+        ' order by x', function(err, results){
         if (err) next(new Error('Error in query ' + err));
         var row = 0;
         res.json(results.map(function(item){
@@ -78,20 +78,20 @@ module.exports = {
 
     mssql.connect(config, function(err){
       var request = new mssql.Request();
-      request.query('select distinct top 15 a.interval as x, b.interval as y'
-        +' from'
-        +'   ('
-        +'   select ROW_NUMBER() OVER (ORDER BY X) as row, * '
-        +'   from SampleData.dbo.SamplePeakIntervals'
-        +'   where x > ' + startTime
-        +'   ) a'
-        +' join '
-        +'   ('
-        +'   select ROW_NUMBER() OVER (ORDER BY X) as row, * '
-        +'   from SampleData.dbo.SamplePeakIntervals'
-        +'   ) b'
-        +'   on a.row = b.row - 1'
-        +' order by 1', function(err, results){
+      request.query('select distinct top 15 a.interval as x, b.interval as y' +
+        ' from' +
+        '   (' +
+        '   select ROW_NUMBER() OVER (ORDER BY X) as row, * ' +
+        '   from SampleData.dbo.SamplePeakIntervals' +
+        '   where x > ' + startTime +
+        '   ) a' +
+        ' join ' +
+        '   (' +
+        '   select ROW_NUMBER() OVER (ORDER BY X) as row, * ' +
+        '   from SampleData.dbo.SamplePeakIntervals' +
+        '   ) b' +
+        '   on a.row = b.row - 1' +
+        ' order by 1', function(err, results){
         if (err) next(new Error('Error in query ' + err));
         res.json(results);
       });

@@ -29,6 +29,12 @@
     // Documentation: https://github.com/angular-ui/ui-router
     $stateProvider
 
+      .state('user', {
+        url: '/user',
+        templateUrl: 'components/signin/welcome.html',
+        controller: 'AuthController'      
+      })
+
       .state('user.analysis', {
         url: '/analysis',
         templateUrl: 'components/web/analysis/analysis.html',
@@ -42,12 +48,6 @@
         authenticate: true    
       })
 
-      .state('user', {
-        url: '/user',
-        templateUrl: 'components/signin/welcome.html',
-        controller: 'AuthController'      
-      })
-
       .state('choose', {
         url: '/',
         templateUrl: 'choose/choose.html',
@@ -56,16 +56,16 @@
 
       .state('developer', {
         url: '/developer',
-        templateUrl: 'components/developer/developer.html',
-        controller: 'DevController'     
+        templateUrl: 'components/developer/dev.html',
+        // controller: 'DevController'
       })
 
-      .state('documents', {
+      .state('developer.documents', {
         url: '/documents',
         templateUrl: 'components/developer/documents/documents.html',   
       })
 
-      .state('apiKeys', {
+      .state('developer.apiKeys', {
         url: '/api',
         templateUrl: 'components/developer/api/api.html',
         controller: 'APIController'     

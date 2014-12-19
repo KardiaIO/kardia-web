@@ -34,7 +34,7 @@ gulp.task('mocha', function(){
     // server specs dont run with mongo in travis at the moment
     // 'tests/serverSpecs/serverSpecs.js'
     ])
-    .pipe(mocha({reporter: list}));
+    .pipe(mocha());
 });
 
 gulp.task('clean', function(){
