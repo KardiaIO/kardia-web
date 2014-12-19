@@ -28,6 +28,12 @@
     // AngularUI Router uses the concept of states
     // Documentation: https://github.com/angular-ui/ui-router
     $stateProvider
+    
+      .state('user', {
+        url: '/user',
+        templateUrl: 'components/signin/welcome.html',
+        controller: 'AuthController'      
+      })
 
       .state('user.analysis', {
         url: '/analysis',
@@ -40,12 +46,6 @@
         url: '/triage',
         templateUrl: 'components/web/triage/mdTriage.html',
         authenticate: true    
-      })
-
-      .state('user', {
-        url: '/user',
-        templateUrl: 'components/signin/welcome.html',
-        controller: 'AuthController'      
       })
 
       .state('choose', {
