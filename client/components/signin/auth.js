@@ -1,6 +1,6 @@
 angular.module('ekg.auth', [])
 
-.controller('AuthController', function ($scope, $window, $state, Auth) {
+.controller('AuthController', function ($scope, $window, $state, Auth, $location) {
 
   $scope.user = {};
 
@@ -65,6 +65,9 @@ angular.module('ekg.auth', [])
 
   $scope.signout = Auth.signout;
 
+  $scope.isActive = function (viewLocation) { 
+    return $state.is(viewLocation);
+  };
 })
 
 // The Auth factory is responsible for sending the $http requests to the server
