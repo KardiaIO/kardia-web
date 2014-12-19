@@ -11,7 +11,7 @@ angular.module('ekg.auth', [])
         // We will put this token into local storage.
         if (token) {
           $window.localStorage.setItem('com.ekgtracker', token);
-          $state.transitionTo('welcome.triage');
+          $state.transitionTo('user.triage');
         } else {
           alert('Username or password was incorrect. Please try again.');
         }
