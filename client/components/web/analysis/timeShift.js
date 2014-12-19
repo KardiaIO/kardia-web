@@ -46,8 +46,8 @@
 
       /* NEW CLOCK CODE */
       Number.prototype.map = function ( in_min , in_max , out_min , out_max ) {
-      return ( this - in_min ) * ( out_max - out_min ) / ( in_max - in_min ) + out_min;
-      }
+        return ( this - in_min ) * ( out_max - out_min ) / ( in_max - in_min ) + out_min;
+      };
 
       function rotate(element, degrees) {
         element.css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
@@ -66,19 +66,19 @@
         var mapMin = min.map(0,59,0,360);
         var mapHrs = hrs.map(0,12,0,360);
 
-        if (sec == 0) {
+        if (sec === 0) {
           $('.seconds-hand').removeClass('smooth');
         } else {
           $('.seconds-hand').addClass('smooth');
         }
 
-        if (min == 0) {
+        if (min === 0) {
           $('.minute-hand').removeClass('smooth');
         } else {
           $('.minute-hand').addClass('smooth');
         }
 
-        if (hrs == 0) {
+        if (hrs === 0) {
           $('.hour-hand').removeClass('smooth');
         } else {
           $('.hour-hand').addClass('smooth');
