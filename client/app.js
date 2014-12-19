@@ -3,7 +3,7 @@
 
   angular.module('ekg', [
     'ekg.auth',
-    'ekg.home',
+    'ekg.analysis',
     'ekg.choose',
     'ekg.api',
     'ui.router',
@@ -29,23 +29,23 @@
     // Documentation: https://github.com/angular-ui/ui-router
     $stateProvider
 
-      .state('analysis', {
+      .state('welcome.analysis', {
         url: '/analysis',
         templateUrl: 'components/web/analysis/analysis.html',
         controller: 'MainController',
         authenticate: true
       })
 
-      .state('triage', {
+      .state('welcome.triage', {
         url: '/triage',
         templateUrl: 'components/web/triage/mdTriage.html',
         authenticate: true    
       })
 
-      // .state('welcome', {
-      //   url: '/welcome',
-      //   templateUrl: 'components/signin/welcome.html'      
-      // })
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'components/signin/welcome.html'      
+      })
 
       .state('choose', {
         url: '/',

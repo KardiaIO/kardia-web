@@ -1,4 +1,4 @@
-angular.module('ekg.home', [
+angular.module('ekg.analysis', [
   'ekg.auth'
 ])
 
