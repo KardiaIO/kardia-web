@@ -17,8 +17,8 @@ module.exports = function(config) {
     files: [
       'client/lib/angular/angular.js',
       'client/lib/angular-mocks/angular-mocks.js',
-      'client/components/**/*.js',
-      'test/clientSpecs/*.js'
+      'client/app.js',
+      'test/clientSpecs/clientSpecs.js'
     ],
 
 
@@ -30,7 +30,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/*.js': ['coverage']
+      'client/*.js': ['coverage']
     },
 
     coverageReporter: {
