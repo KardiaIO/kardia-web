@@ -1,8 +1,18 @@
 angular.module('ekg.api', [])
 
 .controller('APIController', function ($scope, $window, $state, Auth) {
-
+  
   $scope.user = {};
+
+  $scope.generateKey = function() {
+  	//return generated API key and store it to user's mongodb obj
+  	//if already have an API key, hide button and show "Show API key" button instead
+  	
+  	console.log("Here's your API key! Keep it safe!");
+
+
+
+  };
 
   $scope.signin = function () {
     Auth.signin($scope.user)
@@ -63,15 +73,4 @@ angular.module('ekg.api', [])
 
   $scope.signout = Auth.signout;
 
-  $scope.generateKey = function() {
-  	//return generated API key and store it to user's mongodb obj
-  	console.log("Here's your API key! Keep it safe!");
-  	//if already have an API key, hide button and show "Show API key" button instead
-  };
-
 });
-
-
-
-
-
