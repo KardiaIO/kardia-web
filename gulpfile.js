@@ -1,8 +1,10 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
-var mochaTest = require('gulp-mocha');
 var concat = require('gulp-concat');
 var clean = require('gulp-clean');
+var mocha = require('gulp-mocha');
+var karma = require('karma').server;
+
 var server = require('gulp-express');
 
 gulp.task('server', function () {
@@ -26,17 +28,17 @@ gulp.task('lint', function(){
 });
 
 
-gulp.task('mochaTest', function(){
+gulp.task('mocha', function(){
   return gulp.src([
     'tests/clientSpecs/clientSpecs.js'
     // server specs dont run with mongo in travis at the moment
     // 'tests/serverSpecs/serverSpecs.js'
     ])
-    .pipe(mochaTest());
+    .pipe(mocha({reporter: list}));
 });
 
 gulp.task('clean', function(){
-  return gulp.src('dist/newConcat.js', {read: false})
+  return gulp.src('./dist/*', {read: false})
     .pipe(clean());
 });
 
@@ -54,14 +56,14 @@ gulp.task('watch', function(){
 // Run 'gulp' to lint and test your code
 gulp.task('default', [
   'lint',
-  'mochaTest'
+  'mocha'
   // 'server'
 ]);
 
 // Run 'gulp build' to check your code and create a new concatenated file
 gulp.task('build', [
   'lint',
-  'mochaTest',
+  'mocha',
   'clean',
   'concat'
 ]);
@@ -69,6 +71,33 @@ gulp.task('build', [
 // Task for travis
 gulp.task('test', [
   // 'lint'
-  'mochaTest'
+  'mocha'
 ]);
+
+// Karma Single Run Task.  Used for Travis CI
+gulp.task('karma', function(done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done);
+});
+
+// Travis CI testing task.  .travis.yml calls this task.
+gulp.task('ci', ['build']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
