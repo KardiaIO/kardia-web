@@ -9,4 +9,4 @@ angular.module('ekg.choose', [])
   	$location.path('/documents');
   };
 
-})
+});
