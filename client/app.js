@@ -44,7 +44,8 @@
 
       .state('user', {
         url: '/user',
-        templateUrl: 'components/signin/welcome.html'      
+        templateUrl: 'components/signin/welcome.html',
+        controller: 'AuthController'      
       })
 
       .state('choose', {
