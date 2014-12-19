@@ -29,16 +29,16 @@
     // Documentation: https://github.com/angular-ui/ui-router
     $stateProvider
 
-      .state('home', {
-        url: '/home',
-        templateUrl: 'components/analysis/home.html',
+      .state('analysis', {
+        url: '/analysis',
+        templateUrl: 'components/web/analysis/analysis.html',
         controller: 'MainController',
         authenticate: true
       })
 
       .state('triage', {
         url: '/triage',
-        templateUrl: 'components/triage/mdTriage.html',
+        templateUrl: 'components/web/triage/mdTriage.html',
         authenticate: true    
       })
 
@@ -48,8 +48,8 @@
       // })
 
       .state('choose', {
-        url: '/choose',
-        templateUrl: 'components/choose/choose.html',
+        url: '/',
+        templateUrl: 'choose/choose.html',
         controller: 'ChooseController'     
       })
 
@@ -70,9 +70,9 @@
         controller: 'APIController'     
       });
 
-    // The default route should point to the home page
-    // which contains the graphs
-    $urlRouterProvider.otherwise('/choose');
+    // The default route should point to the root page
+    // which contains the developer and user options
+    $urlRouterProvider.otherwise('/');
 
     //We add $httpInterceptor into the array
     $httpProvider.interceptors.push('AttachTokens');

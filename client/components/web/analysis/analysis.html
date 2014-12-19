@@ -5,14 +5,14 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a href="#/choose"><img src="/components/images/mainLogoTrans.png" style="float:left"></a>
+    <a href="#/choose"><img src="/components/web/images/mainLogoTrans.png" style="float:left"></a>
     <a class="navbar-brand" href="#/triage" style="font-weight: bold; font-size: 20px;">EKG Tracker</a>
 
   </div>
   <div class="navbar-collapse collapse navbar-warning-collapse" style="font-weight: bold;">
     <ul class="nav navbar-nav">
       <li ng-cloak ng-show='isAuth()'><a href="#/triage">Triage</a></li>
-      <li ng-cloak ng-show='isAuth()'><a href="#/home">Analysis</a></li>
+      <li ng-cloak ng-show='isAuth()'><a href="#/analysis">Analysis</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li ng-cloak ng-show='isAuth()'><a href='#/triage' id="signout" ng-click='signout()'>Sign Out</a>
@@ -36,7 +36,7 @@
 
 <div ng-controller="AuthController">
 
-  <div ng-show="isAuth()" id='home' ng-controller="MainController">
+  <div ng-show="isAuth()" id='analysis' ng-controller="MainController">
     <div ng-show="loading" id='loadingSpinner' layout="column" layout-align="center">
       <!-- Colors of spinner: teal spinner (#26a69a) on 'white' background (#eeeeee) -->
       <img ng-src="components/images/loading.gif">
