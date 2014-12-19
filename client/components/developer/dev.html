@@ -11,8 +11,8 @@
   </div>
   <div class="navbar-collapse collapse navbar-warning-collapse" style="font-weight: bold;">
     <ul class="nav navbar-nav">
-      <li ui-sref="developer.documents"><a>Documentation</a></li>
-      <li ui-sref="developer.apiKeys"><a>API</a></li>
+      <li ng-class="{active: isActive('developer.documents')}" ui-sref="developer.documents"><a>Documentation</a></li>
+      <li ng-class="{active: isActive('developer.apiKeys')}" ui-sref="developer.apiKeys"><a>API</a></li>
     </ul>
   </div>
 </header><!-- nav bar -->
