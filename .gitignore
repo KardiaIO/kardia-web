@@ -1,16 +1,16 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-npm-debug.log
-
 
 # Thumbnails
 
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
 node_modules/
 client/lib
+npm-debug.log
 
 # Floobits
 .floo
