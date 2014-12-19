@@ -28,7 +28,7 @@
     // AngularUI Router uses the concept of states
     // Documentation: https://github.com/angular-ui/ui-router
     $stateProvider
-    
+
       .state('user', {
         url: '/user',
         templateUrl: 'components/signin/welcome.html',
@@ -56,16 +56,16 @@
 
       .state('developer', {
         url: '/developer',
-        templateUrl: 'components/developer/developer.html',
-        controller: 'DevController'     
+        templateUrl: 'components/developer/dev.html',
+        // controller: 'DevController'
       })
 
-      .state('documents', {
+      .state('developer.documents', {
         url: '/documents',
         templateUrl: 'components/developer/documents/documents.html',   
       })
 
-      .state('apiKeys', {
+      .state('developer.apiKeys', {
         url: '/api',
         templateUrl: 'components/developer/api/api.html',
         controller: 'APIController'     
