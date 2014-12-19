@@ -5,7 +5,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <img src="/components/images/mainLogoTrans.png" style="float:left">
+    <a href="#/choose"><img src="/components/images/mainLogoTrans.png" style="float:left"></a>
     <a class="navbar-brand" href="#/home" style="font-weight: bold; font-size: 20px;">EKG Tracker</a>
 
   </div>
@@ -15,7 +15,7 @@
       <li ng-cloak ng-show='isAuth()'><a href="#/home">Analysis</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li ng-cloak ng-show='isAuth()'><a href='#/signin' id="signout" ng-click='signout()'>Sign Out</a>
+      <li ng-cloak ng-show='isAuth()'><a href='#/triage' id="signout" ng-click='signout()'>Sign Out</a>
       <li ng-cloak ng-show='!isAuth()' class="dropdown">
         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
         <ul class="dropdown-menu">
@@ -35,8 +35,6 @@
 </header><!-- nav bar -->
 
 <div ng-controller="AuthController">
-  
-  <h1 ng-hide="isAuth()" align="center">Welcome to EKG Tracker!</h1>
 
   <div ng-show="isAuth()" id='home' ng-controller="MainController">
     <div ng-show="loading" id='loadingSpinner' layout="column" layout-align="center">

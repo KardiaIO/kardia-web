@@ -5,6 +5,7 @@
     'ekg.auth',
     'ekg.home',
     'ekg.choose',
+    'ekg.api',
     'ui.router',
     'ngMaterial'
   ])
@@ -50,6 +51,23 @@
         url: '/choose',
         templateUrl: 'components/choose/choose.html',
         controller: 'ChooseController'     
+      })
+
+      .state('developer', {
+        url: '/developer',
+        templateUrl: 'components/developer/developer.html',
+        controller: 'DevController'     
+      })
+
+      .state('documents', {
+        url: '/documents',
+        templateUrl: 'components/developer/documents/documents.html',   
+      })
+
+      .state('apiKeys', {
+        url: '/api',
+        templateUrl: 'components/developer/api/api.html',
+        controller: 'APIController'     
       });
 
     // The default route should point to the home page
