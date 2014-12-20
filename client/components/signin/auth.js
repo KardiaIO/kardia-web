@@ -68,7 +68,7 @@ angular.module('ekg.auth', [])
 // with user information for authentication. It also checks for authentication 
 // by looking at the local storage for existing tokens as well as signs the user
 // out by deleting the token. 
-.factory('Auth', function ($http, $state, $window) {
+.factory('Auth', function ($http, $window) {
  
    var signin = function (user) {
     return $http({
@@ -98,7 +98,6 @@ angular.module('ekg.auth', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.ekgtracker');
-    // $state.transitionTo('user');
   };
 
   return {
