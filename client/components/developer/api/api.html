@@ -7,6 +7,7 @@
       <span class="form-error" ng-show="signinForm.password.$error.minlength">Minimum password length is 6 characters</span>
       <button ng-disabled='signinForm.$invalid' class="btn btn-material-red btn-block" id="sign-in" type="submit">Sign In</button>
       <span class="formSwitch" ng-click="switchView()">Don't have an account?</span>
+      <span class="form-error" ng-show="signinFormError">Username or password incorrect - please try again.</span>
     </form>
 
     <form ng-show="signingUp()" accept-charset="UTF-8" name="signupForm" ng-submit="signup()">
@@ -21,6 +22,7 @@
       <input name="lastName" type="text" class="form-control" placeholder="last name" ng-model='user.last' required>
       <button ng-disabled='signupForm.$invalid' class="btn btn-material-red btn-block" id="sign-up" type="submit">Sign Up</button>
       <span class="formSwitch" ng-click="switchView()">Already have an account?</span>
+      <span class="form-error" ng-show="signupFormError">That email is already registered.</span>
     </form>
   </div>
 
