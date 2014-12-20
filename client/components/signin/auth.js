@@ -1,11 +1,7 @@
 angular.module('ekg.auth', [])
 
-.controller('AuthController', function ($scope, $window, $state, Auth, $location) {
-  // booleans used to determine whether error message should be displayed.
-  $scope.signinFormError = false;
-  $scope.signupFormError = false;
+.controller('AuthController', function ($scope, $window, $state, Auth) {
 
-  // boolean and function used for determining the view displayed for signin/up
   $scope.isSigningIn = true;
 
   $scope.signingIn = function() {

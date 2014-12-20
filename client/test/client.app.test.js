@@ -1,4 +1,4 @@
-describe('AttachTokensFactory', function() {
+describe('Unit: AttachTokensFactory', function() {
   var AttachTokensFactory;
   var sandbox;
   var store = {};

@@ -70,20 +70,47 @@ describe('Unit AuthFactory', function() {
 });
 
 describe('Unit: AuthController', function() {
-  var $httpBackend, $rootScope, createController, authRequestHandler;
+  var $httpBackend, $rootScope, $state, $controller, createController, Auth;
   // Load Controller Module
   beforeEach(module('ekg.auth'));
-  beforeEach(inject(function($injector) {
-    $httpBackend;
-  }));
-
-  var AuthController, Auth;
-
-  beforeEach(inject(function($controller, _Auth_) {
+  beforeEach(inject(function($injector,_Auth_) {
     Auth = _Auth_;
-    AuthController = $controller('AuthController', {
-      Auth: Auth
+    $httpBackend = $injector.get('$httpBackend');
+    $state = $injector.get('$state');
+    $controller = injector.get('$controller');
+
+    createController = function() {
+      return $controller('AuthController', {
+        '$scope': $rootScope,
+        '$state': $state,
+        'Auth': Auth
+      });
+    };
+    // Mock localStorage
+    sandbox = sinon.sandbox.create();
+    sandbox.stub(window.localStorage, 'setItem', function(key, value) {
+      store[key] = value;
     });
   }));
 
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+
+    sandbox.restore();
+    store = {};
+   });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
