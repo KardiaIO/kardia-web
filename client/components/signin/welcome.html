@@ -15,7 +15,7 @@
       <li ng-class="{active: isActive('user.analysis')}" ng-cloak ng-show='isAuth()' ui-sref="user.analysis"><a>Analysis</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li ng-cloak ng-show='isAuth()'><a href='#/user' id="signout" ng-click='signout()'>Sign Out</a>
+      <li ng-cloak ng-show='isAuth()' ui-sref="user"><a id="signout" ng-click='signout()'>Sign Out</a>
     </ul>
   </div>
 </header><!-- nav bar -->
