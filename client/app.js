@@ -45,6 +45,7 @@
       .state('user.triage', {
         url: '/triage',
         templateUrl: 'components/web/triage/mdTriage.html',
+        controller: 'AuthController',   
         authenticate: true    
       })
 
@@ -57,12 +58,12 @@
       .state('developer', {
         url: '/developer',
         templateUrl: 'components/developer/dev.html',
-        // controller: 'DevController'
+        controller: 'AuthController'
       })
 
       .state('developer.documents', {
         url: '/documents',
-        templateUrl: 'components/developer/documents/documents.html',   
+        templateUrl: 'components/developer/documents/documents.html' 
       })
 
       .state('developer.apiKeys', {
