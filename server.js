@@ -2,7 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
+var uuid = require('node-uuid');
+var bcrypt   = require('bcrypt-nodejs');
 
+var model = require('./server/users/user-model');
 // Request handlers
 // User authentication routes
 var user = require('./server/users/user-controller.js');
@@ -55,6 +58,36 @@ app.post('/users/data', data.getData);
 // This route is for data analysis results
 app.post('/users/analysis', data.getAnalysisResults);
 app.post('/users/lorenz', data.getLorenzResults);
+
+// This route is for generating api key pairs and storing them into the DB
+app.get('/api/keys', user.decode, function(req, res){
+  
+  var keyPair = {
+	id: uuid.v4(),
+	secret: uuid.v4(),
+  };
+
+  model.findOne({username : req.username}, function(err, foundUser) {
+  	if (err) {
+  	  res.sendStatus(403);
+  	} else {
+  	  var salt = foundUser.salt;
+  	  bcrypt.hash(keyPair.secret, salt, null, function(err, hash) {
+        if (err) {
+          res.sendStatus(403);
+        } else {
+		  model.update({username: req.username}, {"APIKey" : keyPair.id, "SecureID" : hash }, function(err, numAffected, raw) {
+	        if (err) {
+		      res.send(403);
+		    } else {
+			  res.send(keyPair);
+		    }
+		  });	
+        }
+      });	
+  	}
+  }) 
+});
 
 // If there are errors from the server, use these to send back the errors
 app.use(errors.errorLogger);
