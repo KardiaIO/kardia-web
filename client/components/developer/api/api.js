@@ -1,18 +1,26 @@
 angular.module('ekg.api', [])
 
-.controller('APIController', function ($scope, $window, $state, Auth) {
+.controller('APIController', function ($scope, $window, $state, $http, Auth) {
   
-  $scope.user = {};
 
   $scope.generateKey = function() {
   	//return generated API key and store it to user's mongodb obj
   	//if already have an API key, hide button and show "Show API key" button instead
-  	
-  	console.log("Here's your API key! Keep it safe!");
+  	$scope.generated = true;
 
-
-
+  	return $http({
+      method: 'GET',
+      url: '/api/keys',
+    }) 
+    .then(function (res) {
+      console.log("Here is your API key!")
+      console.log(res.data);
+      $scope.APIkey = res.data.id;
+      $scope.SecureID = res.data.secret;
+    });
   };
+
+  $scope.user = {};
 
   $scope.signin = function () {
     Auth.signin($scope.user)
@@ -71,6 +79,9 @@ angular.module('ekg.api', [])
 
   $scope.isAuth = Auth.isAuth;
 
-  $scope.signout = Auth.signout;
+  $scope.signout = function() {
+  	Auth.signout();
+  	$state.transitionTo('documents');
+  }
 
 });

@@ -101,7 +101,7 @@ angular.module('ekg.auth', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.ekgtracker');
-    $state.transitionTo('user');
+    // $state.transitionTo('user');
   };
 
   return {
