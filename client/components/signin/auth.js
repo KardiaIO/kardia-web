@@ -1,6 +1,11 @@
 angular.module('ekg.auth', [])
 
 .controller('AuthController', function ($scope, $window, $state, Auth, $location) {
+  // booleans used to determine whether error message should be displayed.
+  $scope.signinFormError = false;
+  $scope.signupFormError = false;
+
+  // boolean and function used for determining the view displayed for signin/up
   $scope.isSigningIn = true;
 
   $scope.signingIn = function() {
@@ -14,10 +19,11 @@ angular.module('ekg.auth', [])
   $scope.switchView = function() {
     $scope.isSigningIn = !$scope.isSigningIn;
   };
-  
+
   $scope.user = {};
 
   $scope.signin = function () {
+    $scope.signinFormError = false;
     Auth.signin($scope.user)
       .then(function (token) {
         // The server should return a json web token if the user is successfully authenticated.
@@ -26,25 +32,26 @@ angular.module('ekg.auth', [])
           $window.localStorage.setItem('com.ekgtracker', token);
           $state.transitionTo('user.triage');
         } else {
-          alert('Username or password was incorrect. Please try again.');
+          $scope.signinFormError = true;
         }
       })
       .catch(function (error) {
-        alert('Error in signin function: ', error);
+        $scope.signinFormError = true;
       });
   };
 
   $scope.signup = function () {
+    $scope.signupFormError = false;
     Auth.signup($scope.user)
       .then(function (token) {
         if (token) {
           $window.localStorage.setItem('com.ekgtracker', token);
         } else {
-          alert('Your email is already registered.');
+          $scope.signupFormError = true;
         }
       })
       .catch(function (error) {
-        alert('Error in signup function: ', error);
+        $scope.signupFormError = true;
       });
   };
 

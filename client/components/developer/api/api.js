@@ -46,13 +46,11 @@ angular.module('ekg.api', [])
         if (token) {
           $window.localStorage.setItem('com.ekgtracker', token);
         } else {
-          // alert('Username or password was incorrect. Please try again.');
           $scope.signinFormError = true;
         }
       })
       .catch(function (error) {
         $scope.signinFormError = true;
-        // alert('Error in signin function: ', error);
       });
   };
 
@@ -64,12 +62,10 @@ angular.module('ekg.api', [])
           $window.localStorage.setItem('com.ekgtracker', token);
         } else {
           $scope.signupFormError = true;
-          // alert('Your email is already registered.');
         }
       })
       .catch(function (error) {
         $scope.signupFormError = true;
-        // alert('Error in signup function: ', error);
       });
   };
 
