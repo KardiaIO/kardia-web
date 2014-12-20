@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
 var uuid = require('node-uuid');
+var bcrypt   = require('bcrypt-nodejs');
 
 var model = require('./server/users/user-model');
 // Request handlers
@@ -60,15 +61,16 @@ app.post('/users/lorenz', data.getLorenzResults);
 
 // This route is for generating api key pairs (API Key : Secure ID)
 app.get('/api/keys', user.decode, function(req, res){
+  
   var keyPair = {
 	id: uuid.v4(),
 	secret: uuid.v4(),
   };
 
-  model.findOne({username : req.username}, function(foundUser) {
+  model.findOne({username : req.username}, function(err, foundUser) {
   	console.log("Username:", req.username);
   	console.log("Found User:", foundUser);
-  	if (!foundUser) {
+  	if (err) {
   	  res.sendStatus(403);
   	} else {
   	  var salt = foundUser.salt;
@@ -82,7 +84,7 @@ app.get('/api/keys', user.decode, function(req, res){
 		    } else {
 			  res.send(keyPair);
 		    }
-		  })	
+		  });	
         }
       });	
   	}
