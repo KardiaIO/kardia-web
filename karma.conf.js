@@ -1,11 +1,8 @@
-// Karma configuration
-// Generated on Mon Jul 21 2014 11:48:34 GMT+0200 (CEST)
-
 module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './',
 
 
     // frameworks to use
@@ -15,29 +12,49 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'client/lib/jquery/dist/jquery.min.js',
+      'client/lib/underscore/underscore-min.js',
       'client/lib/angular/angular.js',
       'client/lib/angular-mocks/angular-mocks.js',
+      'client/lib/angular-ui-router/release/angular-ui-router.js',
+      'client/lib/rickshaw/vendor/d3.min.js',
+      'client/lib/rickshaw/rickshaw.js',
+      // 'client/lib/oboe/dist/oboe-browser.min.js',
+      'client/lib/moment/min/moment.min.js',
+      'client/lib/angular-aria/angular-aria.js',
+      'client/lib/angular-animate/angular-animate.js',
+      'client/lib/hammerjs/hammer.js',
+      'client/lib/angular-material/angular-material.js',
+      'client/lib/bootstrap/dist/js/bootstrap.min.js',
+      'client/lib/bootstrap-material-design/dist/js/ripples.min.js',
+      'client/lib/bootstrap-material-design/dist/js/material.min.js',
       'client/app.js',
-      'test/clientSpecs/clientSpecs.js'
+      'client/components/web/analysis/main.js',
+      'client/choose/choose.js',
+      'client/components/web/**/*.js',
+      'client/components/developer/**/*.js',
+      'client/components/signin/**/*.js',
+      'client/test/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
+      'node_modules'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'client/*.js': ['coverage']
-    },
+    // preprocessors: {
+    //   'client/**/*.js': ['coverage']
+    // },
 
-    coverageReporter: {
-      // type : 'html',
-      type : 'text-summary',
-      dir : 'coverage/'
-    },
+    // coverageReporter: {
+    //   // type : 'html',
+    //   type : 'text-summary',
+    //   dir : 'coverage/'
+    // },
 
 
     // test results reporter to use
