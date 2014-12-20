@@ -23,12 +23,12 @@ describe('AttachTokensFactory', function() {
     store = {};
   });
 
-  it('should return an object with a request method', function() {
+  it('should be an object with a request method', function() {
     expect(AttachTokensFactory).to.include.keys('request');
   });
 
-  it('should get key/jwt tokens from localStorage', function() {
-    // Creates a fake header object to append fake jwt token to.
+  it('should get a value/jwt token from localStorage', function() {
+    // Creates a fake header object to append jwt token to.
     var headerWrapper = {
       headers: {}
     };
