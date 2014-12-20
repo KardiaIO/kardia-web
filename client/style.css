@@ -34,6 +34,18 @@ form input {
   margin-bottom: 15px;
 }
 
+/* Navbar cursor behavior */
+.navbar-header span:hover {
+  cursor:default;
+}
+
+.navbar-header img:hover {
+  cursor:pointer;
+}
+
+.navbar-collapse li:hover {
+  cursor:pointer;
+}
 /* Font Awesome sizing */
 .fa {
   font-size: 32px;
