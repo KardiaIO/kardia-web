@@ -71,6 +71,10 @@ module.exports = {
         // Create token to send back for auth using jwt
         var token = jwt.encode(user, 'secret');
         res.json({token: token});
+        // res.json ({
+          // token: token
+          // username: username
+        // })
       })
       .fail(function (error) {
         next(error);
