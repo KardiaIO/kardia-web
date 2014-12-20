@@ -13,8 +13,8 @@ angular.module('ekg.api', [])
       url: '/api/keys',
     }) 
     .then(function (res) {
-      console.log("Here is your API key!")
-      console.log(res.data);
+      console.log("Here is your API key and Secure ID!");
+      console.log("Keep it safe!");
       $scope.APIkey = res.data.id;
       $scope.SecureID = res.data.secret;
     });

@@ -59,7 +59,7 @@ app.post('/users/data', data.getData);
 app.post('/users/analysis', data.getAnalysisResults);
 app.post('/users/lorenz', data.getLorenzResults);
 
-// This route is for generating api key pairs (API Key : Secure ID)
+// This route is for generating api key pairs and storing them into the DB
 app.get('/api/keys', user.decode, function(req, res){
   
   var keyPair = {
@@ -68,8 +68,6 @@ app.get('/api/keys', user.decode, function(req, res){
   };
 
   model.findOne({username : req.username}, function(err, foundUser) {
-  	console.log("Username:", req.username);
-  	console.log("Found User:", foundUser);
   	if (err) {
   	  res.sendStatus(403);
   	} else {
