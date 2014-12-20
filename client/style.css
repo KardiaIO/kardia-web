@@ -30,8 +30,22 @@ body {
   width: 250px;
 }
 
+/*Forms*/
+
 form input {
   margin-bottom: 15px;
+}
+
+.form-error {
+  color: #E74C3C;
+  font-size: .75em;
+  display: block;
+  margin: 12px 0 10px 0;
+}
+
+.formSwitch:hover {
+  cursor:pointer;
+  color:blue;
 }
 
 /* Navbar cursor behavior */
