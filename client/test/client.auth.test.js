@@ -16,10 +16,20 @@ angular.module('authMock', [])
     };
   });
 
+
 describe('Unit: AuthController', function() {
   // Load Controller Module
   beforeEach(module('ekg.auth'));
   // Load the Mock Service Module
   beforeEach(module('authMock'));
+
+  var AuthController, Auth;
+
+  beforeEach(inject(function($controller, _Auth_) {
+    Auth = _Auth_;
+    AuthController = $controller('AuthController', {
+      Auth: Auth
+    });
+  }));
 
 });

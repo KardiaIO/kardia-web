@@ -82,6 +82,6 @@ angular.module('ekg.api', [])
   $scope.signout = function() {
   	Auth.signout();
   	$state.transitionTo('documents');
-  }
+  };
 
 });
