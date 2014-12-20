@@ -1,7 +1,20 @@
 angular.module('ekg.api', [])
 
 .controller('APIController', function ($scope, $window, $state, $http, Auth) {
-  
+  // boolean and function used for determining the view displayed for signin/up
+  $scope.isSigningIn = true;
+
+  $scope.signingIn = function() {
+    return !$scope.isAuth() && $scope.isSigningIn;
+  };
+
+  $scope.signingUp = function() {
+    return !$scope.isAuth() && !$scope.isSigningIn;
+  };
+
+  $scope.switchView = function() {
+    $scope.isSigningIn = !$scope.isSigningIn;
+  };
 
   $scope.generateKey = function() {
   	//return generated API key and store it to user's mongodb obj

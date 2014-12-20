@@ -1,16 +1,26 @@
 <div>
   <div class="api-form">
-    <form ng-hide="isAuth()" accept-charset="UTF-8" name="signinForm" ng-submit="signin()">
+    <form ng-show="signingIn()" accept-charset="UTF-8" name="signinForm" ng-submit="signin()">
       <input name="name" type="text" class="form-control" placeholder="email" ng-model='user.username' ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
       <span class="form-error" ng-show="signinForm.name.$error.pattern">Please enter a valid email address</span>
       <input name="password" type="password" class="form-control" placeholder="password" ng-model='user.password' ng-minlength="6" required>
       <span class="form-error" ng-show="signinForm.password.$error.minlength">Minimum password length is 6 characters</span>
       <button ng-disabled='signinForm.$invalid' class="btn btn-material-red btn-block" id="sign-in" type="submit">Sign In</button>
-      <span class="formSwitch">Don't have an account?</span>
-      <!--<input type="password" class="form-control" placeholder="confirm password" ng-model="user.cpassword">
-      <input type="text" class="form-control" placeholder="first name" ng-model='user.first'>
-      <input type="text" class="form-control" placeholder="last name" ng-model='user.last'>
-      <button class="btn btn-material-red btn-block" id="sign-up" ng-click="signup()" value="Sign Up">Sign Up</button>-->
+      <span class="formSwitch" ng-click="switchView()">Don't have an account?</span>
+    </form>
+
+    <form ng-show="signingUp()" accept-charset="UTF-8" name="signupForm" ng-submit="signup()">
+      <input name="name" type="text" class="form-control" placeholder="email" ng-model='user.username' ng-pattern="/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+      <span class="form-error" ng-show="signupForm.name.$error.pattern">Please enter a valid email address</span>
+      <input name="password" type="password" class="form-control" placeholder="password" ng-model='user.password' ng-minlength="6" required>
+      <span class="form-error" ng-show="signupForm.password.$error.minlength">Minimum password length is 6 characters</span>
+      
+      <input name="cpassword" type="password" class="form-control" placeholder="confirm password" ng-pattern="" ng-model="user.cpassword">
+      <input name="firstName" type="text" class="form-control" placeholder="first name" ng-model='user.first' required>
+
+      <input name="lastName" type="text" class="form-control" placeholder="last name" ng-model='user.last' required>
+      <button ng-disabled='signupForm.$invalid' class="btn btn-material-red btn-block" id="sign-up" type="submit">Sign Up</button>
+      <span class="formSwitch" ng-click="switchView()">Already have an account?</span>
     </form>
   </div>
 
