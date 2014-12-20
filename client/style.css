@@ -66,6 +66,20 @@ form input {
   width: 50px;
 }
 
+/*Documentation*/
+.doc-sidebar {
+  display:inline;
+  float:left;
+  width:35%;
+  height:600px;
+}
+
+.doc-content {
+  display:inline;
+  float:right;
+  width:64%;
+  height:600px;
+}
 /* NEW CLOCK CODE */
 
 .face {
