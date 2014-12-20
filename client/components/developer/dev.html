@@ -14,6 +14,9 @@
       <li ng-class="{active: isActive('developer.documentation')}" ui-sref="developer.documentation"><a>Documentation</a></li>
       <li ng-class="{active: isActive('developer.apiKeys')}" ui-sref="developer.apiKeys"><a>API</a></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-cloak ng-show='isAuth()' ui-sref="developer.documentation"><a id="signout" ng-click='signout()'>Sign Out</a>
+    </ul>
   </div>
 </header><!-- nav bar -->
 

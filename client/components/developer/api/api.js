@@ -3,6 +3,8 @@ angular.module('ekg.api', [])
 .controller('APIController', function ($scope, $window, $state, $http, Auth) {
   // boolean and function used for determining the view displayed for signin/up
   $scope.isSigningIn = true;
+  $scope.signinFormError = false;
+  $scope.signupFormError = false;
 
   $scope.signingIn = function() {
     return !$scope.isAuth() && $scope.isSigningIn;
@@ -36,6 +38,7 @@ angular.module('ekg.api', [])
   $scope.user = {};
 
   $scope.signin = function () {
+    $scope.signinFormError = false;
     Auth.signin($scope.user)
       .then(function (token) {
         // The server should return a json web token if the user is successfully authenticated.
@@ -43,25 +46,26 @@ angular.module('ekg.api', [])
         if (token) {
           $window.localStorage.setItem('com.ekgtracker', token);
         } else {
-          alert('Username or password was incorrect. Please try again.');
+          $scope.signinFormError = true;
         }
       })
       .catch(function (error) {
-        alert('Error in signin function: ', error);
+        $scope.signinFormError = true;
       });
   };
 
   $scope.signup = function () {
+    $scope.signupFormError = false;
     Auth.signup($scope.user)
       .then(function (token) {
         if (token) {
           $window.localStorage.setItem('com.ekgtracker', token);
         } else {
-          alert('Your email is already registered.');
+          $scope.signupFormError = true;
         }
       })
       .catch(function (error) {
-        alert('Error in signup function: ', error);
+        $scope.signupFormError = true;
       });
   };
 
