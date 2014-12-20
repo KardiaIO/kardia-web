@@ -29,7 +29,6 @@ describe('Server Tests', function(){
         if (error) {
           console.log('error in request call');
           throw error;
-          done();
         } else {
           User.findOne({username: 'nicktest'}, function(err, obj){
             if (err) {
@@ -62,7 +61,6 @@ describe('Server Tests', function(){
         console.log('in error');
 
           throw error;
-          done();
         } else {
         console.log('in no error');
 
