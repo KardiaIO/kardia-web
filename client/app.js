@@ -6,6 +6,7 @@
     'ekg.analysis',
     'ekg.choose',
     'ekg.api',
+    'ekg.docs',
     'ui.router',
     'ngMaterial'
   ])
@@ -61,9 +62,10 @@
         controller: 'AuthController'
       })
 
-      .state('developer.documents', {
-        url: '/documents',
-        templateUrl: 'components/developer/documents/documents.html' 
+      .state('developer.documentation', {
+        url: '/documentation',
+        templateUrl: 'components/developer/documentation/documentation.html',
+        controller: 'DocsController'
       })
 
       .state('developer.apiKeys', {
