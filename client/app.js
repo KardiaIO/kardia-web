@@ -66,7 +66,7 @@
         url: '/documentation',
         templateUrl: 'components/developer/documentation/documentation.html',
         controller: 'DocsController'
-      })
+
 
       .state('developer.apiKeys', {
         url: '/api',
