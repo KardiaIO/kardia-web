@@ -70,19 +70,27 @@ describe('Unit AuthFactory', function() {
 });
 
 describe('Unit: AuthController', function() {
-  var $httpBackend, $rootScope, $state, $controller, createController, Auth;
+  var $httpBackend, $rootScope, $state, $controller, createController, Auth, store = {};
   // Load Controller Module
   beforeEach(module('ekg.auth'));
-  beforeEach(inject(function($injector,_Auth_) {
-    Auth = _Auth_;
-    $httpBackend = $injector.get('$httpBackend');
+  beforeEach(module('ui.router'));
+  // Mocks $state to fake a transition to supplied string
+  beforeEach(module('stateMock'));
+  beforeEach(inject(function($injector) {
+    Auth = $injector.get('Auth');
+    $rootScope = $injector.get('$rootScope');
     $state = $injector.get('$state');
-    $controller = injector.get('$controller');
+    $window = $injector.get('$window');
+    $controller = $injector.get('$controller');
 
+    $httpBackend = $injector.get('$httpBackend');
+    $httpBackend.whenPOST('/users/signin').respond({token: 'diamond-dogs'});
+    
     createController = function() {
       return $controller('AuthController', {
         '$scope': $rootScope,
         '$state': $state,
+        '$window': $window,
         'Auth': Auth
       });
     };
@@ -101,6 +109,14 @@ describe('Unit: AuthController', function() {
     store = {};
    });
 
+  it('should sign a user in and redirect to user.triage', function() {
+    var controller = createController();
+    $rootScope.user = { username: 'freddy', password: 'mercury' };
+    $state.expectTransitionTo('user.triage');
+    $rootScope.$digest();
+    $rootScope.signin();
+    $httpBackend.flush();
+  });
 });
 
 
