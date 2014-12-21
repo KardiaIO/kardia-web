@@ -51,13 +51,13 @@ describe('Unit AuthFactory', function() {
   it('should return true if user is Authorized in localStorage', function() {
     // Set token in localStorage.
     window.localStorage.setItem('com.ekgtracker', 'some-long-string');
-    expect(Auth.isAuth()).to.be.true;
+    expect(Auth.isAuth()).to.equal(true);
   });
   
   it('should return false if string key is not com.ekgtracker', function() {
     // Set token in localStorage.
     window.localStorage.setItem('com.falsey', 'some-long-string');
-    expect(Auth.isAuth()).to.be.false;
+    expect(Auth.isAuth()).to.equal(false);
   });
 
   it('should remove token from localStorage', function() {
@@ -65,7 +65,7 @@ describe('Unit AuthFactory', function() {
     expect(store).to.contain.keys('com.ekgtracker');
     // Remove key form store
     Auth.signout();
-    expect(store).to.be.empty;
+    expect(store).to.eql({});
   });
 });
 
