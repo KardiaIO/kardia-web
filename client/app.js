@@ -72,6 +72,16 @@
         url: '/api',
         templateUrl: 'components/developer/api/api.html',
         controller: 'APIController'     
+      })
+
+      .state('developer.documentation.thing1', {
+        url: '/documentation/topics/thing1',
+        templateUrl: 'components/developer/documentation/topics/thing1.html',
+      })
+
+      .state('developer.documentation.thing2', {
+        url: '/documentation/topics/thing2',
+        templateUrl: 'components/developer/documentation/topics/thing2.html',
       });
 
     // The default route should point to the root page

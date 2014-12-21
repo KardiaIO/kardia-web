@@ -80,6 +80,16 @@ form input {
   width:64%;
   height:600px;
 }
+
+.doc-list {
+  list-style-type: none;
+  font-size:1.4em;
+}
+
+.doc-list:hover {
+  cursor:pointer;
+  font-weight:800;
+}
 /* NEW CLOCK CODE */
 
 .face {
