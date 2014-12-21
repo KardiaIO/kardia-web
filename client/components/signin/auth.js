@@ -1,11 +1,7 @@
 angular.module('ekg.auth', [])
 
-.controller('AuthController', function ($scope, $window, $state, Auth, $location) {
-  // booleans used to determine whether error message should be displayed.
-  $scope.signinFormError = false;
-  $scope.signupFormError = false;
+.controller('AuthController', function ($scope, $window, $state, Auth) {
 
-  // boolean and function used for determining the view displayed for signin/up
   $scope.isSigningIn = true;
 
   $scope.signingIn = function() {
@@ -68,7 +64,7 @@ angular.module('ekg.auth', [])
 // with user information for authentication. It also checks for authentication 
 // by looking at the local storage for existing tokens as well as signs the user
 // out by deleting the token. 
-.factory('Auth', function ($http, $state, $window) {
+.factory('Auth', function ($http, $window) {
  
    var signin = function (user) {
     return $http({
@@ -98,7 +94,6 @@ angular.module('ekg.auth', [])
 
   var signout = function () {
     $window.localStorage.removeItem('com.ekgtracker');
-    // $state.transitionTo('user');
   };
 
   return {
