@@ -77,6 +77,7 @@ describe('Unit AuthFactory', function() {
  */
 
 describe('Unit: AuthController', function() {
+
   var $rootScope, 
       $state, 
       $controller, 
