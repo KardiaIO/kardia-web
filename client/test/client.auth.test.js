@@ -7,9 +7,9 @@ describe('Unit AuthFactory', function() {
 
   // Get Module
   beforeEach(module('ekg.auth'));
-  // Inject AuthFactory into local variable Auth.
-  beforeEach(inject(function(_Auth_, $injector) {
-    Auth = _Auth_;
+  beforeEach(inject(function($injector) {
+    // Inject AuthFactory into local variable Auth.
+    Auth = $injector.get('Auth');
     // Sets the mock http service responses.
     $httpBackend = $injector.get('$httpBackend');
     // Mocks localStorage Methods.
@@ -77,8 +77,7 @@ describe('Unit AuthFactory', function() {
  */
 
 describe('Unit: AuthController', function() {
-  var $httpBackend, 
-      $rootScope, 
+  var $rootScope, 
       $state, 
       $controller, 
       $q, 
