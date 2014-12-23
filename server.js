@@ -15,6 +15,24 @@ var errors = require('./server/error-handlers.js');
 
 var app = express();
 
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+server.listen(8000);
+
+app.get('/', function (req, res) {
+  console.log('dir',__dirname);
+  console.log(__dirname + 'client/testSocket.html');
+  res.sendfile(__dirname + '/client/testSocket.html');
+});
+
+io.on('connection', function (socket) {
+  console.log('new connection');
+  socket.on('rawData', function (data) {
+    console.log(data);
+  });
+});
+
 //Python server connection
 // var python = require('./server/python/pythonComm.js');
 
@@ -22,7 +40,7 @@ var app = express();
 // var email = require('./server/problematic/rhythmNotification.js');
 // email.arrhythmiaNotify('Chao', 'chao.xue.mit@gmail.com', null);
 
-app.use(express.static(__dirname + '/client'));
+app.use(express.static('/client/testSocket.html'));
 app.use(favicon(__dirname + '/favicon.ico'));
 
 // var python = require('./python/pythonComm.js');
