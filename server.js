@@ -15,6 +15,7 @@ var errors = require('./server/error-handlers.js');
 
 var app = express();
 
+// Placeholder for socket.io functionality
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
