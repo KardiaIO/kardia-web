@@ -15,6 +15,17 @@ var errors = require('./server/error-handlers.js');
 
 var app = express();
 
+// Placeholder for socket.io functionality
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+io.on('connection', function (socket) {
+  console.log('new connection');
+  socket.on('rawData', function (data) {
+    console.log(data);
+  });
+});
+
 //Python server connection
 // var python = require('./server/python/pythonComm.js');
 
@@ -93,7 +104,10 @@ app.get('/api/keys', user.decode, function(req, res){
 app.use(errors.errorLogger);
 app.use(errors.errorHandler);
 
-app.listen(process.env.PORT || '8080');
-console.log("Server is listening...");
+var port = process.env.PORT || '8080'
+// app.listen(port);
+server.listen(port);
+
+console.log("Server is listening on port",port);
 
 module.exports = app;
