@@ -12,6 +12,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'client/lib/es5-shim/es5-shim.min.js',
       'client/lib/jquery/dist/jquery.min.js',
       'client/lib/underscore/underscore-min.js',
       'client/lib/angular/angular.js',
@@ -19,7 +20,7 @@ module.exports = function(config) {
       'client/lib/angular-ui-router/release/angular-ui-router.js',
       'client/lib/rickshaw/vendor/d3.min.js',
       'client/lib/rickshaw/rickshaw.js',
-      // 'client/lib/oboe/dist/oboe-browser.min.js',
+      'client/lib/oboe/dist/oboe-browser.min.js',
       'client/lib/moment/min/moment.min.js',
       'client/lib/angular-aria/angular-aria.js',
       'client/lib/angular-animate/angular-animate.js',

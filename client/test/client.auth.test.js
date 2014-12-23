@@ -1,11 +1,15 @@
+/**
+ * Auth Factory
+ */
+
 describe('Unit AuthFactory', function() {
   var Auth, $httpBackend, store = {};
 
   // Get Module
   beforeEach(module('ekg.auth'));
-  // Inject AuthFactory into local variable Auth.
-  beforeEach(inject(function(_Auth_, $injector) {
-    Auth = _Auth_;
+  beforeEach(inject(function($injector) {
+    // Inject AuthFactory into local variable Auth.
+    Auth = $injector.get('Auth');
     // Sets the mock http service responses.
     $httpBackend = $injector.get('$httpBackend');
     // Mocks localStorage Methods.
@@ -55,7 +59,6 @@ describe('Unit AuthFactory', function() {
   });
   
   it('should return false if string key is not com.ekgtracker', function() {
-    // Set token in localStorage.
     window.localStorage.setItem('com.falsey', 'some-long-string');
     expect(Auth.isAuth()).to.equal(false);
   });
@@ -69,53 +72,84 @@ describe('Unit AuthFactory', function() {
   });
 });
 
+/**
+ * Auth Controller
+ */
+
 describe('Unit: AuthController', function() {
-  var $httpBackend, $rootScope, $state, $controller, createController, Auth, store = {};
-  // Load Controller Module
-  beforeEach(module('ekg.auth'));
-  beforeEach(module('ui.router'));
-  // Mocks $state to fake a transition to supplied string
-  beforeEach(module('stateMock'));
+
+  var $rootScope, 
+      $state, 
+      $controller, 
+      $q, 
+      createController, 
+      Auth, 
+      store = {},
+      defer;
+  
+  beforeEach(function() {
+    module('ekg.auth');
+    module('ui.router');
+    // Mocks $state to fake transitionTo(string).
+    module('stateMock');
+  });
+ 
   beforeEach(inject(function($injector) {
     Auth = $injector.get('Auth');
     $rootScope = $injector.get('$rootScope');
     $state = $injector.get('$state');
     $window = $injector.get('$window');
+    $q = $injector.get('$q');
     $controller = $injector.get('$controller');
-
-    $httpBackend = $injector.get('$httpBackend');
-    $httpBackend.whenPOST('/users/signin').respond({token: 'diamond-dogs'});
     
-    createController = function() {
-      return $controller('AuthController', {
-        '$scope': $rootScope,
-        '$state': $state,
-        '$window': $window,
-        'Auth': Auth
-      });
-    };
-    // Mock localStorage
+    // Stub localStorage.
     sandbox = sinon.sandbox.create();
     sandbox.stub(window.localStorage, 'setItem', function(key, value) {
       store[key] = value;
     });
+    // Stub Auth Factory
+    AuthStub = {
+      signin: sandbox.stub(Auth, 'signin')
+    };
+
+    createController = $controller('AuthController', {
+      $scope: $rootScope,
+      $state: $state,
+      $window: $window,
+      Auth: AuthStub
+    });
   }));
 
   afterEach(function() {
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
-
     sandbox.restore();
     store = {};
    });
 
+
   it('should sign a user in and redirect to user.triage', function() {
-    var controller = createController();
     $rootScope.user = { username: 'freddy', password: 'mercury' };
+    // Sets up a promise and returns a token from our signin stub. 
+    defer = $q.defer();
+    defer.resolve('diamond-dogs');
+    AuthStub.signin.withArgs($rootScope.user).returns(defer.promise);
+    // Mocks a transistion using stateMock.js.
     $state.expectTransitionTo('user.triage');
-    $rootScope.$digest();
+    // Call Controller's signin method and run digest loop.
     $rootScope.signin();
-    $httpBackend.flush();
+    $rootScope.$apply();
+
+    expect(store).to.contain.keys('com.ekgtracker');
+    expect(store['com.ekgtracker']).to.equal('diamond-dogs');
+  });
+
+  it('should return signinFormError = true when user is empty', function() {
+    defer = $q.defer();
+    defer.resolve();
+    AuthStub.signin.withArgs().returns(defer.promise);
+    $rootScope.signin();
+    $rootScope.$apply();
+
+    expect($rootScope.signinFormError).to.equal(true);
   });
 });
 
