@@ -60,7 +60,7 @@ module.exports = {
           create = Q.nbind(User.create, User);
           newUser = {
             username: username,
-            password: password, 
+            password: password,
             firstName: firstName,
             lastName: lastName
           };
@@ -71,6 +71,10 @@ module.exports = {
         // Create token to send back for auth using jwt
         var token = jwt.encode(user, 'secret');
         res.json({token: token});
+        // res.json ({
+          // token: token
+          // username: username
+        // })
       })
       .fail(function (error) {
         next(error);
@@ -111,7 +115,7 @@ module.exports = {
     var user;
     if (!token) {
       // Send forbidden if a token is not provided
-      return res.sendStatus(403); 
+      return res.sendStatus(403);
     }
     try {
       // Decode token and attach user to the request
