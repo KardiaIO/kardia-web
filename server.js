@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
 var uuid = require('node-uuid');
 var bcrypt   = require('bcrypt-nodejs');
+var Client = require('3scale').Client;
+var sys = require('sys');
 
 var model = require('./server/users/user-model');
 // Request handlers
@@ -14,6 +16,14 @@ var data = require('./server/data/data-controllers.js');
 var errors = require('./server/error-handlers.js');
 
 var app = express();
+
+// 3scale
+client = new Client("a6d72f9b0ccf9d965afb9c00c73e6fc5");
+
+client.authrep({"app_id": "your application id", "app_key": "your application key", "usage": { "hits": 1 } }, function(response){
+  sys.log(sys.inspect(response));
+});
+
 
 // Placeholder for socket.io functionality
 var server = require('http').Server(app);

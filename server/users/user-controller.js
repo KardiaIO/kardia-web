@@ -60,7 +60,7 @@ module.exports = {
           create = Q.nbind(User.create, User);
           newUser = {
             username: username,
-            password: password, 
+            password: password,
             firstName: firstName,
             lastName: lastName
           };
@@ -115,7 +115,7 @@ module.exports = {
     var user;
     if (!token) {
       // Send forbidden if a token is not provided
-      return res.sendStatus(403); 
+      return res.sendStatus(403);
     }
     try {
       // Decode token and attach user to the request
