@@ -29,15 +29,22 @@ client.authrep({"app_id": "your application id", "app_key": "your application ke
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-io.on('connection', function (socket) {
+// Custom namespace "swift" listening on "message" event
+var rawData = io
+.of('/swift')
+.on('connection', function (socket) {
   console.log('new connection');
-  socket.on('rawData', function (data) {
-    console.log(data);
+  socket.on('message', function (data, fn) {
+    fn('woot');
+    console.log(data, socket);
+  });
+  socket.emit('node.js', {
+    "hello": "from node"
   });
 });
 
 //Python server connection
-// var python = require('./server/python/pythonComm.js');
+//var python = require('./server/python/pythonComm.js');
 
 // // Email server notification
 // var email = require('./server/problematic/rhythmNotification.js');
@@ -46,7 +53,7 @@ io.on('connection', function (socket) {
 app.use(express.static(__dirname + '/client'));
 app.use(favicon(__dirname + '/favicon.ico'));
 
-// var python = require('./python/pythonComm.js');
+//var python = require('./server/python/pythonComm.js');
 
 // Sends some data to Python, Python squares it - this is simply part
 // of testing the python connection and can be removed later
@@ -107,14 +114,14 @@ app.get('/api/keys', user.decode, function(req, res){
         }
       });	
   	}
-  }) 
+  }); 
 });
 
 // If there are errors from the server, use these to send back the errors
 app.use(errors.errorLogger);
 app.use(errors.errorHandler);
 
-var port = process.env.PORT || '8080'
+var port = process.env.PORT || '8080';
 // app.listen(port);
 server.listen(port);
 
