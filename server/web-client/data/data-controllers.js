@@ -1,16 +1,6 @@
-// Connect to the Microsoft SQL Server instance on Azure VM
-// var mssql = require('mssql');
-// var config = {
-//   user: 'ekgwebapp',
-//   password: 'ekgsqlserver1MSSS',
-//   server: 'ekgsql.cloudapp.net',
-//   database: 'SampleData',
-//   options: {
-//     encrypt: true
-//   }
-// };
+// Connect to Postgres Database on Heroku.
 var pg = require('pg').native;
-var conString = 'postgres://jtxtmxsnjirunx:q8ojXZQTlVDqQSPy3y48CIRK0S@ec2-54-83-23-169.compute-1.amazonaws.com:5432/ddkcjaloac929s';
+var conString = process.env.POSTGRES_URL;
 
 module.exports = {
 
@@ -44,38 +34,21 @@ module.exports = {
     //     }));
     //   });
     //});
-    // pg.connect(conString, function(err, client, done) {
-    //   if(err) {
-    //     return console.error('error fetching client from pool', err);
-    //   }
-    //   client.query('SELECT $1::int AS number', ['1'], function(err, result) {
-    //     //call `done()` to release the client back to the pool
-    //     done();
-
-    //     if(err) {
-    //       return console.error('error running query', err);
-    //     }
-    //     console.log('hey');
-    //     console.log(result.rows[0].number);
-    //     next();
-    //     //output: 1
-    //   });
-    // });
-    
-    var client = new pg.Client(conString);
-    
-    client.connect(function(err) {
+    pg.connect(conString, function(err, client, done) {
       if(err) {
-        return console.error('could not connect to postgres', err);
+        return console.error('error fetching client from pool', err);
       }
-      client.query('SELECT * from users', function(err, result) {
+      client.query('SELECT * FROM users', function(err, result) {
+        //call `done()` to release the client back to the pool
+        done();
+
         if(err) {
           return console.error('error running query', err);
         }
+        
         console.log(result);
-        //output: Tue Jan 15 2013 19:12:47 GMT-600 (CST)
         res.send(result);
-        client.end();
+        //output: 1
       });
     });
   },

@@ -1,6 +1,6 @@
 // Starting mongoDB connection
 var mongoose = require('mongoose');
-var mongoUrl = "mongodb://localhost/kardia";
+var mongoUrl = process.env.MONGO_URL;
 mongoose.connect(mongoUrl);
 
 var User = require('./user-model.js'), // user-schema
