@@ -14,6 +14,7 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^1.9.2",
+    "dotenv": "^0.4.0",
     "gulp": "^3.8.10",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.4.1",
@@ -47,6 +48,8 @@
     "mssql": "^1.3.0",
     "node-uuid": "^1.4.2",
     "nodemailer": "^1.3.0",
+    "pg": "^4.1.1",
+    "pg-native": "^1.7.1",
     "q": "^1.0.1",
     "serve-favicon": "^2.1.7",
     "socket.io": "^1.2.1",

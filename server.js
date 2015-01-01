@@ -1,61 +1,49 @@
+// Load private .env variables immediately.
+var dotenv = require('dotenv');
+dotenv.load();
+
 var express = require('express');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
-var uuid = require('node-uuid');
-var bcrypt   = require('bcrypt-nodejs');
-var Client = require('3scale').Client;
-var sys = require('sys');
-
-var model = require('./server/users/user-model');
-// Request handlers
-// User authentication routes
-var user = require('./server/users/user-controller.js');
-// Data query routes
-var data = require('./server/data/data-controllers.js');
 var errors = require('./server/error-handlers.js');
+var threeScale = require('3scale').Client;
+var sys = require('sys');
 
 var app = express();
 
 // 3scale
-client = new Client("a6d72f9b0ccf9d965afb9c00c73e6fc5");
-
-client.authrep({"app_id": "your application id", "app_key": "your application key", "usage": { "hits": 1 } }, function(response){
+var threeScaleClient = new threeScale("a6d72f9b0ccf9d965afb9c00c73e6fc5");
+threeScaleClient.authrep({"app_id": "0bbe6411", "app_key": "7b8cc681fae215dc1be32512a7e6ecf1", "usage": { "hits": 1 } }, function(response){
   sys.log(sys.inspect(response));
 });
-
 
 // Placeholder for socket.io functionality
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-io.on('connection', function (socket) {
+// Custom namespace "swift" listening on "message" event
+var rawData = io
+.of('/swift')
+.on('connection', function (socket) {
   console.log('new connection');
-  socket.on('rawData', function (data) {
-    console.log(data);
+  socket.on('message', function (data, fn) {
+    fn('woot');
+    console.log(data, socket);
+  });
+  socket.emit('node.js', {
+    "hello": "from node"
   });
 });
 
 //Python server connection
-// var python = require('./server/python/pythonComm.js');
+var python = require('./server/python/pythonComm.js');
 
 // // Email server notification
 // var email = require('./server/problematic/rhythmNotification.js');
 // email.arrhythmiaNotify('Chao', 'chao.xue.mit@gmail.com', null);
 
 app.use(express.static(__dirname + '/client'));
-app.use(favicon(__dirname + '/favicon.ico'));
-
-// var python = require('./python/pythonComm.js');
-
-// Sends some data to Python, Python squares it - this is simply part
-// of testing the python connection and can be removed later
-// python.invoke("processData", [1,2,3], function(error, res, more) {
-//   if(error){
-//     throw error;
-//   } 
-//   console.log(res);
-// }); 
+app.use(favicon(__dirname + '/favicon.ico')); 
 
 // For every incoming request, the following will parse the 
 // body of the request for its contents before passing them
@@ -63,59 +51,14 @@ app.use(favicon(__dirname + '/favicon.ico'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// User-authentication routes, handles signin, signup, and checkAuth
-app.post('/users/signin', user.signin);
-app.post('/users/signup', user.signup);
-app.get('/users/signedin', user.checkAuth);
-
-// If incoming request is not pinging a user authentication route
-// then we make sure they are signed in by getting the token from
-// the header
-app.use(user.decode);
-
-// This route is for data queries
-app.post('/users/data', data.getData);
-
-// This route is for data analysis results
-app.post('/users/analysis', data.getAnalysisResults);
-app.post('/users/lorenz', data.getLorenzResults);
-
-// This route is for generating api key pairs and storing them into the DB
-app.get('/api/keys', user.decode, function(req, res){
-  
-  var keyPair = {
-	id: uuid.v4(),
-	secret: uuid.v4(),
-  };
-
-  model.findOne({username : req.username}, function(err, foundUser) {
-  	if (err) {
-  	  res.sendStatus(403);
-  	} else {
-  	  var salt = foundUser.salt;
-  	  bcrypt.hash(keyPair.secret, salt, null, function(err, hash) {
-        if (err) {
-          res.sendStatus(403);
-        } else {
-		  model.update({username: req.username}, {"APIKey" : keyPair.id, "SecureID" : hash }, function(err, numAffected, raw) {
-	        if (err) {
-		      res.send(403);
-		    } else {
-			  res.send(keyPair);
-		    }
-		  });	
-        }
-      });	
-  	}
-  }) 
-});
+// Routes
+require('./server/routes/web-client-routes')(app);
 
 // If there are errors from the server, use these to send back the errors
 app.use(errors.errorLogger);
 app.use(errors.errorHandler);
 
-var port = process.env.PORT || '8080'
-// app.listen(port);
+var port = process.env.PORT || '8080';
 server.listen(port);
 
 console.log("Server is listening on port",port);
