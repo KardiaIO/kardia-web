@@ -26,13 +26,13 @@ var rawData = io
 .of('/swift')
 .on('connection', function (socket) {
   console.log('new connection');
-  socket.on('message', function (data, fn) {
-    fn('woot');
-    console.log(data, socket);
+  socket.on('message', function (data) {
+    // fn('woot');
+    console.log(data);
   });
-  socket.emit('node.js', {
-    "hello": "from node"
-  });
+  // socket.emit('node.js', {
+  //   "hello": "from node"
+  // });
 });
 
 //Python server connection
