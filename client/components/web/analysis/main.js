@@ -95,6 +95,7 @@ angular.module('ekg.analysis', [
         $scope.loading = false;
         $scope.dataArray.results.push({x: heartbeat.x, y: heartbeat.y});
         $scope.dataArray.indicators.push({x: heartbeat.x, y: heartbeat.indicator});
+        console.log(heartbeat);
       })
       .done(function(){
         // Initial load only passes a callback
