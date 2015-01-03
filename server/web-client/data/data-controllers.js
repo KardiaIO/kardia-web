@@ -34,6 +34,7 @@ module.exports = {
     //     }));
     //   });
     //});
+
     pg.connect(conString, function(err, client, done) {
       if(err) {
         return console.error('error fetching client from pool', err);
@@ -47,10 +48,26 @@ module.exports = {
         }
         
         console.log(result);
-        res.send(result);
+        // res.send(result);
         //output: 1
       });
     });
+
+  // export from server {time: iso-timestamp, amplitude: data-point} 
+  var data = [];
+  var dataRes = [];
+
+  for (var i = 0; i < data.length; i++) {
+    var newData = {};
+    newData.x = data[i].time;
+    newData.y = data[i].amplitude;
+    data[i].indicator = data[i].amplitude;
+
+    dataRes.push(newData);
+  }
+  
+  res.send(dataRes);
+
   },
 
   getAnalysisResults: function(req, res, next){
