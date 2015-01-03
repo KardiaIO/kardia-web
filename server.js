@@ -21,24 +21,10 @@ threeScaleClient.authrep({"app_id": "0bbe6411", "app_key": "7b8cc681fae215dc1be3
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-// Custom namespace "swift" listening on "message" event
-var rawData = io
-.of('/swift')
-.on('connection', function (socket) {
-  console.log('new connection');
-  socket.on('message', function (data) {
-    // fn('woot');
-    console.log(data);
-  });
-  // socket.emit('node.js', {
-  //   "hello": "from node"
-  // });
-});
+// Python server connection
+var python = require('./server/python/pythonComm.js')(io);
 
-//Python server connection
-var python = require('./server/python/pythonComm.js');
-
-// // Email server notification
+// Email server notification
 // var email = require('./server/problematic/rhythmNotification.js');
 // email.arrhythmiaNotify('Chao', 'chao.xue.mit@gmail.com', null);
 
