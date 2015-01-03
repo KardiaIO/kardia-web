@@ -1,28 +1,45 @@
 var zerorpc = require("zerorpc");
-
 var client = new zerorpc.Client();
-client.connect("tcp://127.0.0.1:5000");
-client.on('error', function(error) {
-  console.error("RPC Client Error:", error);
-});
 
-// checks whether connection to Python is present
-client.invoke("hello", "Node!", function(error, res, more) {
-    if(error){
-      console.error(error);
-    }
-    console.log("Response from Python:", res);
-});
+module.exports = function(io) {
+  var rawData = io
+    .of('/swift')
+    .on('connection', function (socket) {
+      console.log('new connection');
+      // Listen to Swift
+      socket.on('message', function (data) {
 
-// Sends some data to Python, Python squares it - this is simply part
-// of testing the python connection and can be removed later
+        data = JSON.stringify(data);
 
-client.invoke("nodeRequest", function(error, res, more) {
-  if(error){
-    console.log("THIS IS ERROR", error);
-    console.log(error);
-  } 
-  console.log("PYTHON SEZ:", res);
-});
+        // Talk to Python
+        client.connect("tcp://127.0.0.1:5000");
+        client.on('error', function(error) {
+          console.error("RPC Client Error:", error);
+        });
+        
+        // Checks whether connection to Python is present
+        client.invoke("hello", "Node!", function(error, res, more) {
+            if(error){
+              console.error(error);
+            }
+            console.log("Response from Python:", res);
+        });
 
-module.exports = client;
+        client.invoke("crunch", data, function(error, result, more) {
+          if(error) {
+            console.log(error);
+          }
+          // Sends Response from Python to Swift
+          console.log('RESULT FROM PYTHON ', result);
+          socket.emit('node.js', {
+            "statusCode": result
+          });
+
+          if(!more) {
+            console.log("DONE");
+          }
+        });
+
+      });
+    });
+};
