@@ -4,6 +4,7 @@ html {
 }
 
 body {
+  background-color:white;
   padding:0; 
   margin:0;
 }
@@ -28,6 +29,80 @@ body {
   padding: 15px;
   padding-bottom: 0px;
   width: 250px;
+}
+
+/*Landing Page*/
+.welcomeTitle {
+  margin-top:50px;
+  text-align:center;
+  font-size: 40px;
+}
+
+.wearableImg {
+  width: 700px;
+  height:auto;
+  margin:auto;
+  display:block;
+}
+
+p.viewport {
+  display:block;
+  margin:auto;
+  position: relative ;
+  width: 750px;
+  height: 450px;
+}
+
+p.viewport img.fader {
+  display: none ;
+  left: 0px ;
+  position: absolute ;
+  top: 0px ;
+  z-index: 2 ;
+  width: 750px;
+  height: 450px;
+}
+
+p.viewport img.fader.show {
+  display: block ;
+  transition: opacity 500ms linear ;
+}
+
+p.viewport img.fader.fadeOut {
+  opacity: 0 ;
+}
+
+p.viewport img.image {
+  display: block ;
+  width: 750px;
+  height: 450px;
+}
+
+.landingDev, .landingUser {
+  display:inline;
+  width:50%;
+  padding: 20px;
+}
+
+.landingDev {
+  background-color: #F8F8F8;
+}
+
+.landingUser {
+  background-color: #D1F0FF;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto;
+  height: 100%;
+  margin: 0 auto -20px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+  height: 20px;
+  background-color: #CCCCCC;
+  padding:5px;
 }
 
 /*Forms*/
