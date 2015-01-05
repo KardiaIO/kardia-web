@@ -38,13 +38,6 @@ body {
   font-size: 40px;
 }
 
-.wearableImg {
-  width: 700px;
-  height:auto;
-  margin:auto;
-  display:block;
-}
-
 p.viewport {
   display:block;
   margin:auto;
@@ -56,27 +49,29 @@ p.viewport {
 
 p.viewport img.fader {
   display: none ;
-  left: 0px ;
+  /*left: 0px ;*/
   position: absolute ;
-  top: 0px ;
+  /*top: 0px ;*/
   z-index: 2 ;
-  width: 90%;
+  width: 100%;
   height:auto;
   margin:auto;
 }
 
 p.viewport img.fader.show {
+  
   display: block ;
   transition: opacity 500ms linear ;
 }
 
 p.viewport img.fader.fadeOut {
   opacity: 0 ;
+
 }
 
 p.viewport img.image {
   display: block ;
-  width: 90%;
+  width: 100%;
   height:auto;
   margin:auto;
 }
@@ -108,6 +103,21 @@ p.viewport img.image {
   padding:5px;
 }
 
+.landing h2, .landing p {
+  text-align:center;
+}
+
+.landing:hover {
+  cursor:pointer;
+}
+
+.landingDev:hover {
+  background-color: #E6E6E6;
+}
+
+.landingUser:hover {
+  background-color: #7CD4FF;
+}
 /*Forms*/
 
 form input {
