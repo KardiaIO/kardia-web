@@ -7,7 +7,7 @@ angular.module('ekg.choose', [])
     { source:"./assets/wearable-3.jpg" }
   ];
 
-  $scope.image = $scope.images[0]
+  $scope.image = $scope.images[0];
   $scope.selectedImage = 0;
 
   $interval(function() {
@@ -16,7 +16,7 @@ angular.module('ekg.choose', [])
       $scope.selectedImage = 0;
     }
     $scope.image = $scope.images[$scope.selectedImage];
-  },2000)
+  },2000);
 
 })
 .directive(
