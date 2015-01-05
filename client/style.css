@@ -49,8 +49,9 @@ p.viewport {
   display:block;
   margin:auto;
   position: relative ;
-  width: 750px;
-  height: 450px;
+  width: 90%;
+  height:auto;
+  margin:auto;
 }
 
 p.viewport img.fader {
@@ -59,8 +60,9 @@ p.viewport img.fader {
   position: absolute ;
   top: 0px ;
   z-index: 2 ;
-  width: 750px;
-  height: 450px;
+  width: 90%;
+  height:auto;
+  margin:auto;
 }
 
 p.viewport img.fader.show {
@@ -74,8 +76,9 @@ p.viewport img.fader.fadeOut {
 
 p.viewport img.image {
   display: block ;
-  width: 750px;
-  height: 450px;
+  width: 90%;
+  height:auto;
+  margin:auto;
 }
 
 .landingDev, .landingUser {
