@@ -6,9 +6,13 @@ module.exports = function(io) {
     .of('/swift')
     .on('connection', function (socket) {
       console.log('new connection');
+
       // Listen to Swift
       socket.on('message', function (data) {
 
+        // Send data to demo-client
+        socket.emit('demo', {"data": data});
+        console.log(data);
         data = JSON.stringify(data);
 
         // Talk to Python
