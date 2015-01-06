@@ -4,6 +4,7 @@ html {
 }
 
 body {
+  background-color:white;
   padding:0; 
   margin:0;
 }
@@ -30,6 +31,93 @@ body {
   width: 250px;
 }
 
+/*Landing Page*/
+.welcomeTitle {
+  margin-top:50px;
+  text-align:center;
+  font-size: 40px;
+}
+
+p.viewport {
+  display:block;
+  margin:auto;
+  position: relative ;
+  width: 90%;
+  height:auto;
+  margin:auto;
+}
+
+p.viewport img.fader {
+  display: none ;
+  /*left: 0px ;*/
+  position: absolute ;
+  /*top: 0px ;*/
+  z-index: 2 ;
+  width: 100%;
+  height:auto;
+  margin:auto;
+}
+
+p.viewport img.fader.show {
+  
+  display: block ;
+  transition: opacity 500ms linear ;
+}
+
+p.viewport img.fader.fadeOut {
+  opacity: 0 ;
+
+}
+
+p.viewport img.image {
+  display: block ;
+  width: 100%;
+  height:auto;
+  margin:auto;
+}
+
+.landingDev, .landingUser {
+  display:inline;
+  width:50%;
+  padding: 20px;
+}
+
+.landingDev {
+  background-color: #F8F8F8;
+}
+
+.landingUser {
+  background-color: #D1F0FF;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto;
+  height: 100%;
+  margin: 0 auto -20px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+  height: 20px;
+  background-color: #CCCCCC;
+  padding:5px;
+}
+
+.landing h2, .landing p {
+  text-align:center;
+}
+
+.landing:hover {
+  cursor:pointer;
+}
+
+.landingDev:hover {
+  background-color: #E6E6E6;
+}
+
+.landingUser:hover {
+  background-color: #7CD4FF;
+}
 /*Forms*/
 
 form input {
