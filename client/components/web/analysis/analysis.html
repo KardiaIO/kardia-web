@@ -14,27 +14,30 @@
       var graph = new Rickshaw.Graph({
           element: document.querySelector(".chart"), 
           renderer: 'line',
-          height: 2700,
+          height: 800,
+          min: 4.1,
+          max: 5.4,
           series: [{
-            color: '#D1F0FF',
+            color: 'black',
             data: incoming
           }]
       }) 
 
-      var socket = io.connect("http://localhost:8080/swift");
+      var socket = io.connect("http://localhost:8080");
       
       socket.on('connect', function () {
-        console.log('new connection in client! Maybe?');
+        console.log('new connection in client!');
       });
 
       var count = 0;
       socket.on('demo', function (data) {
+        console.log(data);
         //need to convert time and amplitude to numbers for x, y coords
-        data = data.data;
+        points = data.data;
         var displayData = {};
         displayData.x = count;
         count++;
-        displayData.y = +data.amplitude;
+        displayData.y = +points.data;
 
         // make only 15 pts at any given time?
         if (incoming.length > 15) {

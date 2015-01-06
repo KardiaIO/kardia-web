@@ -3,7 +3,6 @@ var client = new zerorpc.Client();
 
 module.exports = function(io) {
   var rawData = io
-    .of('/swift')
     .on('connection', function (socket) {
       console.log('new connection');
 
