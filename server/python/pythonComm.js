@@ -13,11 +13,11 @@ module.exports = function(io) {
       socket.on('message', function (data, fn) {
         //console.log(typeof data);
 
-
         // Send data to demo-client
         socket.broadcast.emit('demo', {"data": data});
         // console.log(data);
-        data = JSON.stringify(data);
+
+        data = JSON.stringify(data.data);
 
         // Talk to Python
         client.connect("tcp://127.0.0.1:5000");
