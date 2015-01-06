@@ -6,8 +6,52 @@
       <img ng-src="components/web/images/loading.gif">
     </div>
 
-    <div ng-hide="loading" id='loadingWrapper'>
-      <div layout="horizontal" layout-align="center" id='zoomedInGraph' style="margin-bottom: 50px;">
+    <div id='loadingWrapper'>
+
+      <div id="chart" layout="horizontal" layout-align="center"></div> 
+      
+      <script> 
+        var incoming = [];
+
+        var graph = new Rickshaw.Graph({
+            element: document.querySelector("#chart"), 
+            renderer: 'line',
+            width: 1000, 
+            height: 200,
+            series: [{
+              color: 'red',
+              data: incoming
+            }]
+        }) 
+
+        var socket = io.connect("http://localhost:8080/swift");
+        
+        socket.on('connect', function () {
+          console.log('new connection in client! Maybe?');
+        });
+
+        socket.on('demo', function (data) {
+          console.log("Got some data in the demo!");
+          console.log(data.data);
+          //need to convert time and amplitude to numbers for x, y coords
+          data = data.data;
+          var count = incoming.length;
+          var displayData = {};
+          displayData.x = count;
+          displayData.y = +data.amplitude;
+
+          // make only 15 pts at any given time?
+          // incoming.shift();
+          incoming.push(displayData);
+
+          graph.render();
+        });
+
+        graph.render();
+
+      </script> 
+
+<!--       <div layout="horizontal" layout-align="center" id='zoomedInGraph' style="margin-bottom: 50px;">
         <rickshaw-chart
           data="snippet"
           color1="red"
@@ -26,12 +70,12 @@
         color1="red"
         color2="blue"
         renderer="renderer"
-        width="1000"
+        width="500"
         height="100"
         min="4"
         max="5.5">
         </rickshaw-chart>
-      </div>
+      </div> -->
 
 <!--       <div class="panel panel-primary" style="position: absolute;left: 100px; top: 150px;">
         <div class="panel-heading">
@@ -66,8 +110,8 @@
             <!-- <md-button class="md-raised" ng-click="fastBackward()" aria-label=''><span style="padding-right: 7px;" class="fa fa-backward"></span></md-button> -->
             <!-- Style is padding-left and not padding-right because icon is rotated 180 degrees -->
             <!-- <md-button class="md-raised" ng-click="playBackward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play fa-rotate-180"></span></md-button> -->
-            <md-button class="md-raised" ng-click="stopPlay()" aria-label=''><span class="fa fa-stop"></span></md-button>
-            <md-button class="md-raised" ng-click="playForward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play"></span></md-button>
+            <!-- <md-button class="md-raised" ng-click="stopPlay()" aria-label=''><span class="fa fa-stop"></span></md-button> -->
+            <!-- <md-button class="md-raised" ng-click="playForward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play"></span></md-button> -->
             <!-- <md-button class="md-raised" ng-click="fastForward()" aria-label=''><span style="padding-left: 7px;" class="fa fa-forward"></span></md-button> -->
           </div>
           <!-- END PLAY BUTTONS -->
