@@ -22,7 +22,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 // Python server connection
-var python = require('./server/python/pythonComm.js')(io);
+require('./server/python/pythonComm.js')(io);
 
 // Email server notification
 // var email = require('./server/problematic/rhythmNotification.js');

@@ -2,12 +2,17 @@ var zerorpc = require("zerorpc");
 var client = new zerorpc.Client();
 
 module.exports = function(io) {
-  var rawData = io
+
+  var dataCycle = io
+    //.of('/swift')
+
     .on('connection', function (socket) {
       console.log('new connection');
 
       // Listen to Swift
-      socket.on('message', function (data) {
+      socket.on('message', function (data, fn) {
+        //console.log(typeof data);
+
 
         // Send data to demo-client
         socket.broadcast.emit('demo', {"data": data});
