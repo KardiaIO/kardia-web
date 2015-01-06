@@ -3,53 +3,54 @@
   <div ng-show="isAuth()" id='analysis'>
     <div ng-show="loading" id='loadingSpinner' layout="column" layout-align="center">
       <!-- Colors of spinner: teal spinner (#26a69a) on 'white' background (#eeeeee) -->
-      <img ng-src="components/web/images/loading.gif">
+      <!-- <img ng-src="components/web/images/loading.gif"> -->
     </div>
 
-    <div id='loadingWrapper'>
+    <div class="chart" layout="horizontal" layout-align="center"></div> 
+    
+    <script> 
+      var incoming = [];
 
-      <div id="chart" layout="horizontal" layout-align="center"></div> 
+      var graph = new Rickshaw.Graph({
+          element: document.querySelector(".chart"), 
+          renderer: 'line',
+          height: 1000,
+          series: [{
+            color: 'red',
+            data: incoming
+          }]
+      }) 
+
+      var socket = io.connect("http://localhost:8080/swift");
       
-      <script> 
-        var incoming = [];
+      socket.on('connect', function () {
+        console.log('new connection in client! Maybe?');
+      });
 
-        var graph = new Rickshaw.Graph({
-            element: document.querySelector("#chart"), 
-            renderer: 'line',
-            width: 1000, 
-            height: 200,
-            series: [{
-              color: 'red',
-              data: incoming
-            }]
-        }) 
+      var count = 0;
+      socket.on('demo', function (data) {
+        //need to convert time and amplitude to numbers for x, y coords
+        data = data.data;
+        var displayData = {};
+        displayData.x = count;
+        count++;
+        displayData.y = +data.amplitude;
 
-        var socket = io.connect("http://localhost:8080/swift");
-        
-        socket.on('connect', function () {
-          console.log('new connection in client! Maybe?');
-        });
+        // make only 15 pts at any given time?
+        if (incoming.length > 15) {
+          incoming.shift();
+        }
 
-        socket.on('demo', function (data) {
-          console.log("Got some data in the demo!");
-          console.log(data.data);
-          //need to convert time and amplitude to numbers for x, y coords
-          data = data.data;
-          var count = incoming.length;
-          var displayData = {};
-          displayData.x = count;
-          displayData.y = +data.amplitude;
-
-          // make only 15 pts at any given time?
-          // incoming.shift();
-          incoming.push(displayData);
-
-          graph.render();
-        });
+        incoming.push(displayData);
 
         graph.render();
+      });
 
-      </script> 
+      graph.render();
+
+    </script> 
+
+    <div id='loadingWrapper'>
 
 <!--       <div layout="horizontal" layout-align="center" id='zoomedInGraph' style="margin-bottom: 50px;">
         <rickshaw-chart

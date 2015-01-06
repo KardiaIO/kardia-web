@@ -11,8 +11,8 @@ module.exports = function(io) {
       socket.on('message', function (data) {
 
         // Send data to demo-client
-        socket.emit('demo', {"data": data});
-        console.log(data);
+        socket.broadcast.emit('demo', {"data": data});
+        // console.log(data);
         data = JSON.stringify(data);
 
         // Talk to Python

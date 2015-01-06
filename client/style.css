@@ -262,15 +262,18 @@ form input {
   margin: auto;
 }
 
-.devButt {
-
-}
-
-.userButt {
-  
-}
-
 .keyButt {
   margin-left: auto;
   margin-right: auto;
 }
+
+.class {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+
+
+
+
