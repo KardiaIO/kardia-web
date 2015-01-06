@@ -1,6 +1,7 @@
 // Connect to Postgres Database on Heroku.
 var pg = require('pg').native;
 var conString = process.env.POSTGRES_URL;
+// var io = require('../../../server.js').io;
 
 module.exports = {
 
@@ -54,19 +55,29 @@ module.exports = {
     });
 
   // export from server {time: iso-timestamp, amplitude: data-point} 
-  var data = [];
-  var dataRes = [];
+  // var dataArr = [];
+  // var dataRes = [];
 
-  for (var i = 0; i < data.length; i++) {
-    var newData = {};
-    newData.x = data[i].time;
-    newData.y = data[i].amplitude;
-    data[i].indicator = data[i].amplitude;
+  // io
+  // .of('/swift')
+  // .on("connection", function (socket){
+  //   console.log("data controller");
+  //   socket.on('message', function (data) {
+  //     console.log(data);
+  //     dataArr.push(data);
+  //   });
+  // });
 
-    dataRes.push(newData);
-  }
+  // for (var i = 0; i < dataArr.length; i++) {
+  //   var newData = {};
+  //   newData.x = dataArr[i].time;
+  //   newData.y = dataArr[i].amplitude;
+  //   newData.indicator = dataArr[i].amplitude;
+
+  //   dataRes.push(newData);
+  // }
   
-  res.send(dataRes);
+  // res.send(dataRes);
 
   },
 

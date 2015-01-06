@@ -1,6 +1,6 @@
 // Load private .env variables immediately.
-//var dotenv = require('dotenv');
-//dotenv.load();
+var dotenv = require('dotenv');
+dotenv.load();
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -29,7 +29,7 @@ var python = require('./server/python/pythonComm.js')(io);
 // email.arrhythmiaNotify('Chao', 'chao.xue.mit@gmail.com', null);
 
 app.use(express.static(__dirname + '/client'));
-app.use(favicon(__dirname + '/favicon.ico')); 
+app.use(favicon(__dirname + '/favicon.ico'));
 
 // For every incoming request, the following will parse the 
 // body of the request for its contents before passing them
