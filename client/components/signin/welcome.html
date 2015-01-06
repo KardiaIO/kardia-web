@@ -1,21 +1,21 @@
-<header class="navbar btn-material-red">
+<header class="navbar btn-default" style="border-style:solid; border-width:1px">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <img src="/components/web/images/mainLogoTrans.png" style="float:left" ui-sref="choose">
-    <span class="navbar-brand" style="font-weight: bold; font-size: 20px;">EKG Tracker</span>
+    <!-- <img src="/components/web/images/mainLogoTrans.png" style="float:left" ui-sref="choose"> -->
+    <span class="navbar-brand" style="color: black;">Kardia.io</span>
 
   </div>
-  <div class="navbar-collapse collapse navbar-warning-collapse" style="font-weight: bold;">
+  <div class="navbar-collapse collapse navbar-warning-collapse">
     <ul class="nav navbar-nav">
-      <li ng-class="{active: isActive('user.triage')}" ng-cloak ng-show='isAuth()' ui-sref="user.triage"><a>Triage</a></li>
-      <li ng-class="{active: isActive('user.analysis')}" ng-cloak ng-show='isAuth()' ui-sref="user.analysis"><a>Analysis</a></li>
+      <li ng-class="{active: isActive('user.triage')}" ng-cloak ng-show='isAuth()' ui-sref="user.triage"><a style="color: black;">Triage</a></li>
+      <li ng-class="{active: isActive('user.analysis')}" ng-cloak ng-show='isAuth()' ui-sref="user.analysis"><a style="color: black;">Analysis</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li ng-cloak ng-show='isAuth()' ui-sref="user"><a id="signout" ng-click='signout()'>Sign Out</a>
+      <li ng-cloak ng-show='isAuth()' ui-sref="user"><a id="signout" ng-click='signout()' style="color: black;">Sign Out</a>
     </ul>
   </div>
 </header><!-- nav bar -->
@@ -31,7 +31,7 @@
         <span class="form-error" ng-show="signinForm.name.$error.pattern">Please enter a valid email address</span>
         <input name="password" type="password" class="form-control" placeholder="password" ng-model='user.password' ng-minlength="6" required>
         <span class="form-error" ng-show="signinForm.password.$error.minlength">Minimum password length is 6 characters</span>
-        <button ng-disabled='signinForm.$invalid' class="btn btn-material-red btn-block" id="sign-in" type="submit">Sign In</button>
+        <button ng-disabled='signinForm.$invalid' class="btn btn-default btn-block" id="sign-in" type="submit" style="color: black; border-style:solid; border-width:1px">Sign In</button>
         <span class="formSwitch" ng-click="switchView()">Don't have an account?</span>
         <span class="form-error" ng-show="signinFormError">Username or password incorrect - please try again.</span>
         
