@@ -5,7 +5,6 @@ module.exports = function(io) {
 
   var dataCycle = io
     //.of('/swift')
-
     .on('connection', function (socket) {
       console.log('new connection');
 
@@ -17,7 +16,7 @@ module.exports = function(io) {
         socket.broadcast.emit('demo', {"data": data});
         // console.log(data);
 
-        data = JSON.stringify(data.data);
+        data = JSON.stringify(data);
 
         // Talk to Python
         client.connect("tcp://127.0.0.1:5000");
