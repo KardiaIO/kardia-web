@@ -9,7 +9,7 @@ angular.module('ekg.choose', [])
 
   $scope.threeScale = function(){
     $window.location.href = "https://kardiaio.3scale.net/";
-  }
+  };
   $scope.image = $scope.images[0];
   $scope.selectedImage = 0;
 
