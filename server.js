@@ -1,6 +1,6 @@
 // Load private .env variables immediately.
-var dotenv = require('dotenv');
-dotenv.load();
+//var dotenv = require('dotenv');
+//dotenv.load();
 
 var express = require('express');
 var bodyParser = require('body-parser');
