@@ -1,4 +1,4 @@
-<header class="navbar btn-default" style="border-style:solid; border-width:1px">
+<header class="navbar" style="background-color:#D1F0FF; border-style:solid; border-bottom-width:1px; border-color: #E6E6E6;">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
       <span class="icon-bar"></span>
@@ -31,7 +31,7 @@
         <span class="form-error" ng-show="signinForm.name.$error.pattern">Please enter a valid email address</span>
         <input name="password" type="password" class="form-control" placeholder="password" ng-model='user.password' ng-minlength="6" required>
         <span class="form-error" ng-show="signinForm.password.$error.minlength">Minimum password length is 6 characters</span>
-        <button ng-disabled='signinForm.$invalid' class="btn btn-default btn-block" id="sign-in" type="submit" style="color: black; border-style:solid; border-width:1px">Sign In</button>
+        <button ng-disabled='signinForm.$invalid' class="btn btn-default btn-block" id="sign-in" type="submit" style="background-color:#D1F0FF; color: black; border-style:solid; border-width:1px">Sign In</button>
         <span class="formSwitch" ng-click="switchView()">Don't have an account?</span>
         <span class="form-error" ng-show="signinFormError">Username or password incorrect - please try again.</span>
         
@@ -47,7 +47,7 @@
         <input name="firstName" type="text" class="form-control" placeholder="first name" ng-model='user.first' required>
 
         <input name="lastName" type="text" class="form-control" placeholder="last name" ng-model='user.last' required>
-        <button ng-disabled='signupForm.$invalid' class="btn btn-material-red btn-block" id="sign-up" type="submit">Sign Up</button>
+        <button ng-disabled='signupForm.$invalid' class="btn btn-block" id="sign-up" type="submit" style="background-color:#D1F0FF; color: black; border-style:solid; border-width:1px; border-color:#7CD4FF;">Sign Up</button>
         <span class="formSwitch" ng-click="switchView()">Already have an account?</span>
         <span class="form-error" ng-show="signupFormError">That email is already registered.</span>
       </form>
