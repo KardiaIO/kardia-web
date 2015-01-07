@@ -3,6 +3,7 @@ var client = new zerorpc.Client();
 
 module.exports = function(io) {
 
+
   var dataCycle = io
     //.of('/swift')
     .on('connection', function (socket) {
