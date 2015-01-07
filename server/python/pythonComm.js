@@ -19,7 +19,7 @@ module.exports = function(io) {
         data = JSON.stringify(data);
 
         // Talk to Python
-        client.connect("tcp://127.0.0.1:5000");
+        client.connect("tcp://127.0.0.1:8000");
         client.on('error', function(error) {
           console.error("RPC Client Error:", error);
         });
