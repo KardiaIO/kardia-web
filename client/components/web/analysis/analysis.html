@@ -14,9 +14,9 @@
       var graph = new Rickshaw.Graph({
           element: document.querySelector(".chart"), 
           renderer: 'line',
-          height: 550,
-          min: 4.1,
-          max: 5.4,
+          height: 500,
+          min: 2.8,
+          max: 7.2,
           series: [{
             color: 'black',
             data: incoming
@@ -36,11 +36,11 @@
         points = data.data;
         var displayData = {};
         displayData.x = count;
-        count++;
-        displayData.y = +points.data;
+        count += 0.3;
+        displayData.y = +points.amplitude;
 
         // make only 15 pts at any given time?
-        if (incoming.length > 15) {
+        if (incoming.length > 25) {
           incoming.shift();
         }
 
