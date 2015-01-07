@@ -42,7 +42,7 @@ p.viewport {
   display:block;
   margin:auto;
   position: relative ;
-  width: 90%;
+  width: 60%;
   height:auto;
   margin:auto;
 }
@@ -98,9 +98,9 @@ p.viewport img.image {
 }
 
 .footer, .push {
-  height: 20px;
-  background-color: #CCCCCC;
-  padding:5px;
+  height: 15px;
+  background-color: #e1dede;
+  padding: 5px;
 }
 
 .landing h2, .landing p {
