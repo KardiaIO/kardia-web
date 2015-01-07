@@ -1,12 +1,15 @@
 angular.module('ekg.choose', [])
 
-.controller('ChooseController', function ($scope, $interval) {
+.controller('ChooseController', function ($scope, $interval, $window) {
   $scope.images = [
     { source:"./assets/wearable-1.jpg" },
     { source:"./assets/wearable-2.jpg" },
     { source:"./assets/wearable-3.jpg" }
   ];
 
+  $scope.threeScale = function(){
+    $window.location.href = "https://kardiaio.3scale.net/";
+  };
   $scope.image = $scope.images[0];
   $scope.selectedImage = 0;
 
