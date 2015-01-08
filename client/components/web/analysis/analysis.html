@@ -22,9 +22,9 @@
             color: 'black',
             data: incoming
           }]
-      }) 
+      }); 
 
-      var socket = io.connect("http://localhost:8080");
+      var socket = io.connect("http://172.17.42.1:8000");
       
       socket.on('connect', function () {
         console.log('new connection in client!');
@@ -40,10 +40,10 @@
           status = "Arrythmia";
         }
         $('.chart-status').text(status);
-      })
+      });
 
       socket.on('demo', function (data) {
-        // console.log(data);
+        console.log(data);
         //need to convert time and amplitude to numbers for x, y coords
         points = data.data;
         var displayData = {};

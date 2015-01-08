@@ -1,6 +1,8 @@
-// Load private .env variables immediately.
-//var dotenv = require('dotenv');
-//dotenv.load();
+// Load private .env variables immediately on development only.  Dokku runs its own config on production.
+if (process.env.NODE_ENV === 'development') {
+  var dotenv = require('dotenv');
+  dotenv.load();
+}
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -20,8 +22,8 @@ cloudinary.config({
 var app = express();
 
 // 3scale
-var threeScaleClient = new threeScale("a6d72f9b0ccf9d965afb9c00c73e6fc5");
-threeScaleClient.authrep({"app_id": "0bbe6411", "app_key": "7b8cc681fae215dc1be32512a7e6ecf1", "usage": { "hits": 1 } }, function(response){
+var threeScaleClient = new threeScale(process.env.THREE_SCALE_CLIENT);
+threeScaleClient.authrep({"app_id": process.env.THREE_SCALE_APP_ID, "app_key": process.env.THREE_SCALE_APP_KEY, "usage": { "hits": 1 } }, function(response){
   sys.log(sys.inspect(response));
 });
 
@@ -52,7 +54,7 @@ require('./server/routes/web-client-routes')(app);
 app.use(errors.errorLogger);
 app.use(errors.errorHandler);
 
-var port = process.env.PORT || '8080';
+var port = process.env.PORT || 8080;
 server.listen(port);
 
 console.log("Server is listening on port",port);

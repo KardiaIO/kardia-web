@@ -8,6 +8,7 @@ module.exports = function(io) {
     
     .on('connection', function (socket) {
       console.log('new connection');
+      console.log(socket);
         
       // Talk to Python
       client.connect(pythonPortURL);
@@ -20,7 +21,7 @@ module.exports = function(io) {
         //console.log(typeof data);
 
         // Send data to demo-client
-        socket.broadcast.emit('demo', {"data": data});
+        socket.broadcast.emit('demo', { "data": data });
         // console.log(data);
 
         data = JSON.stringify(data);
