@@ -13,8 +13,8 @@ var cloudinary = require('cloudinary');
 // Sets up Cloudinary Images 
 cloudinary.config({ 
   cloud_name: 'kardia-io', 
-  api_key: CLOUDINARY_API_KEY, 
-  api_secret: CLOUDINARY_API_SECRET
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 var app = express();
