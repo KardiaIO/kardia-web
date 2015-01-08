@@ -8,6 +8,14 @@ var favicon = require('serve-favicon');
 var errors = require('./server/error-handlers.js');
 var threeScale = require('3scale').Client;
 var sys = require('sys');
+var cloudinary = require('cloudinary');
+
+// Sets up Cloudinary Images 
+cloudinary.config({ 
+  cloud_name: 'kardia-io', 
+  api_key: CLOUDINARY_API_KEY, 
+  api_secret: CLOUDINARY_API_SECRET
+});
 
 var app = express();
 

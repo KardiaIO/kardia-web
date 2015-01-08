@@ -2,9 +2,9 @@ angular.module('ekg.choose', [])
 
 .controller('ChooseController', function ($scope, $interval, $window) {
   $scope.images = [
-    { source:"./assets/wearable-1.jpg" },
-    { source:"./assets/wearable-2.jpg" },
-    { source:"./assets/wearable-3.jpg" }
+    { source:"http://res.cloudinary.com/kardia-io/image/upload/v1420758425/wearable-1_jdlkac.jpg" },
+    { source:"http://res.cloudinary.com/kardia-io/image/upload/v1420758429/wearable-2_eelqqw.jpg" },
+    { source:"http://res.cloudinary.com/kardia-io/image/upload/v1420758434/wearable-3_e5y4ay.jpg" }
   ];
 
   $scope.threeScale = function(){
