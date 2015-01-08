@@ -34,7 +34,7 @@ module.exports = function(io) {
           }
           // Sends Response from Python to Swift
           console.log('RESULT FROM PYTHON ', result);
-          socket.emit('node.js', {
+          socket.broadcast.emit('node.js', {
             "statusCode": result
           });
 

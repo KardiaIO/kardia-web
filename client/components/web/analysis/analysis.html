@@ -6,6 +6,7 @@
       <!-- <img ng-src="components/web/images/loading.gif"> -->
     </div>
 
+    <div class="chart-status" align="center"></div>
     <div class="chart" layout="horizontal" layout-align="center"></div> 
     
     <script> 
@@ -18,7 +19,7 @@
           min: 2.8,
           max: 7.2,
           series: [{
-            color: 'black',
+            color: '#D1F0FF',
             data: incoming
           }]
       }) 
@@ -30,8 +31,19 @@
       });
 
       var count = 0;
+      socket.on('node.js', function (code) {
+        console.log(code.statusCode);
+        var status;
+        if (code.statusCode === "200") {
+          status = "Normal Sinus Rhythm";
+        } else if (code.statusCode === "404") {
+          status = "Arrythmia";
+        }
+        $('.chart-status').text(status);
+      })
+
       socket.on('demo', function (data) {
-        console.log(data);
+        // console.log(data);
         //need to convert time and amplitude to numbers for x, y coords
         points = data.data;
         var displayData = {};
@@ -49,6 +61,7 @@
         graph.render();
 
       });
+      
 
       var yAxis = new Rickshaw.Graph.Axis.Y({
         graph: graph
