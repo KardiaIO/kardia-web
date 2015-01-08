@@ -1,7 +1,9 @@
 var zerorpc = require("zerorpc");
 var client = new zerorpc.Client();
+var pythonPortURL = process.env.PYTHON_PORT_URL || 'tcp://127.0.0.1:8000';
 
 module.exports = function(io) {
+
   var dataCycle = io
     //.of('/swift')
     .on('connection', function (socket) {
@@ -18,7 +20,7 @@ module.exports = function(io) {
         data = JSON.stringify(data);
 
         // Talk to Python
-        client.connect("tcp://127.0.0.1:8000");
+        client.connect(pythonPortURL);
         client.on('error', function(error) {
           console.error("RPC Client Error:", error);
         });
