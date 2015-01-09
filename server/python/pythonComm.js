@@ -5,7 +5,6 @@ var pythonPortURL = process.env.PYTHON_PORT_URL || 'tcp://127.0.0.1:8000';
 module.exports = function(io) {
 
   var dataCycle = io
-    
     .on('connection', function (socket) {
       console.log('new connection');
       //console.log(socket);
@@ -35,12 +34,10 @@ module.exports = function(io) {
           }
           // Sends Response from Python to Swift
           console.log('RESULT FROM PYTHON ', result);
-          socket.emit('node.js', {
-            "statusCode": result
-          });
-          socket.broadcast.emit('node.js', {
-            "statusCode": result
-          });
+          socket.emit('node.js', result);
+
+          // Broadcasts to Web-App
+          socket.broadcast.emit('node.js', result);
 
           if(!more) {
             console.log("DONE");
