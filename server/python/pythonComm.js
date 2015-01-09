@@ -18,11 +18,6 @@ module.exports = function(io) {
 
       // Listen to Swift
       socket.on('message', function (data, fn) {
-        //console.log(typeof data);
-
-        // Send data to demo-client
-        socket.broadcast.emit('demo', { "data": data });
-        // console.log(data);
 
         data = JSON.stringify(data);
         
@@ -40,7 +35,7 @@ module.exports = function(io) {
           }
           // Sends Response from Python to Swift
           console.log('RESULT FROM PYTHON ', result);
-          socket.broadcast.emit('node.js', {
+          socket.emit('node.js', {
             "statusCode": result
           });
 
@@ -48,6 +43,9 @@ module.exports = function(io) {
             console.log("DONE");
           }
         });
+        
+        // Send data to demo-client
+        socket.broadcast.emit('demo', { "data": data });
 
       });
     });
