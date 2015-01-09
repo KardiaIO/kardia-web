@@ -43,13 +43,14 @@
       });
 
       socket.on('demo', function (data) {
-        console.log(data);
+        //console.log(data);
         //need to convert time and amplitude to numbers for x, y coords
         points = data.data;
         var displayData = {};
         displayData.x = count;
         count += 0.3;
         displayData.y = +points['amplitude'];
+        console.log(displayData);
 
         // make only 15 pts at any given time?
         if (incoming.length > 25) {
