@@ -1,5 +1,5 @@
 <div>
-  <h1 class=welcomeTitle>Welcome to Kardia</h1>
+  <h1 class="welcomeTitle">Welcome to Kardia</h1>
 
   <p bn-fade-helper class="viewport">
     <img
@@ -9,22 +9,19 @@
     />
   </p>
 
-  <div layout="row">
-    <div flex class="landing landingDev" ng-click="threeScale()">
-      <h2>Developer Portal</h2>
-      <p>Sign up for API access, read documentation</p>
+  <div class="row" layout="row">
+    <div class="landing landingDev" ng-click="threeScale()">
+      <h2 class="button-title">Developer Portal</h2>
+      <p class="button-text">Sign up for API access, read documentation</p>
     </div>
-    <div flex class="landing landingUser" ui-sref="user">
-      <h2>See an example Kardia webapp</h2>
-      <p>Real-time arrythmia analysis</p>
+    <div class="landing landingUser" ui-sref="user">
+      <h2 class="button-title">Example Kardia webapp</h2>
+      <p class="button-text">Real-time arrythmia analysis</p>
     </div>
 
   </div>
 
-  <div class="wrapper">
-    <footer class="footer">
-      Copyright © 2015 Kardia.io inc. All rights reserved.
-    </footer>
-    <div class="push"></div>
+  <div class="footer">
+    Copyright © 2015 Kardia.io inc. All rights reserved.
   </div>
 </div>
