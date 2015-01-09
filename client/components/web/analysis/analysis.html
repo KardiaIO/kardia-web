@@ -32,7 +32,7 @@
 
       var count = 0;
       socket.on('node.js', function (code) {
-        console.log(code.statusCode);
+        //console.log(code.statusCode);
         var status;
         if (code.statusCode === "200") {
           status = "Normal Sinus Rhythm";
@@ -43,8 +43,7 @@
       });
 
       socket.on('demo', function (data) {
-        console.log("DATA: ", data);
-        //need to convert time and amplitude to numbers for x, y coords
+        // Convert time and amplitude to numbers for x, y coords
         var dataObject = data.data;
         var parsedObject = JSON.parse(dataObject);
         var amplitude = parsedObject.amplitude;
@@ -52,9 +51,8 @@
         displayData.x = count;
         count += 0.3;
         displayData.y = parseFloat(amplitude);
-        console.log(displayData);
 
-        // make only 15 pts at any given time?
+        // Make only 15 pts at any given time?
         if (incoming.length > 25) {
           incoming.shift();
         }
