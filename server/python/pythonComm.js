@@ -8,7 +8,7 @@ module.exports = function(io) {
     
     .on('connection', function (socket) {
       console.log('new connection');
-      console.log(socket);
+      //console.log(socket);
         
       // Talk to Python
       client.connect(pythonPortURL);
@@ -35,7 +35,7 @@ module.exports = function(io) {
           }
           // Sends Response from Python to Swift
           console.log('RESULT FROM PYTHON ', result);
-          socket.emit('node.js', {
+          socket.broadcast.emit('node.js', {
             "statusCode": result
           });
 
@@ -43,7 +43,7 @@ module.exports = function(io) {
             console.log("DONE");
           }
         });
-        
+
         // Send data to demo-client
         socket.broadcast.emit('demo', { "data": data });
 
