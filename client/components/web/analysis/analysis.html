@@ -45,11 +45,13 @@
       socket.on('demo', function (data) {
         console.log("DATA: ", data);
         //need to convert time and amplitude to numbers for x, y coords
-        var amplitude = data.amplitude;
+        var dataObject = data.data;
+        var parsedObject = JSON.parse(dataObject);
+        var amplitude = parsedObject.amplitude;
         var displayData = {};
         displayData.x = count;
         count += 0.3;
-        displayData.y = parseInt(amplitude);
+        displayData.y = parseFloat(amplitude);
         console.log(displayData);
 
         // make only 15 pts at any given time?
