@@ -43,9 +43,9 @@
       });
 
       socket.on('demo', function (data) {
-        //console.log(data);
+        console.log("DATA: ", data);
         //need to convert time and amplitude to numbers for x, y coords
-        points = data.data;
+        var points = data.data;
         var displayData = {};
         displayData.x = count;
         count += 0.3;
