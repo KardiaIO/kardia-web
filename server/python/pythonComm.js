@@ -17,7 +17,7 @@ module.exports = function(io) {
       });
 
       // Listen to Swift
-      socket.on('message', function (data, fn) {
+      socket.on('message', function (data) {
 
         data = JSON.stringify(data);
         
