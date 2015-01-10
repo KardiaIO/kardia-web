@@ -1,6 +1,6 @@
 var zerorpc = require("zerorpc");
 var client = new zerorpc.Client();
-var pythonPortURL = process.env.PYTHON_PORT_URL || 'tcp://127.0.0.1:8000';
+var pythonPortURL = 'tcp://127.0.0.1:8000';
 
 module.exports = function(io) {
 

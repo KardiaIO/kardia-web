@@ -293,6 +293,15 @@ form input {
   transform: translateY(-50%);
 }
 
+.chart-status {
+  font-size: 18pt;
+  font-weight: bold;
+}
+
+.chart-bpm {
+  font-size: 15pt;
+
+}
 
 
 
