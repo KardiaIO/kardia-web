@@ -25,7 +25,7 @@
           }]
       }); 
 
-      var socket = io.connect("localhost:8080");
+      var socket = io.connect("http://kardia.io");
       
       socket.on('connect', function () {
         console.log('new connection in client!');
