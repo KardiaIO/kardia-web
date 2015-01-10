@@ -7,6 +7,7 @@
     </div>
 
     <div class="chart-status" align="center"></div>
+    <div class="chart-bpm" align="center"></div>
     <div class="chart" layout="horizontal" layout-align="center"></div> 
     
     <script> 
@@ -32,7 +33,7 @@
 
       var count = 0;
       socket.on('node.js', function (code) {
-        //console.log(code.statusCode);
+        // console.log(code);
         var status;
         if (code.statusCode === "200") {
           status = "Normal Sinus Rhythm";
@@ -40,6 +41,7 @@
           status = "Arrythmia";
         }
         $('.chart-status').text(status);
+        $('.chart-bpm').text(code.heartRate + ' BPM');
       });
 
       socket.on('demo', function (data) {
