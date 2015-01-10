@@ -3,7 +3,77 @@ angular.module('ekg.analysis', [
 ])
 
 .controller('MainController', function ($scope, $interval, $timeout, DataGetter, Auth, TimeFactory) {
+  // Live stream demo Rickshaw Graph
+  var incoming = [];
 
+  var graph = new Rickshaw.Graph({
+        element: document.querySelector(".chart"), 
+        renderer: 'line',
+        height: 500,
+        min: 2.8,
+        max: 7.2,
+        series: [{
+          color: 'black',
+          data: incoming
+        }]
+    }); 
+
+    var socket = io.connect("http://kardia.io");
+    
+    socket.on('connect', function () {
+      console.log('new connection in client!');
+    });
+
+    var count = 0;
+    socket.on('node.js', function (code) {
+      // console.log(code);
+      var status;
+      if (code.statusCode === "200") {
+        status = "Normal Sinus Rhythm";
+      } else if (code.statusCode === "404") {
+        status = "Arrythmia";
+      }
+      $('.chart-status').text(status);
+      $('.chart-bpm').text(code.heartRate + ' BPM');
+    });
+
+    socket.on('demo', function (data) {
+      // Convert time and amplitude to numbers for x, y coords
+      var dataObject = data.data;
+      var parsedObject = JSON.parse(dataObject);
+      var amplitude = parsedObject.amplitude;
+      var displayData = {};
+      displayData.x = count;
+      count += 0.3;
+      displayData.y = parseFloat(amplitude);
+
+      // Make only 15 pts at any given time?
+      if (incoming.length > 25) {
+        incoming.shift();
+      }
+
+      incoming.push(displayData);
+
+      graph.render();
+
+    });
+    
+
+    var yAxis = new Rickshaw.Graph.Axis.Y({
+      graph: graph
+    });
+
+    yAxis.render();
+    graph.render();
+
+
+
+
+
+
+
+
+/* Older Version of the Graph using data stored in previous MySql DB.
   // $scope.dataArray stores the data from the server on the client
   // There are two datasets, one containing all the raw EKG voltage
   // and the other containing the indicators of where 
@@ -128,8 +198,9 @@ angular.module('ekg.analysis', [
       }
     }
   };
-
+*/
 })
+
 // Retrieves ekg data from node server
 .factory('DataGetter', function ($http) {
   var jwt = window.localStorage.getItem('com.ekgtracker');

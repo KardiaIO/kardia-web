@@ -6,74 +6,10 @@
       <!-- <img ng-src="components/web/images/loading.gif"> -->
     </div>
 
+    <!-- Live stream data chart -->
     <div class="chart-status" align="center"></div>
     <div class="chart-bpm" align="center"></div>
-    <div class="chart" layout="horizontal" layout-align="center"></div> 
-    
-    <script> 
-      var incoming = [];
-
-      var graph = new Rickshaw.Graph({
-          element: document.querySelector(".chart"), 
-          renderer: 'line',
-          height: 500,
-          min: 2.8,
-          max: 7.2,
-          series: [{
-            color: 'black',
-            data: incoming
-          }]
-      }); 
-
-      var socket = io.connect("http://kardia.io");
-      
-      socket.on('connect', function () {
-        console.log('new connection in client!');
-      });
-
-      var count = 0;
-      socket.on('node.js', function (code) {
-        // console.log(code);
-        var status;
-        if (code.statusCode === "200") {
-          status = "Normal Sinus Rhythm";
-        } else if (code.statusCode === "404") {
-          status = "Arrythmia";
-        }
-        $('.chart-status').text(status);
-        $('.chart-bpm').text(code.heartRate + ' BPM');
-      });
-
-      socket.on('demo', function (data) {
-        // Convert time and amplitude to numbers for x, y coords
-        var dataObject = data.data;
-        var parsedObject = JSON.parse(dataObject);
-        var amplitude = parsedObject.amplitude;
-        var displayData = {};
-        displayData.x = count;
-        count += 0.3;
-        displayData.y = parseFloat(amplitude);
-
-        // Make only 15 pts at any given time?
-        if (incoming.length > 25) {
-          incoming.shift();
-        }
-
-        incoming.push(displayData);
-
-        graph.render();
-
-      });
-      
-
-      var yAxis = new Rickshaw.Graph.Axis.Y({
-        graph: graph
-      });
-
-      yAxis.render();
-      graph.render();
-
-    </script> 
+    <div class="chart" layout="horizontal" layout-align="center"></div>
 
     <div id='loadingWrapper'>
 
