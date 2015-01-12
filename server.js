@@ -27,7 +27,7 @@ threeScaleClient.authrep({"app_id": process.env.THREE_SCALE_APP_ID, "app_key": p
   sys.log(sys.inspect(response));
 });
 
-// Placeholder for socket.io functionality
+// Pass our Express app into socket.io
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 

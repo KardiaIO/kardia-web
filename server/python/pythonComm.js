@@ -9,7 +9,7 @@ module.exports = function(io) {
       console.log('new connection');
         
       // Talk to Python
-      client.connect('tcp://127.0.0.1:8000');
+      client.connect(pythonPortURL);
       client.on('error', function(error) {
         console.error("RPC Client Error:", error);
       });
