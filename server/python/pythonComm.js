@@ -7,10 +7,9 @@ module.exports = function(io) {
   var dataCycle = io
     .on('connection', function (socket) {
       console.log('new connection');
-      //console.log(socket);
         
       // Talk to Python
-      client.connect(pythonPortURL);
+      client.connect('tcp://127.0.0.1:8000');
       client.on('error', function(error) {
         console.error("RPC Client Error:", error);
       });
