@@ -1,1 +1,1 @@
-web: pm2 --no-daemon start kardia.io --watch
+web: node server.js
