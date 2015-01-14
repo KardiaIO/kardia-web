@@ -24,6 +24,7 @@
 
   })
 
+
   .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
 
     // AngularUI Router uses the concept of states
@@ -33,27 +34,27 @@
       .state('user', {
         url: '/user',
         templateUrl: 'components/signin/welcome.html',
-        controller: 'AuthController'      
+        controller: 'AuthController'
       })
 
       .state('user.analysis', {
         url: '/analysis',
         templateUrl: 'components/web/analysis/analysis.html',
-        controller: 'MainController',
+        controller: 'AnalysisController',
         authenticate: true
       })
 
       .state('user.triage', {
         url: '/triage',
         templateUrl: 'components/web/triage/mdTriage.html',
-        controller: 'AuthController',   
-        authenticate: true    
+        controller: 'AuthController'
+        // authenticate: true
       })
 
       .state('landing', {
         url: '/',
         templateUrl: 'landing/landing.html',
-        controller: 'LandingController'     
+        controller: 'LandingController'
       })
 
       .state('developer', {

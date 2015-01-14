@@ -9,7 +9,7 @@ module.exports = function(io) {
       console.log('new connection');
         
       // Talk to Python
-      client.connect(pythonPortURL);
+      client.connect("tcp://127.0.0.1:8000");
       client.on('error', function(error) {
         console.error("RPC Client Error:", error);
       });
@@ -43,8 +43,8 @@ module.exports = function(io) {
           }
         });
 
-        // Send data to demo-client
-        socket.broadcast.emit('demo', { "data": data });
+        // Send data to Angular Analysis Chart
+        socket.broadcast.emit('/analysisChart', { "data": data });
 
       });
     });

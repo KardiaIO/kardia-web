@@ -1,224 +1,91 @@
 angular.module('ekg.analysis', [
   'ekg.auth'
 ])
+.directive('rickshaw', function($window){
+  return {
+    scope: {
+      data: '=',
+      renderer: '=',
+      width: '='
+    },
+    template: '<div></div>',
+    restrict: 'E',
+    link: function postLink(scope, element, attrs) {
+      // $window.onresize = function() {
+      //   scope.$apply();
+      // };
 
-.controller('MainController', function ($scope, $interval, $timeout, DataGetter, Auth, TimeFactory) {
-  // Live stream demo Rickshaw Graph
-  var incoming = [];
-
-  var graph = new Rickshaw.Graph({
-        element: document.querySelector(".chart"), 
-        renderer: 'line',
-        height: 500,
-        min: 2.8,
-        max: 7.2,
-        series: [{
-          color: 'black',
-          data: incoming
-        }]
-    }); 
-
-    var socket = io.connect("http://kardia.io");
-    
-    socket.on('connect', function () {
-      console.log('new connection in client!');
-    });
-
-    var count = 0;
-    socket.on('node.js', function (code) {
-      // console.log(code);
-      var status;
-      if (code.statusCode === "200") {
-        status = "Normal Sinus Rhythm";
-      } else if (code.statusCode === "404") {
-        status = "Arrythmia";
-      }
-      $('.chart-status').text(status);
-      $('.chart-bpm').text(code.heartRate + ' BPM');
-    });
-
-    socket.on('demo', function (data) {
-      // Convert time and amplitude to numbers for x, y coords
-      var dataObject = data.data;
-      var parsedObject = JSON.parse(dataObject);
-      var amplitude = parsedObject.amplitude;
-      var displayData = {};
-      displayData.x = count;
-      count += 0.3;
-      displayData.y = parseFloat(amplitude);
-
-      // Make only 15 pts at any given time?
-      if (incoming.length > 25) {
-        incoming.shift();
-      }
-
-      incoming.push(displayData);
-
-      graph.render();
-
-    });
-    
-
-    var yAxis = new Rickshaw.Graph.Axis.Y({
-      graph: graph
-    });
-
-    yAxis.render();
-    graph.render();
-
-
-
-
-
-
-
-
-/* Older Version of the Graph using data stored in previous MySql DB.
-  // $scope.dataArray stores the data from the server on the client
-  // There are two datasets, one containing all the raw EKG voltage
-  // and the other containing the indicators of where 
-  $scope.dataArray = {
-    results: [],
-    indicators: []
-  };
-  $scope.renderer = 'line';
-  $scope.loading = true;
-
-  var oboeObject;
-  var graphInterval;
-  var serverInterval;
-  var longGraphStartIndex = 0;
-  var longGraphLength = 750;
-  var shortGraphStartIndex = 350;
-  var shortGraphLength = 50;
-  var time = 1420000000000;
-
-  function grabDataInterval(){
-    $scope.getData(time);
-    time += 200000;
-  }
-
-  function changeGraphInterval(forward){
-    $scope.largerSnippet = {
-      results: $scope.dataArray.results.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength),
-      indicators: $scope.dataArray.indicators.slice(longGraphStartIndex, longGraphStartIndex + longGraphLength)
-    };
-    $scope.snippet = {
-      results: $scope.largerSnippet.results.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength),
-      indicators: $scope.largerSnippet.indicators.slice(shortGraphStartIndex, shortGraphStartIndex + shortGraphLength)
-    };
-    if (forward) longGraphStartIndex += 25;
-    if (!forward && longGraphStartIndex - 25 >= 0) longGraphStartIndex -= 25;
-    if (!forward && longGraphStartIndex - 25 < 0) $interval.cancel(graphInterval);
-    TimeFactory.setTime($scope.largerSnippet.results[0].x, angular.element(document.querySelector('.timeButtons')).scope());
-  }
-
-  $scope.fastForward = function(){
-    $interval.cancel(graphInterval);
-    $interval.cancel(serverInterval);
-    graphInterval = $interval(function(){
-      changeGraphInterval(true);
-    }, 10);
-    serverInterval = $interval(function(){
-      grabDataInterval(true);
-    }, 3000);
-  };
-
-  $scope.playForward = function(){
-    $interval.cancel(graphInterval);
-    $interval.cancel(serverInterval);
-    graphInterval = $interval(function(){
-      changeGraphInterval(true);
-    }, 100);
-    serverInterval = $interval(function(){
-      grabDataInterval(true);
-    }, 5000);
-  };
-
-  $scope.playBackward = function(){
-    $interval.cancel(graphInterval);
-    $interval.cancel(serverInterval);
-    graphInterval = $interval(function(){
-      changeGraphInterval(false);
-    }, 100);
-  };
-
-  $scope.fastBackward = function(){
-    $interval.cancel(graphInterval);
-    $interval.cancel(serverInterval);
-    graphInterval = $interval(function(){
-      changeGraphInterval(false);
-    }, 10);
-  };
-
-  $scope.stopPlay = function(){
-    $interval.cancel(graphInterval);
-    $interval.cancel(serverInterval);
-  };
-
-  $scope.getData = function(time, callback) {
-    DataGetter.getData(time)
-      // Oboe allows us to have access to each object inside the JSON object
-      // We grab any object with an x, y, and indicator property and add each data point
-      // to the data array
-      .node('{x y indicator}', function(heartbeat){
-        $scope.loading = false;
-        $scope.dataArray.results.push({x: heartbeat.x, y: heartbeat.y});
-        $scope.dataArray.indicators.push({x: heartbeat.x, y: heartbeat.indicator});
-      })
-      .done(function(){
-        // Initial load only passes a callback
-        if (callback) {
-          callback();
+      scope.$watchCollection('[data, renderer, width]', function(newVal, oldVal) {
+        if(!newVal[0]) {
+          return;
         }
-      })
-      .fail(function(error){
-        console.log('http get error', error);
-      });
-  };
 
-  // Initialized data with current time
-  $scope.getData(1420000000000, function(){
-    changeGraphInterval(true);
-    // Oboe is outside of Angular context, so we manually $digest
-    $scope.$digest();
+        element[0].innerHTML = '';
+
+        var graph = new Rickshaw.Graph({
+          element: element[0],
+          width: scope.width,
+          height: attrs.height,
+          series: [{data: scope.data, color: attrs.color}],
+          renderer: scope.renderer,
+          min: 2.8,
+          max: 7.2
+        });
+
+        // var yAxis = new Rickshaw.Graph.Axis.Y({graph:graph});
+        // yAxis.render();
+
+        graph.render();
+      });
+    }
+  };
+})
+.controller('AnalysisController', function ($scope, $state, $window) {
+  // Incoming Objects from Node via Swift.
+  var socket = io.connect("http://localhost:8080");
+  var count = 0;  
+  $scope.incoming = [];
+  $scope.renderer = 'line';
+  $scope.width = $window.innerWidth;
+  $scope.statusTitle = "";
+  $scope.bpmTitle = "BPM";
+  $scope.isLive = "Awaiting Heartbeat";
+  
+  socket.on('connect', function () {
+    console.log('new connection in client!');
   });
 
-  // Signout function
-  $scope.signout = Auth.signout;
-
-  // Toggle appearance of R peak labeling data
-  $scope.toggleR = function() {
-    var indicatorLines = jQuery('path[stroke="blue"]');
-    for (var i = 0; i < indicatorLines.length; i++){
-      if (indicatorLines[i].className.baseVal.indexOf('hidden') === -1) {
-        indicatorLines[i].className.baseVal += ' hidden';
-      } else {
-        indicatorLines[i].className.baseVal = 'path';
-      }
+  socket.on('node.js', function (code) {
+    var status;
+    if (code.statusCode === "200") {
+      status = "NSR";
+      $scope.statusTitle = "Normal Sinus Rhythm";
+    } else if (code.statusCode === "404") {
+      status = "ARR";
+      $scope.statusTitle = "Arythimia";
     }
-  };
-*/
-})
+    $scope.status = status;
+    $scope.bpm = code.heartRate;
+  });
 
-// Retrieves ekg data from node server
-.factory('DataGetter', function ($http) {
-  var jwt = window.localStorage.getItem('com.ekgtracker');
-  
-  return {
-    getData: function(time) {
-      return oboe({
-        url: '/users/data',
-        method: 'POST',
-        headers: {
-          'x-access-token': jwt,
-          'Allow-Control-Allow-Origin': '*'
-        },
-        body: {
-          time: time
-        },
-        withCredentials: true
-      });
+  socket.on('/analysisChart', function (data) {
+    $scope.isLive = "Streaming Heartbeat";
+    // Convert time and amplitude to numbers for x, y coords
+    var dataObject = data.data;
+    var parsedObject = JSON.parse(dataObject);
+    var amplitude = parsedObject.amplitude;
+    var displayData = {};
+    displayData.x = count;
+    count += 0.3;
+    displayData.y = parseFloat(amplitude);
+
+    // Make 25 points at any given time
+    if ($scope.incoming.length > 25) {
+      $scope.incoming.shift();
     }
-  };
+
+    $scope.incoming = $scope.incoming.concat(displayData);
+    $scope.$apply();
+  });
+
 });

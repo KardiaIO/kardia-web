@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <header class="navbar" style="background-color:#D1F0FF; border-style:solid; border-bottom-width:1px; border-color: #E6E6E6;">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">
@@ -7,18 +8,30 @@
     </button>
     <!-- <img src="/components/web/images/mainLogoTrans.png" style="float:left" ui-sref="choose"> -->
     <span class="navbar-brand" style="color: black;"><a class="back-landing" ui-sref='landing'>Kardia.io</a></span>
+=======
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-warning-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="choose">Kardia.io</a>
+    </div>
+>>>>>>> Creates directive for Rickshaw Graph.  Reimplements analysis page
 
+    <div class="navbar-collapse collapse navbar-warning-collapse">
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: isActive('user.triage')}" ng-cloak ng-show='isAuth()' ui-sref="user.triage"><a>Triage</a></li>
+        <li ng-class="{active: isActive('user.analysis')}" ng-cloak ng-show='isAuth()' ui-sref="user.analysis"><a>Analysis</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-cloak ng-show='isAuth()' ui-sref="user"><a id="signout" ng-click='signout()'>Sign Out</a>
+      </ul>
+    </div>    
   </div>
-  <div class="navbar-collapse collapse navbar-warning-collapse">
-    <ul class="nav navbar-nav">
-      <li ng-class="{active: isActive('user.triage')}" ng-cloak ng-show='isAuth()' ui-sref="user.triage"><a style="color: black;">Triage</a></li>
-      <li ng-class="{active: isActive('user.analysis')}" ng-cloak ng-show='isAuth()' ui-sref="user.analysis"><a style="color: black;">Analysis</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li ng-cloak ng-show='isAuth()' ui-sref="user"><a id="signout" ng-click='signout()' style="color: black;">Sign Out</a>
-    </ul>
-  </div>
-</header><!-- nav bar -->
+</nav><!-- nav bar -->
 
 <div ui-view></div>
 
