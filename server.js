@@ -11,7 +11,6 @@ var errors = require('./server/error-handlers.js');
 var threeScale = require('3scale').Client;
 var sys = require('sys');
 var cloudinary = require('cloudinary');
-var path = require('path');
 
 // Sets up Cloudinary Images 
 cloudinary.config({ 
