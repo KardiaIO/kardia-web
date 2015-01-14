@@ -95,14 +95,6 @@ body {
   line-height: 2.5;
 }
 
-.line {
-  border-top: solid 1px;
-  width: 60%;
-  margin-left: 20%;
-  margin-right: 20%;
-  color: rgba(1,1,1,0.2);
-}
-
 .landing-about {
   margin: 20%;
   margin-top : 7%;
@@ -143,16 +135,46 @@ body {
 }
 
 .footer {
+  color: rgba(255,255,255,0.7);
+  padding-top: 15px;
+  background-color: rgba(1,1,1,0.8);
   text-align: center;
-  margin-top: 10px;
   font-size: 10pt;
   width:100%;
   height:15px;
 }
 
 .bottom-pad {
-  height: 15px;
+  background-color: rgba(1,1,1,0.8);
+  height: 35px;
 }
+
+@media all and (max-width: 640px) {
+  .landing-title {
+    font-size: 5em;
+  }
+  .landing-about {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .how {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .how-text {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .landing-img {
+    height: 40em;
+  }
+}
+
+
+
 
 form input {
   margin-bottom: 15px;
