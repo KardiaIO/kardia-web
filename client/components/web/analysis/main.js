@@ -47,9 +47,11 @@ angular.module('ekg.analysis', [
   $scope.incoming = [];
   $scope.renderer = 'line';
   $scope.width = $window.innerWidth;
-  $scope.statusTitle = "";
-  $scope.bpmTitle = "BPM";
-  $scope.isLive = "Awaiting Heartbeat";
+  $scope.status = 'NA';
+  $scope.bpm = '00';
+  $scope.statusTitle = '';
+  $scope.bpmTitle = 'BPM';
+  $scope.isLive = 'Awaiting Heartbeat';
   
   socket.on('connect', function () {
     console.log('new connection in client!');
@@ -62,14 +64,14 @@ angular.module('ekg.analysis', [
       $scope.statusTitle = "Normal Sinus Rhythm";
     } else if (code.statusCode === "404") {
       status = "ARR";
-      $scope.statusTitle = "Arythimia";
+      $scope.statusTitle = "Arrhythmia";
     }
     $scope.status = status;
     $scope.bpm = code.heartRate;
   });
 
   socket.on('/analysisChart', function (data) {
-    $scope.isLive = "Streaming Heartbeat";
+    $scope.isLive = 'Streaming Heartbeat';
     // Convert time and amplitude to numbers for x, y coords
     var dataObject = data.data;
     var parsedObject = JSON.parse(dataObject);

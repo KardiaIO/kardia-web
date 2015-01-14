@@ -14,13 +14,6 @@ body {
 .back-landing {
   color: black;
   text-decoration: none;
-
-#hero {
-  height: 500px;
-  width: 100%;
-  padding: 20px;
-  font: #000;
-
 }
 
 .back-landing:hover {

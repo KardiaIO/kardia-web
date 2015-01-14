@@ -33,6 +33,14 @@ html, body {
   color: steelblue;
 }
 
+.navbar-toggle {
+  background-color: #888888;
+}
+
+.navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
+  background-color: #555;
+}
+
 .container-full {
   padding: 0;
   width: 100%;
@@ -41,6 +49,7 @@ html, body {
 
 .fill-height {
   height: 100vh;
+  background-color: lightblue;
 }
 
 /**
@@ -64,47 +73,39 @@ html, body {
 /**
  * Graph Widgets
  */
-.widget-container {
-  min-height: 60vh;
-  background-color: lightblue;
-  padding-top: 4%;
-  padding-left: 20%;
-  padding-right: 20%;
-}
-
 .graph-widget {
   background-color: white;
-}
-
-.inner-widget {
-  border: 5px solid steelblue;
-  opacity: 0.5;
-  border-radius: 5px;
-  height: 100%;
 }
 
 .widget-font {
   color: steelblue;
 }
 
-.chart-status {
+.status-code-status {
   color: steelblue;
-  font-size: 60px;
-  font-weight: 500;
+  font-weight: bold;
   margin: 0;
+}
+
+.status-code-icon {
+  color: steelblue;
 }
 
 .is-live-text {
   color: steelblue;
-  font-weight: 500;
-  padding-top: 10%;
+  font-weight: bold;
+  margin: 0;
 }
 
 .chart-bpm {
   color: steelblue;
-  font-size: 60px;
   font-weight: bold;
   margin: 0;
+
+}
+
+.bpm-icon {
+  color: steelblue;
 }
 
 .square {
@@ -122,11 +123,6 @@ html, body {
   padding: 10% 5%;
 }
 
-.fa {
-  margin-top: 8%;
-  margin-bottom: 8%;
-}
-
 .violet {
   background-color: #F5C0FF;
 }
@@ -139,6 +135,177 @@ html, body {
   background-color: #FFBD7C;
 }
 
+/**
+ * Extra Small Devices (Mobile / Global styles should be above this line)
+ */
+@media(max-width:480px) {
+
+  .analysis-title {
+    font-size: 2em; 
+  }
+
+  .widget-container {
+    padding-top: 8%;
+    padding-bottom: 50%;
+  }
+
+  .widget-font {
+    font-size: 0.6em;
+  }
+
+  .status-code-status {
+    font-size: 3em;
+    padding-top: 10%;
+  }
+
+  .status-code-icon {
+    font-size: 1em;
+  }
+
+  .is-live-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.5em;
+    padding-top: 10%;
+  }
+
+  .chart-bpm {
+    font-size: 3em;
+    padding-top: 10%;
+  } 
+
+  .bpm-icon {
+    font-size: 1em;
+  }
+
+}
+
+/**
+ * Edge Cases and Landscape Views
+ */
+@media(min-width:481px) {
+  .widget-container {
+    padding-top: 5%;
+  }
+
+  .status-code-status {
+    font-size: 3.5em;
+    padding-top: 12%;
+  }
+
+  .status-code-icon {
+    font-size: 1.3em;
+    padding: 2%;
+  }
+
+  .is-live-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.5em;
+    padding-top: 12%;
+  }
+
+  .chart-bpm {
+    font-size: 3.5em;
+    padding-top: 12%;
+  } 
+
+  .bpm-icon {
+    font-size: 1.3em;
+    padding: 2%;
+  }
+}
+
+/**
+ * Small Devices (Tablets, 768px and up)
+ */
+@media(min-width:768px) {
+
+  .widget-container {
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .widget-font {
+    font-size: 1.2em;
+  }
+
+  .status-code-status {
+    font-size: 5em;
+    padding-top: 13%;
+  }
+
+  .status-code-icon {
+    font-size: 1.7em;
+  }
+
+  .is-live-text {
+    font-size: 2.7em;
+    padding-top: 13%;
+  }
+
+  .chart-bpm {
+    font-size: 5em;
+    padding-top: 13%;
+  }
+
+  .bpm-icon {
+    font-size: 1.7em;
+  }
+
+}
+
+/**
+ * Medium Devices (Laptops, 992px and up)
+ */
+@media(min-width:992px) {
+
+  .widget-container {
+    padding-top: 3%;
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
+  .status-code-status {
+    font-size: 6em;
+    padding-top: 13%;
+  }
+
+  .status-code-icon {
+    font-size: 2em;
+    padding: 2%;
+  }
+
+  .is-live-text {
+    font-size: 3.7em;
+    padding-top: 13%;
+  }
+
+  .chart-bpm {
+    font-size: 6em;
+    padding-top: 13%;
+  }
+
+  .bpm-icon {
+    font-size: 2em;
+    padding: 2%;
+  }
+
+}
+
+/*                                         
+/* Large Devices (Desktops, 1200px and up) 
+*/
+@media(min-width:1200px) {
+
+  .widget-container {
+    padding-top: 0;
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+
+}
 
 
 
