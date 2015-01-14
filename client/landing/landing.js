@@ -5,4 +5,4 @@ angular.module('ekg.landing', [])
   $scope.threeScale = function(){
     $window.location.href = "https://kardiaio.3scale.net/";
   };
-})
+});
