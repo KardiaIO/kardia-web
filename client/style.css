@@ -1,26 +1,24 @@
 html {
-  overflow: auto;
   resize: none;
 }
 
 body {
-  background-color:white;
+  overflow: auto;
+  background-color: white;
 }
 
 .hidden {
   display: none;
 }
 
-#hero {
-/*    background-image: url("./components/images/hero_img.jpg");*/  
-    height: 500px;
-    width: 100%;
-    padding: 20px;
-    font: #000;
+.back-landing {
+  color: black;
+  text-decoration: none;
 }
 
-[ng\:cloak], [ng-cloak], .ng-cloak {
-  display: none !important; 
+.back-landing:hover {
+  color: black;
+  text-decoration: none; 
 }
 
 .dropdown-menu {
@@ -29,118 +27,121 @@ body {
   width: 250px;
 }
 
-/*Landing Page*/
-.welcome-holder {
-  padding: 10px;
-  position: relative;
+/*landing page*/
+.landing-img {
   width: 100%;
-  height: 120px;
+  height: 720px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  overflow: auto;
+  z-index: -1;
 }
 
-.welcomeTitle {
-  margin-left: 450px;
-  margin-right: auto;
+.landing-header {  
+  margin-top: 13%;
+  color: white;
+  left: 0;
+  top: 0;
+  z-index:100;
   position: absolute;
-  margin-top:20px;
-  font-size: 40px;
-}
-
-
-p.viewport {
-  display:block;
-  position: relative;
-  width: 78%;
-  height:auto;
-  margin:auto;
-}
-
-p.viewport img.fader {
-  display: none ;
-  position: absolute;
-  z-index: 2 ;
   width: 100%;
-  height:auto;
-  margin:auto;
+  height: auto;
+  text-align: center;
 }
 
-p.viewport img.fader.show {
-  display: block ;
-  transition: opacity 500ms linear ;
+.landing-title {
+  z-index:100;
+  text-align: center;
+  font-size: 90px;
+  font-family: 'Yanone Kaffeesatz', serif;
+  letter-spacing: 10px;
 }
 
-p.viewport img.fader.fadeOut {
-  opacity: 0 ;
-
+.landing-buttons {
+  font-family: 'Raleway', serif;
+  z-index:100;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  padding: 15px 13px 15px 13px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-p.viewport img.image {
-  display: block ;
-  width: 990px;
-  height:auto;
-  margin:auto;
+.landing-buttons:hover {
+  color: #2d6cb1;
+  text-decoration: none; 
 }
 
-.row {
-  width: 990px;
-  margin-left: auto;
-  margin-right: auto;
+.header-space1 {
+  height: 100px;
 }
 
-.landingDev, .landingUser {
-  border-style:solid; 
-  border-width:1px; 
-  border-color: rgba(1,1,1,0.1); 
-  position: relative;
-  display:inline-block;
-  float: left;
-  width: 350px;
-  height: 150px;
-/*  padding-top: 10px;
-  padding-bottom: 30px; */
+.header-space2 {
+  height: 55px;
 }
 
-.landingDev {
-  margin-left: 14%;
-  background-color: #fffcfc;
+.info-container {
+  width: 100%
 }
 
-.landingUser {
-  margin-left: 5px;
-  margin-right: 14%;
-  background-color: #fffcfc;
+.info-text {
+  margin-top: 4%;
+  line-height: 2.5;
 }
 
-.button-title {
-  font-size: 20pt;
+.line {
+  border-top: solid 1px;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  color: rgba(1,1,1,0.2);
 }
 
-.button-text {
-  font-size: 10pt;
+.landing-about {
+  margin: 20%;
+  margin-top : 7%;
+  margin-bottom: 5%;
+}
+
+.kardiak { 
+  height: auto;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+
+.about {
+  margin-top: 20%;
+}
+
+.landing-how {
+  margin: 20%;
+  margin-top : 2%;
+  margin-bottom: 250px;
+}
+
+.how {
+  margin-top: 10%;
 }
 
 .footer {
+  text-align: center;
   margin-top: 10px;
   font-size: 10pt;
   width:100%;
   height:15px;
 }
 
-.landing h2, .landing p {
-  text-align:center;
+.bottom-pad {
+  height: 15px;
 }
-
-.landing:hover {
-  cursor:pointer;
-}
-
-.landingDev:hover {
-  background-color: #d1f0ff;
-}
-
-.landingUser:hover {
-  background-color: #d1f0ff;
-}
-/*Forms*/
 
 form input {
   margin-bottom: 15px;
@@ -170,6 +171,7 @@ form input {
 .navbar-collapse li:hover {
   cursor:pointer;
 }
+
 /* Font Awesome sizing */
 .fa {
   font-size: 32px;
@@ -300,7 +302,6 @@ form input {
 
 .chart-bpm {
   font-size: 15pt;
-
 }
 
 
