@@ -1,6 +1,6 @@
-angular.module('ekg.choose', [])
+angular.module('ekg.landing', [])
 
-.controller('ChooseController', function ($scope, $interval, $window) {
+.controller('LandingController', function ($scope, $interval, $window) {
   $scope.images = [
     { source:"http://res.cloudinary.com/kardia-io/image/upload/v1420758425/wearable-1_jdlkac.jpg" },
     { source:"http://res.cloudinary.com/kardia-io/image/upload/v1420758429/wearable-2_eelqqw.jpg" },

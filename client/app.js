@@ -4,7 +4,7 @@
   angular.module('ekg', [
     'ekg.auth',
     'ekg.analysis',
-    'ekg.choose',
+    'ekg.landing',
     'ekg.api',
     'ekg.docs',
     'ui.router',
@@ -24,7 +24,7 @@
 
   })
 
-  .config(function($stateProvider, $urlRouterProvider, $httpProvider){
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
 
     // AngularUI Router uses the concept of states
     // Documentation: https://github.com/angular-ui/ui-router
@@ -50,10 +50,10 @@
         authenticate: true    
       })
 
-      .state('choose', {
+      .state('landing', {
         url: '/',
-        templateUrl: 'choose/choose.html',
-        controller: 'ChooseController'     
+        templateUrl: 'landing/landing.html',
+        controller: 'LandingController'     
       })
 
       .state('developer', {

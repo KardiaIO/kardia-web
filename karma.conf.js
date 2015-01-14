@@ -31,7 +31,7 @@ module.exports = function(config) {
       'client/lib/bootstrap-material-design/dist/js/material.min.js',
       'client/app.js',
       'client/components/web/analysis/main.js',
-      'client/choose/choose.js',
+      'client/landing/landing.js',
       'client/components/web/**/*.js',
       'client/components/developer/**/*.js',
       'client/components/signin/**/*.js',
