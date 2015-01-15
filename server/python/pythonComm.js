@@ -9,7 +9,7 @@ module.exports = function(io) {
       console.log('new connection');
         
       // Talk to Python
-      client.connect(pythonPortURL);
+      client.connect("tcp://127.0.0.1:8000");
       client.on('error', function(error) {
         console.error("RPC Client Error:", error);
       });
@@ -33,10 +33,10 @@ module.exports = function(io) {
           }
           // Sends Response from Python to Swift
           console.log('RESULT FROM PYTHON ', result);
-          socket.emit('node.js', result);
+          socket.emit('/node.js', result);
 
           // Broadcasts to Web-App
-          socket.broadcast.emit('node.js', result);
+          socket.broadcast.emit('/node.js', result);
 
           if(!more) {
             console.log("DONE");
@@ -45,7 +45,15 @@ module.exports = function(io) {
 
         // Send data to Angular Analysis Chart
         socket.broadcast.emit('/analysisChart', { "data": data });
+      });
 
+      // Send disconnected event
+      socket.on('disconnect', function() {
+        socket.broadcast.emit('disconnected');
+      });
+
+      socket.on('/BLEDisconnect', function() {
+        socket.broadcast.emit('disconnect');
       });
     });
 };

@@ -217,6 +217,15 @@ form input {
 }
 
 /**
+ * Sign In / Up Form
+ */
+.api-form {
+  width: 25%;
+  margin-left: 37.5%;
+  margin-right: 37.5%; 
+}
+
+/**
  * Analysis Graph
  */
 .analysis-container {
@@ -499,20 +508,44 @@ form input {
 
   .widget-container {
     padding-top: 0;
-    padding-left: 12%;
-    padding-right: 12%;
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+}
+
+/**
+ * Extra-Large Devices
+ */
+@media(min-width:1600px) { 
+
+  .status-code-status {
+    font-size: 10em;
+    padding-top: 15%;
+  }
+
+  .status-code-icon {
+    font-size: 4em;
+    padding: 2%;
+  }
+
+  .is-live-text {
+    font-size: 6em;
+    padding-top: 15%;
+  }
+
+  .chart-bpm {
+    font-size: 10em;
+    padding-top: 15%;
+  }
+
+  .bpm-icon {
+    font-size: 4em;
+    padding: 2%;
   }
 
 }
 
-/*                                         
-/* Sign in and Sign up form 
-*/
-.api-form {
-  width: 25%;
-  margin-left: 37.5%;
-  margin-right: 37.5%; 
-}
+
 
 
 

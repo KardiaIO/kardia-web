@@ -11,9 +11,6 @@ angular.module('ekg.analysis', [
     template: '<div></div>',
     restrict: 'E',
     link: function postLink(scope, element, attrs) {
-      // $window.onresize = function() {
-      //   scope.$apply();
-      // };
 
       scope.$watchCollection('[data, renderer, width]', function(newVal, oldVal) {
         if(!newVal[0]) {
@@ -32,9 +29,6 @@ angular.module('ekg.analysis', [
           max: 7.2
         });
 
-        // var yAxis = new Rickshaw.Graph.Axis.Y({graph:graph});
-        // yAxis.render();
-
         graph.render();
       });
     }
@@ -42,22 +36,28 @@ angular.module('ekg.analysis', [
 })
 .controller('AnalysisController', function ($scope, $state, $window) {
   // Incoming Objects from Node via Swift.
-  var socket = io.connect("http://kardia.io");
-  var count = 0;  
+  var socket = io.connect("http://localhost:8080");
+  var count = 0;
+  var $statusCodeIcon = $('.status-code-icon');
+  var $bpmIcon = $('.bpm-icon');
   $scope.incoming = [];
   $scope.renderer = 'line';
+  // Graph width is set to viewport width
   $scope.width = $window.innerWidth;
   $scope.status = 'NA';
   $scope.bpm = '00';
-  $scope.statusTitle = '';
-  $scope.bpmTitle = 'BPM';
+  $scope.statusTitle = '--';
+  $scope.bpmTitle = '--';
   $scope.isLive = 'Awaiting Heartbeat';
   
   socket.on('connect', function () {
     console.log('new connection in client!');
   });
 
-  socket.on('node.js', function (code) {
+  socket.on('/node.js', function (code) {
+    if(!code) {
+      console.log('No CODE');
+    }
     var status;
     if (code.statusCode === "200") {
       status = "NSR";
@@ -67,7 +67,11 @@ angular.module('ekg.analysis', [
       $scope.statusTitle = "Arrhythmia";
     }
     $scope.status = status;
+    $scope.bpmTitle = 'BPM';
     $scope.bpm = code.heartRate;
+    // Animate Icons
+    $statusCodeIcon.addClass('faa-spin');
+    $bpmIcon.addClass('faa-pulse');
   });
 
   socket.on('/analysisChart', function (data) {
@@ -87,6 +91,19 @@ angular.module('ekg.analysis', [
     }
 
     $scope.incoming = $scope.incoming.concat(displayData);
+    $scope.$apply();
+  });
+
+  // When Swift App is Shutdown
+  socket.on('disconnected', function() {
+    $scope.status = 'NA';
+    $scope.bpm = '00';
+    $scope.statusTitle = '--';
+    $scope.bpmTitle = '--';
+    $scope.isLive = 'Awaiting Heartbeat';
+    // Remove Animation Classes
+    $statusCodeIcon.removeClass('faa-spin');
+    $bpmIcon.removeClass('faa-pulse');
     $scope.$apply();
   });
 
