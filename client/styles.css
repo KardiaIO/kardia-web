@@ -1,0 +1,513 @@
+html, body {
+  height:100%;
+  margin:0; 
+  padding:0;
+  background-color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+.dropdown-menu {
+  padding: 15px;
+  padding-bottom: 0px;
+  width: 250px;
+}
+
+form input {
+  margin-bottom: 15px;
+}
+
+.form-error {
+  color: #E74C3C;
+  font-size: .75em;
+  display: block;
+  margin: 12px 0 10px 0;
+}
+
+.formSwitch:hover {
+  cursor:pointer;
+  color:blue;
+}
+
+.navbar {
+  background-color: white;
+  margin-bottom: 0px;
+}
+
+.navbar .navbar-nav > li > a {
+  color: black;
+}
+
+.navbar .navbar-nav > li > a:hover {
+  color: steelblue;
+}
+
+.navbar .navbar-nav > .active > a {
+  color: black;
+}
+
+.navbar .navbar-nav > .active > a:hover {
+  color: steelblue;
+}
+
+.navbar .navbar-brand {
+  color: black;
+}
+
+.navbar .navbar-brand:hover {
+  color: steelblue;
+}
+
+.navbar-toggle {
+  background-color: #888888;
+}
+
+.navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
+  background-color: #555;
+}
+
+.navbar-header span:hover {
+  cursor:default;
+}
+
+.navbar-header img:hover {
+  cursor:pointer;
+}
+
+.navbar-collapse li:hover {
+  cursor:pointer;
+}
+
+.container-full {
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fill-height {
+  height: 100vh;
+  background-color: lightblue;
+}
+
+/**
+ * Landing Page
+ */
+.landing-img {
+  width: 100%;
+  height: 720px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+  overflow: auto;
+  z-index: -1;
+}
+
+.landing-header {  
+  margin-top: 13%;
+  color: white;
+  left: 0;
+  top: 0;
+  z-index:100;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+.landing-title {
+  z-index:100;
+  text-align: center;
+  font-size: 90px;
+  font-family: 'Yanone Kaffeesatz', serif;
+  letter-spacing: 10px;
+}
+
+.landing-buttons {
+  font-family: 'Raleway', serif;
+  z-index:100;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  padding: 15px 13px 15px 13px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.landing-buttons:hover {
+  color: #2d6cb1;
+  text-decoration: none; 
+}
+
+.header-space1 {
+  height: 100px;
+}
+
+.header-space2 {
+  height: 55px;
+}
+
+.info-container {
+  width: 100%
+}
+
+.info-text {
+  margin-top: 4%;
+  line-height: 2.5;
+}
+
+.landing-about {
+  margin: 20%;
+  margin-top : 7%;
+  margin-bottom: 5%;
+}
+
+.kardiak { 
+  height: auto;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+
+.about {
+  margin-top: 20%;
+}
+
+.landing-how {
+  background-color: rgba(220,220,220,0.2);
+  width: 100%;
+  margin-top : 10%;
+  border-top: solid 1px rgba(1,1,1,0.1);
+  border-bottom: solid 1px rgba(1,1,1,0.1);
+}
+
+.how {
+  padding-top: 10%;
+  margin-top: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.how-text {
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-bottom: 15%;
+}
+
+.footer {
+  color: rgba(255,255,255,0.7);
+  padding-top: 15px;
+  background-color: rgba(1,1,1,0.8);
+  text-align: center;
+  font-size: 10pt;
+  width:100%;
+  height:15px;
+}
+
+.bottom-pad {
+  background-color: rgba(1,1,1,0.8);
+  height: 35px;
+}
+
+/**
+ * Analysis Graph
+ */
+.analysis-container {
+  background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 50%, #7db9e8 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #1e5799 0%,#2989d8 50%,#7db9e8 100%); /* W3C */
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );*/
+  padding-top: 2%;
+}
+
+.analysis-title {
+  color: white;
+}
+
+.rickshaw-container {
+  padding-bottom: 3%;
+}
+
+/**
+ * Graph Widgets
+ */
+.widget-container {
+  background: -moz-linear-gradient(top, #d2ebf9 1%, #d2ebf9 1%, #feffff 80%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#d2ebf9), color-stop(1%,#d2ebf9), color-stop(80%,#feffff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #d2ebf9 1%,#d2ebf9 1%,#feffff 80%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #d2ebf9 1%,#d2ebf9 1%,#feffff 80%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #d2ebf9 1%,#d2ebf9 1%,#feffff 80%); /* IE10+ */
+  background: linear-gradient(to bottom, #d2ebf9 1%,#d2ebf9 1%,#feffff 80%); /* W3C */
+}
+
+.widget-font {
+  color: steelblue;
+}
+
+.status-code-status {
+  color: steelblue;
+  font-weight: bold;
+  margin: 0;
+}
+
+.status-code-icon {
+  color: steelblue;
+}
+
+.is-live-text {
+  color: steelblue;
+  font-weight: bold;
+  margin: 0;
+}
+
+.chart-bpm {
+  color: steelblue;
+  font-weight: bold;
+  margin: 0;
+
+}
+
+.bpm-icon {
+  color: steelblue;
+}
+
+.square {
+  float:left;
+  position: relative;
+  width: 30%;
+  padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
+  margin:1.66%;
+  overflow:hidden;
+}
+.content {
+  position:absolute;
+  height:100%; /* = 100% - 2*10% padding */
+  width:100%; /* = 100% - 2*5% padding */
+  padding: 10% 5%;
+}
+
+.violet {
+  background-color: #F5C0FF;
+}
+
+.teal {
+  background-color: #00FFE5;
+}
+
+.orange {
+  background-color: #AFDEDD;
+}
+
+/**
+ * Extra Small Devices (Mobile / Global styles should be above this line)
+ */
+@media(max-width:480px) {
+  .landing-img {
+    height: 40em;
+  }
+
+  .analysis-title {
+    font-size: 2em; 
+  }
+
+  .widget-container {
+    padding-top: 8%;
+    padding-bottom: 50%;
+  }
+
+  .widget-font {
+    font-size: 0.6em;
+  }
+
+  .status-code-status {
+    font-size: 3em;
+    padding-top: 10%;
+  }
+
+  .status-code-icon {
+    font-size: 1em;
+  }
+
+  .is-live-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1.5em;
+    padding-top: 10%;
+  }
+
+  .chart-bpm {
+    font-size: 3em;
+    padding-top: 10%;
+  } 
+
+  .bpm-icon {
+    font-size: 1em;
+  }
+
+}
+
+/**
+ * Edge Cases and Landscape Views
+ */
+@media(min-width:481px) {
+
+  .widget-container {
+    padding-top: 5%;
+  }
+
+  .status-code-status {
+    font-size: 3.5em;
+    padding-top: 12%;
+  }
+
+  .status-code-icon {
+    font-size: 1.3em;
+    padding: 2%;
+  }
+
+  .is-live-text {
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.5em;
+    padding-top: 12%;
+  }
+
+  .chart-bpm {
+    font-size: 3.5em;
+    padding-top: 12%;
+  } 
+
+  .bpm-icon {
+    font-size: 1.3em;
+    padding: 2%;
+  }
+}
+
+/**
+ * Large Phone Exceptions ( ie iPhone6 )
+ */
+@media all and (max-width: 640px) {
+  .landing-title {
+    font-size: 5em;
+  }
+  .landing-about {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .how {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .how-text {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+/**
+ * Small Devices (Tablets, 768px and up)
+ */
+@media(min-width:768px) {
+
+  .widget-container {
+    padding-top: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .widget-font {
+    font-size: 1.2em;
+  }
+
+  .status-code-status {
+    font-size: 5em;
+    padding-top: 13%;
+  }
+
+  .status-code-icon {
+    font-size: 1.7em;
+  }
+
+  .is-live-text {
+    font-size: 2.7em;
+    padding-top: 13%;
+  }
+
+  .chart-bpm {
+    font-size: 5em;
+    padding-top: 13%;
+  }
+
+  .bpm-icon {
+    font-size: 1.7em;
+  }
+
+}
+
+/**
+ * Medium Devices (Laptops, 992px and up)
+ */
+@media(min-width:992px) {
+
+  .widget-container {
+    padding-top: 3%;
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
+  .status-code-status {
+    font-size: 6em;
+    padding-top: 13%;
+  }
+
+  .status-code-icon {
+    font-size: 2em;
+    padding: 2%;
+  }
+
+  .is-live-text {
+    font-size: 3.7em;
+    padding-top: 13%;
+  }
+
+  .chart-bpm {
+    font-size: 6em;
+    padding-top: 13%;
+  }
+
+  .bpm-icon {
+    font-size: 2em;
+    padding: 2%;
+  }
+
+}
+
+/*                                         
+/* Large Devices (Desktops, 1200px and up) 
+*/
+@media(min-width:1200px) {
+
+  .widget-container {
+    padding-top: 0;
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+
+}
+
+
+
+
+
+
+
+

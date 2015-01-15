@@ -1,137 +1,66 @@
-<div ng-controller="AuthController">
-
-  <div ng-show="isAuth()" id='analysis'>
-    <div ng-show="loading" id='loadingSpinner' layout="column" layout-align="center">
-      <!-- Colors of spinner: teal spinner (#26a69a) on 'white' background (#eeeeee) -->
-      <!-- <img ng-src="components/web/images/loading.gif"> -->
+<div class="container-full analysis-container">
+    <div layout="row" layout-align="center">
+      <h1 class="analysis-title">ECG Analysis</h1>
     </div>
 
-    <!-- Live stream data chart -->
-    <div class="chart-status" align="center"></div>
-    <div class="chart-bpm" align="center"></div>
-    <div class="chart" layout="horizontal" layout-align="center"></div>
-
-    <div id='loadingWrapper'>
-
-<!--       <div layout="horizontal" layout-align="center" id='zoomedInGraph' style="margin-bottom: 50px;">
-        <rickshaw-chart
-          data="snippet"
-          color1="red"
-          color2="blue"
+    <div layout="row" layout-align="center">
+      <div class="rickshaw-container">
+        <rickshaw 
+          data="incoming"
+          color="white"
           renderer="renderer"
-          width="300"
-          height="300"    
-          min="4"
-          max="5.5">
-        </rickshaw-chart>
+          width="width"
+          height="200"
+        ></rickshaw>
       </div>
+    </div>
+</div>
 
-      <div layout="horizontal" layout-align="center" id='longGraph'>
-        <rickshaw-chart
-        data="largerSnippet"
-        color1="red"
-        color2="blue"
-        renderer="renderer"
-        width="500"
-        height="100"
-        min="4"
-        max="5.5">
-        </rickshaw-chart>
-      </div> -->
+<div class="container-full widget-container">
 
-<!--       <div class="panel panel-primary" style="position: absolute;left: 100px; top: 150px;">
-        <div class="panel-heading">
-          <h3 class="panel-title">Control Panel</h3>
-        </div>
-        <div class="panel-body">
-          <a class="btn btn-primary" style="width:150px" data-toggle="modal" data-target="#frequencyModal">Frequency</a><br/>
-          <a class="btn btn-primary" style="width:150px" data-toggle="modal" data-target="#lorenzModal">Lorenz</a><br/>
-          <a class="btn btn-primary" style="width:150px" ng-click="toggleR()">R Wave</a>
-        </div>
-      </div> -->
+    <div layout="row">
+      <md-whiteframe class="md-whiteframe-z4 square graph-widget orange">
+          <div class="content">
 
-      <!-- The timeButtons div wraps both nested divs, which are responsible for changing the clock when a user clicks a button -->
-<!--       <div class="timeButtons" ng-controller="TimeController" layout="row" layout-align="center center">
-        <div id="buttonContainer" style="margin-top: 50px; margin-right: 50px; height: 180px;"> -->
-          <!-- BEGIN DAY OF WEEK BUTTONS -->
-<!--           <div id='dayOfWeekContainer' style="margin-left: 15px;"> -->
-            <!-- getData uses getters and setters of the Time Factory to ping the server with the right time -->
-<!--             <md-button class="md-raised" id='MON' aria-label=''>MON</md-button>
-            <md-button class="md-raised" id='TUES' aria-label=''>TUE</md-button>
-            <md-button class="md-raised" id='WED' aria-label=''>WED</md-button>
-            <md-button class="md-raised" id='THURS' aria-label=''>THR</md-button>
-            <md-button class="md-raised" id='FRI' aria-label=''>FRI</md-button>
-            <md-button class="md-raised" id='SAT' aria-label=''>SAT</md-button>
-            <md-button class="md-raised" id='SUN' aria-label=''>SUN</md-button>
-          </div> -->
-          <!-- END DAY OF WEEK BUTTONS -->
+              <div layout="row" layout-align="center">
+                <h2 class="status-code-status">{{ status }}</h2>
+              </div>
 
-          <!-- BEGIN PLAY BUTTONS -->
-<!--           <div id="playButtons" style="margin-top: 20px;"> -->
-            <!-- First update the clock time, then send a request for new data to update graph -->
-            <!-- <md-button class="md-raised" ng-click="fastBackward()" aria-label=''><span style="padding-right: 7px;" class="fa fa-backward"></span></md-button> -->
-            <!-- Style is padding-left and not padding-right because icon is rotated 180 degrees -->
-            <!-- <md-button class="md-raised" ng-click="playBackward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play fa-rotate-180"></span></md-button> -->
-            <!-- <md-button class="md-raised" ng-click="stopPlay()" aria-label=''><span class="fa fa-stop"></span></md-button> -->
-            <!-- <md-button class="md-raised" ng-click="playForward()" aria-label=''><span style="padding-left: 4px;" class="fa fa-play"></span></md-button> -->
-            <!-- <md-button class="md-raised" ng-click="fastForward()" aria-label=''><span style="padding-left: 7px;" class="fa fa-forward"></span></md-button> -->
-<!--           </div> -->
-          <!-- END PLAY BUTTONS -->
-        <!-- </div> --><!-- end button container -->
+              <div layout="row" layout-align="center">
+                <i class="fa fa-circle-o-notch fa-3x faa-spin animated status-code-icon"></i>
+              </div>
 
-<!--         <div id="clockContainer" style="margin-top: -60px; height: 180px;"> -->
-          <!-- BEGIN CLOCK DISPLAY -->
-<!--           <div class="face">
-            <div class="hour-hand"></div>
-            <div class="minute-hand"></div>
-            <div class="seconds-hand"></div>
-            <div class="center"></div>
-          </div> -->
-          <!-- END CLOCK DISPLAY -->
+              <div layout="row" layout-align="center">
+                <p class="widget-font">{{ statusTitle }}</p>
+              </div>
 
-          <!-- BEGIN DATE DISPLAY -->
-<!--           <div id="displayedTimeContainer" style="margin-top: -15px; margin-left: 20px;">
-            {{display}}
-          </div> -->
-          <!-- END DATE DISPLAY -->
-        <!-- </div>  End clockContainer -->
-      <!-- </div>End timeButtons wrapper div -->
-    <!-- </div> --><!-- End loadingWrapper -->
-<!--   </div> -->
+          </div>
+      </md-whiteframe>
 
-     <!-- frequencyModal -->
-<!--       <div class="modal fade" id="frequencyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="chartController">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Interval Chart</h4>
-            </div>
-            <div class="modal-body">
-              <div layout="horizontal" layout-align="center" id='frequencyChart'></div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      <md-whiteframe class="md-whiteframe-z4 square teal">
+          <div class="content">
+            <div layout="row" layout-align="center">
+              <h1 class="is-live-text text-center">{{ isLive }}</h1>
             </div>
           </div>
-        </div>
-      </div>
- -->
-       <!-- lorenzChart -->
-<!--       <div class="modal fade" id="lorenzModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="chartController">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Lorenz Chart</h4>
-            </div>
-            <div class="modal-body">
-              <div layout="horizontal" layout-align="center" id='lorenzChart'></div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
+      </md-whiteframe>
+
+      <md-whiteframe class="md-whiteframe-z4 square graph-widget violet">
+          <div class="content">
+               
+               <div layout="row" layout-align="center">
+                <h2 class="chart-bpm">{{ bpm }}</h2>
+              </div>
+
+              <div layout="row" layout-align="center">
+                <i class="fa fa-heart fa-3x faa-pulse animated bpm-icon"></i>
+              </div>
+
+              <div layout="row" layout-align="center">
+                <p class="widget-font">{{ bpmTitle }}</p>
+              </div>
           </div>
-        </div>
-      </div> -->
+      </md-whiteframe>
+    </div>
+  
 </div>
