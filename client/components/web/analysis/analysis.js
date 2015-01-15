@@ -42,7 +42,7 @@ angular.module('ekg.analysis', [
 })
 .controller('AnalysisController', function ($scope, $state, $window) {
   // Incoming Objects from Node via Swift.
-  var socket = io.connect("http://localhost:8080");
+  var socket = io.connect("http://kardia.io");
   var count = 0;  
   $scope.incoming = [];
   $scope.renderer = 'line';
