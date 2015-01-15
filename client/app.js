@@ -4,7 +4,6 @@
   angular.module('ekg', [
     'ekg.auth',
     'ekg.analysis',
-    'ekg.landing',
     'ekg.api',
     'ekg.docs',
     'ui.router',
@@ -53,8 +52,7 @@
 
       .state('landing', {
         url: '/',
-        templateUrl: 'landing/landing.html',
-        controller: 'LandingController'
+        templateUrl: 'landing/landing.html'
       })
 
       .state('developer', {

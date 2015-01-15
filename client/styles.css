@@ -95,6 +95,7 @@ form input {
  * Landing Page
  */
 .landing-img {
+  background-color: #2d6cb1;
   width: 100%;
   height: 720px;
   bottom: 0;
@@ -504,8 +505,14 @@ form input {
 
 }
 
-
-
+/*                                         
+/* Sign in and Sign up form 
+*/
+.api-form {
+  width: 25%;
+  margin-left: 37.5%;
+  margin-right: 37.5%; 
+}
 
 
 
