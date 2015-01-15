@@ -30,7 +30,7 @@ module.exports = function(config) {
       'client/lib/bootstrap-material-design/dist/js/ripples.min.js',
       'client/lib/bootstrap-material-design/dist/js/material.min.js',
       'client/app.js',
-      'client/components/web/analysis/main.js',
+      'client/components/web/analysis/analysis.js',
       'client/landing/landing.js',
       'client/components/web/**/*.js',
       'client/components/developer/**/*.js',
