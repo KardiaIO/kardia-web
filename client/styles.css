@@ -225,6 +225,16 @@ form input {
   margin-right: 37.5%; 
 }
 
+.btn-block {
+  color: black; 
+  border-style:solid;
+  border-width:1px
+}
+
+.btn-block:hover {
+  color:steelblue; 
+}
+
 /**
  * Analysis Graph
  */
@@ -421,6 +431,24 @@ form input {
     margin-left: 10%;
     margin-right: 10%;
   }
+
+  .api-form {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto; 
+  }
+
+}
+
+/**
+ * Small Devices (641px and up)
+ */
+@media(min-width:641px) {
+  .api-form {
+    width: 35%;
+    margin-left: auto;
+    margin-right: auto; 
+  }
 }
 
 /**
@@ -463,6 +491,8 @@ form input {
 
 }
 
+
+
 /**
  * Medium Devices (Laptops, 992px and up)
  */
@@ -499,6 +529,12 @@ form input {
     padding: 2%;
   }
 
+  .api-form {
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto; 
+  }
+
 }
 
 /*                                         
@@ -513,6 +549,7 @@ form input {
   }
 }
 
+<<<<<<< HEAD
 /**
  * Extra-Large Devices
  */
@@ -542,12 +579,6 @@ form input {
     font-size: 4em;
     padding: 2%;
   }
-
-}
-
-
-
-
 
 
 
