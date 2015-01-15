@@ -133,7 +133,7 @@ describe('Unit: AuthController', function() {
     defer.resolve('diamond-dogs');
     AuthStub.signin.withArgs($rootScope.user).returns(defer.promise);
     // Mocks a transistion using stateMock.js.
-    $state.expectTransitionTo('user.triage');
+    $state.expectTransitionTo('user.analysis');
     // Call Controller's signin method and run digest loop.
     $rootScope.signin();
     $rootScope.$apply();
