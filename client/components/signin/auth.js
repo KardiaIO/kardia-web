@@ -26,7 +26,7 @@ angular.module('ekg.auth', [])
         // We will put this token into local storage.
         if (token) {
           $window.localStorage.setItem('com.ekgtracker', token);
-          $state.transitionTo('user.triage');
+          $state.transitionTo('user.analysis');
         } else {
           $scope.signinFormError = true;
         }
