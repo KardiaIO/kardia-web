@@ -124,8 +124,31 @@ In analysis.html, the rickshaw tag refers its data to $scope.incoming. The ricks
       width: '='
     },
 ```
+### Widgets
+The widgets displayed on analysis.html represent the analysis that is sent by the python server. The very top/left widget refers to a status code that indicates whether the data points represent a normal sinus rhythm(NSR) or an arrythmia(ARR). The one on the very bottom/right will display the calculated heart rate. This data is accessed through the socket.on() call on the event 'node.js', mentioned earlier (See pythonComm.js). It checks for the status code and sets the BPM.
+```javascript
+socket.on('node.js', function (statusCode) {
+	var status;
+	if (statusCode.statusCode === "200") {
+	  status = "NSR";
+	  $scope.statusTitle = "Normal Sinus Rhythm";
+	} else if (statusCode.statusCode === "404") {
+	  status = "ARR";
+	  $scope.statusTitle = "Arrhythmia";
+	}
+
+	$scope.status = status;
+	$scope.bpmTitle = 'BPM';
+	$scope.bpm = statusCode.heartRate;
+
+	// Animate Icons
+	$statusCodeIcon.addClass('faa-spin');
+	$bpmIcon.addClass('faa-pulse');
+});
+```
+
 # Authentication
-For documentation regarding authentication refer to this [page](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js).
+For documentation regarding authentication, please refer to this [page](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js).
 
 
 
