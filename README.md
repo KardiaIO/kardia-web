@@ -22,6 +22,11 @@ When Swift emits the event 'message', data will be grabbed by the node.js server
 ```javascript
 socket.on('message')
 ```
+Within the event listening to 'message', node will call the python server's functions using zerorpc's 'invoke'.
+```javascript
+client.invoke("function name", data, function(error, result, more));
+```
+
 
 
 
