@@ -54,7 +54,7 @@ angular.module('ekg.analysis', [
     console.log('new connection in client!');
   });
 
-  socket.on('/node.js', function (code) {
+  socket.on('node.js', function (code) {
     if(!code) {
       console.log('No CODE');
     }

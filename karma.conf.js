@@ -33,7 +33,6 @@ module.exports = function(config) {
       'client/components/web/analysis/analysis.js',
       'client/landing/landing.js',
       'client/components/web/**/*.js',
-      'client/components/developer/**/*.js',
       'client/components/signin/**/*.js',
       'client/test/*.js'
     ],
