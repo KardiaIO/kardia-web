@@ -13,13 +13,29 @@ App Architecture
 
 Server
 ============
-### Web Sockets: Require the Socket Functionality
+###3Scale
+3Scale is third-party API management and authentication. 
+
+### Require and link your 3scale account to the node server.
 ```javascript
+var threeScale = require('3scale').Client;
+
+var threeScaleClient = new threeScale(process.env.THREE_SCALE_CLIENT);
+threeScaleClient.authrep({"app_id": process.env.THREE_SCALE_APP_ID, "app_key": process.env.THREE_SCALE_APP_KEY, "usage": { "hits": 1 } }, function(response){
+  sys.log(sys.inspect(response));
+});
+```
+To add authentication, more work will be necessary. You can read this blog [post](http://http://davidkae.azurewebsites.net/adding-3scale-to-your-node-js-server-2/) to learn how to do so.
+
+### Web Sockets: Require Socket.io and our built out Socket Functionality
+```javascript
+var io = require('socket.io')(server);
+
 require('./server/python/pythonComm.js')(io);
 ```
 
 ### Socket.on() && Socket.emit()
-Whenever our Swift app emits the event 'message', the node.js server will listen for any event called 'message' using socket.on().
+In the pythonComm.js file. Whenever our Swift app emits the event 'message', the node.js server will listen for any event called 'message' using socket.on().
 ```javascript
 socket.on('message')
 ```
@@ -29,7 +45,7 @@ socket.broadcast.emit('/analysisChart', { "data": data });
 ```
 
 ### Client.invoke()
-While listening to the event 'message', node will call the python server's own functions using zerorpc's native 'invoke'.
+While listening to the event 'message', node will call the python server's own functions using zeromq/zerorpc's native 'invoke'.
 ```javascript
 client.invoke("functionName", data, function(error, result, more){
   if (error) {
@@ -45,7 +61,7 @@ When the invoking our created python function called 'crunch', the python server
 ```javascript
 socket.emit('/node.js', result); //emit to swift app
 
-socket.broadcast.emit('/node.js', result); //emit to webapp or anything else listening
+socket.broadcast.emit('/node.js', result); //emit to webapp and anything else listening
 ```
 
 
