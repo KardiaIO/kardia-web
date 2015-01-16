@@ -19,10 +19,14 @@ require('./server/python/pythonComm.js')(io);
 ```
 ### Web Sockets: Listen to Swift
 
-#### Socket.on()
-When Swift emits the event 'message', data will be grabbed by the node.js server.
+#### Socket.on() && Socket.emit()
+Whenever our Swift app emits the event 'message', the node.js server will listen for any event called 'message' using socket.on().
 ```javascript
 socket.on('message')
+```
+The server can then relay the data to our web app with its own emit call.
+```javascript
+socket.broadcast.emit('/analysisChart', { "data": data });
 ```
 
 #### Client.invoke()
@@ -36,7 +40,7 @@ client.invoke("functionName", data, function(error, result, more){
 });
 ```
 
-#### Socket.emit();
+#### Socket.emit('crunch');
 When the invoking 'crunch', the python server will send back an analysis of the data it received, which will be emitted in an event called '/node.js'. Anything listening 'on' these emits will receive the result of the 'emit'.
 ```javascript
 socket.emit('/node.js', result); //emit to swift app
