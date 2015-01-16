@@ -6,7 +6,9 @@ angular.module('ekg.analysis')
   
   // If for some reason the TimeFactory's clock has not yet been set, we
   // will set it here to be UTC = 1420000000000
-  if (!TimeFactory.getTime().dateObject) TimeFactory.setTime(1420000000000);
+  if (!TimeFactory.getTime().dateObject) { 
+    TimeFactory.setTime(1420000000000); 
+  }
 
   // This function will call the getChartData function of the getResults
   // Factory with the time that is currently at the start of the long graph
