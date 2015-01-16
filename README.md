@@ -91,15 +91,40 @@ var graph = new Rickshaw.Graph({
 
 graph.render();
 ```
-The data rendered on the graph is stored within the 'series' property of the rickshaw graph. The data property in series is filled with data points streaming in from the AnalysisController's web socket listen event, and is set to hold up to 25 data points at any time.
+The data property in the graph's series is filled with data points streaming in through websockets existing in the AnalysisController and is set to hold up to 25 data points at any time. As data comes in, it is set to a displayData object, and a timestamp is property is added. 
 ```javascript
 socket.on('/analysisChart')
 
+var displayData = {};
+displayData.x = count;
+count += 0.3;
+displayData.y = parseFloat(amplitude);
+
+// Make 25 points at any given time
 if ($scope.incoming.length > 25) {
   $scope.incoming.shift();
 }
 
 $scope.incoming = $scope.incoming.concat(displayData);
+```
+In analysis.html, the rickshaw tag refers its data to $scope.incoming. The rickshaw directive held in analysis.js will then create a $scope.data = incoming, thus rendering the graph constantly with new points.
+```html
+<rickshaw 
+  data="incoming"
+  color="white"
+  renderer="renderer"
+  width="width"
+  height="200"
+></rickshaw>
+```
+```javascript
+.directive('rickshaw', function(){
+  return {
+    scope: {
+      data: '=',
+      renderer: '=',
+      width: '='
+    },
 ```
 
 
