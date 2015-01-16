@@ -14,7 +14,7 @@ Back-end
 ============
 
 ## server.js
-A straight forward Node.js/Express server that takes on the role of traffic control. It relays data to and from the Mobile Swift app, python server, as well as our demo web client. 
+A straightforward Node.js/Express server that takes on the role of traffic control. It relays data to and from the Mobile Swift app, python server, as well as our demo web client. 
 
 ### Cloudinary
 [Cloudinary](http://cloudinary.com/) allows webAppEKGAPI to use images while not having to store any locally. Rather all images used are stored in Kardia's cloudinary account. All stored images are given a url, which can be referred to when needed.
