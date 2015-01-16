@@ -14,9 +14,9 @@ App Architecture
 Server
 ============
 ###3Scale
-3Scale is third-party API management and authentication. 
+[3Scale](http://www.3scale.net/) is third-party API management and authentication. It will keep track of user usage and authenticate users before allowing them access to our API. 
 
-### Require and link your 3scale account to the node server.
+### Require 3scale and link your account to the node server.
 ```javascript
 var threeScale = require('3scale').Client;
 
