@@ -29,20 +29,22 @@ socket.broadcast.emit('/analysisChart', { "data": data });
 ```
 
 ### Client.invoke()
-While listening to 'message', node will call the python server's functions using zerorpc's native 'invoke' function.
+While listening to the event 'message', node will call the python server's own functions using zerorpc's native 'invoke'.
 ```javascript
 client.invoke("functionName", data, function(error, result, more){
   if (error) {
     console.log('error');
   }
-  console.log('result is whatever the python server may return');
+  console.log('data is whatever info you want to send to the python server')
+  console.log('result is whatever the python server returns');
 });
 ```
 
 ### Socket.emit('crunch');
-When the invoking 'crunch', the python server will send back an analysis of the data it received, which will be emitted in an event called '/node.js'. Anything listening 'on' these emits will receive the result of the 'emit'.
+When the invoking our created python function called 'crunch', the python server will send back an analysis of the data it received, which will be emitted in an event called '/node.js'. Anything listening 'on' these emits will receive the result of the 'emit'.
 ```javascript
 socket.emit('/node.js', result); //emit to swift app
+
 socket.broadcast.emit('/node.js', result); //emit to webapp or anything else listening
 ```
 
