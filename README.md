@@ -1,6 +1,7 @@
 webAppEKGAPI
 ============
-[![Stories in Ready](https://badge.waffle.io/ekgapi/webappekgapi.png?label=ready&title=Ready)](https://waffle.io/ekgapi/webappekgapi)[![Build Status](https://travis-ci.org/EKGAPI/webAppEKGAPI.svg?branch=master)](https://travis-ci.org/EKGAPI/webAppEKGAPI)
+[![Stories in Ready](https://badge.waffle.io/ekgapi/webappekgapi.png?label=ready&title=Ready)](https://waffle.io/ekgapi/webappekgapi)
+[![Build Status](https://travis-ci.org/EKGAPI/webAppEKGAPI.svg?branch=master)](https://travis-ci.org/EKGAPI/webAppEKGAPI)
 ===========
 
 Check out our site [Kardia](http://kardia.io/)!
@@ -9,4 +10,4 @@ Check out our site [Kardia](http://kardia.io/)!
 
 App Architecture
 ============
-![alt text]( "App Architecture")
+![alt text]("App Architecture")
