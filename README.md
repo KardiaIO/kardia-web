@@ -10,7 +10,7 @@ App Architecture
 ![alt text](http://res.cloudinary.com/kardia-io/image/upload/v1421366596/Screen_Shot_2015-01-15_at_4_02_38_PM_d3unqx.png "App Architecture")
 
 # Overview
-webAppEKGAPI is the face of [Kardia](http://kardia.io/). It holds the landing page of the main site, the demo web client, as well as the back end functionality of our sockets. The node.js server communicates with all aspects of Kardia, from the [mobile app](https://github.com/EKGAPI/KardiaApp/), the web client, and our number crunching [python server](https://github.com/EKGAPI/pythonEKGAPI). The web client demonstrates to developers how the Kardiak wearable ECG, can be used. It explores the realm of creativity and challenges developers to use our resources to create powerful ECG apps.
+webAppEKGAPI is the face of [Kardia](http://kardia.io/). It holds the landing page of the main site, the demo web client, as well as the back end functionality of our sockets. The node.js server communicates with all aspects of Kardia, from the [mobile app](https://github.com/EKGAPI/KardiaApp/), the web client, and our number crunching [python server](https://github.com/EKGAPI/pythonEKGAPI). The web client demonstrates to developers how the Kardiak wearable ECG can be used. It explores the realm of creativity and challenges developers to use our resources to create powerful ECG apps.
 
 Node.js Server
 ============
@@ -19,10 +19,10 @@ Node.js Server
 A straight forward Node.js/Express server that takes on the role of traffic control. It relays data to and from the Mobile Swift app, python server, as well as our demo web client. 
 
 ### Cloudinary
-[Cloudinary](http://cloudinary.com/) allows webAppEKGAPI to use images while not having to store any locally. Rather all images used are stored in Kardia's cloudinary account. All images are stored and given a url, which can be referred to when needed.
+[Cloudinary](http://cloudinary.com/) allows webAppEKGAPI to use images while not having to store any locally. Rather all images used are stored in Kardia's cloudinary account. All stored images are given a url, which can be referred to when needed.
 
 ### 3Scale
-[3Scale](http://www.3scale.net/) is third-party API management and authentication. It will keep track of user usage and authenticate users before allowing them access to our API. 
+[3Scale](http://www.3scale.net/) is used for third-party API management and authentication. It keeps track of user usage and authenticates users before allowing them access to our API. 
 
 ### Require 3scale and link your account to the node.js server.
 ```javascript
@@ -41,7 +41,7 @@ The pythonComm holds all of the websocket logic alongside communication with the
 ### Socket.emit() && Socket.on()
  With sockets, there are two major function calls: .emit(), which triggers an event, and .on(), which listens to an event. Our Swift mobile app emits an event called 'message', while the node.js server waits and listens for the 'message' event.
 ```javascript
-socket.emit(message, {'data': data});
+socket.emit('message', {'data': data});
 
 socket.on('message', function());
 ```
@@ -91,7 +91,7 @@ var graph = new Rickshaw.Graph({
 
 graph.render();
 ```
-The data property in the graph's series is filled with data points streaming in through websockets existing in the AnalysisController and is set to hold up to 25 data points at any time. As data comes in, it is set to a displayData object, and a timestamp is property is added. 
+The data property in the graph's series is filled with data points streaming in through websockets existing in the AnalysisController and is set to hold up to 25 data points at any time. As data comes in, it is set to a displayData object, and a timestamp property 'x' is added. 
 ```javascript
 socket.on('/analysisChart')
 
@@ -126,6 +126,11 @@ In analysis.html, the rickshaw tag refers its data to $scope.incoming. The ricks
       width: '='
     },
 ```
+# auth.js
+Deals with authentication for the web client demo.
+
+### JWTs
+
 
 
 
