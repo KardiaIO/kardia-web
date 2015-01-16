@@ -1,10 +1,9 @@
+[![Stories in Ready](https://badge.waffle.io/ekgapi/webappekgapi.png?label=ready&title=Ready)](https://waffle.io/ekgapi/webappekgapi) [![Build Status](https://travis-ci.org/EKGAPI/webAppEKGAPI.svg?branch=master)](https://travis-ci.org/EKGAPI/webAppEKGAPI)
 webAppEKGAPI
 ============
-[![Stories in Ready](https://badge.waffle.io/ekgapi/webappekgapi.png?label=ready&title=Ready)](https://waffle.io/ekgapi/webappekgapi) [![Build Status](https://travis-ci.org/EKGAPI/webAppEKGAPI.svg?branch=master)](https://travis-ci.org/EKGAPI/webAppEKGAPI)
+# Overview
+webAppEKGAPI is the face of [Kardia](http://kardia.io/). It holds the landing page of the main site, the demo web client, as well as the back end functionality of our sockets. The node.js server communicates with all aspects of Kardia, from the [mobile app](https://github.com/EKGAPI/KardiaApp/), the web client, and our number crunching [python server](https://github.com/EKGAPI/pythonEKGAPI). The web client demonstrates to developers how the Kardiak wearable ECG, can be used. It explores the realm of creativity and challenges developers to use our resources to create powerful ECG apps.
 ===========
-
-Check out our site [Kardia](http://kardia.io/)!
-
 <!-- To view our commented code, please click [here](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js)! -->
 
 App Architecture
