@@ -16,7 +16,7 @@ Server
 ###3Scale
 [3Scale](http://www.3scale.net/) is third-party API management and authentication. It will keep track of user usage and authenticate users before allowing them access to our API. 
 
-### Require 3scale and link your account to the node server.
+### Require 3scale and link your account to the node.js server.
 ```javascript
 var threeScale = require('3scale').Client;
 
@@ -57,20 +57,12 @@ client.invoke("functionName", data, function(error, result, more){
 ```
 
 ### Socket.emit('crunch');
-When the invoking our created python function called 'crunch', the python server will send back an analysis of the data it received, which will be emitted in an event called '/node.js'. Anything listening 'on' these emits will receive the result of the 'emit'.
+When the invoking our created python function called 'crunch', the python server will send back an analysis of the data it received, which will be emitted in an event called 'node.js'. Anything listening 'on' these emits will receive the result of the 'emit'.
 ```javascript
-socket.emit('/node.js', result); //emit to swift app
+socket.emit('node.js', result); //emit to swift app
 
-socket.broadcast.emit('/node.js', result); //emit to webapp and anything else listening
+socket.broadcast.emit('node.js', result); //emit to webapp and anything else listening
 ```
-
-
-
-
-
-
-
-
 
 Client
 ============
