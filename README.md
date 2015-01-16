@@ -37,25 +37,25 @@ To add authentication, more work will be necessary. You can read this blog [post
 The pythonComm holds all of the websocket logic alongside communication with the python server using ZeroMQ/ZeroRPC. 
 
 ### Socket.emit() && Socket.on()
-With sockets, there are two major function calls: .emit(), which triggers an event, and .on(), which listens to an event. Our Swift mobile app emits an event called 'message', while the node.js server waits and listens for the 'message' event. On the message event, data will be received in a JSON object, with properties of amplitude and time. The amplitude contains a float representing a data point up to 4 significant figures (i.e 4.456); time is represented in ISO 8601 format.
+With sockets, there are two major function calls: .emit(), which triggers an event, and .on(), which listens to an event. Our Swift mobile app emits an event called 'message', while the node.js server waits and listens for the 'message' event. On the event, data will be received in a JSON object, with properties of amplitude and time. The value of amplitude holds a float representing a data point up to 4 significant figures (i.e 4.756); time has value represented in an ISO 8601 format.
 
-When the server hears the 'message' it then relays the data to our web app with its own emit labeled '/analysisChart' as well as invokes functions held in our python server, with the data attached. 
+When the server hears the 'message' call, it then relays the data to our web app with its own emit labeled '/analysisChart' as well as invokes functions held in our python server, with the data attached. 
 ```javascript
 socket.broadcast.emit('/analysisChart', { "data": data });
 ```
 
 ### Client.invoke()
-Using zerorpc's native function invoke, the node server is able to call specific functions that exist in the python server. Here we invoke a function labelled crunch that will take the incoming data and run an analysis over it.
+Using zerorpc's native function invoke, the node server is able to call specific functions that exist in the python server. Here we invoke a function labelled 'crunch' that will take the incoming data and run an analysis over it.
 ```javascript
 client.invoke('crunch', data, function(error, result, more){
   if (error) {
     console.log('error');
   }
-  console.log('data is whatever info you want to send to the python server')
-  console.log('result is whatever the python server returns');
+  console.log('data is the info you want to send to the python server')
+  console.log('result is what the python server returns');
 });
 ```
-In turn, the python server will send back an analysis of the data it received, which will be emitted through an event called 'node.js'. Anything listening 'on' these emits will receive the result of the 'emit', in this case, it is both the mobile app and the web client.
+At the end of the crunch, the python server will send back an analysis of the data it had received, emitted through an event called 'node.js'. Anything listening 'on' these emits will receive the result of the 'emit', in this case, it is both the mobile app and the web client.
 ```javascript
 socket.emit('node.js', result); //emit to swift app
 
