@@ -33,10 +33,10 @@ module.exports = function(io) {
           }
           // Sends Response from Python to Swift
           console.log('RESULT FROM PYTHON ', result);
-          socket.emit('/node.js', result);
+          socket.emit('node.js', result);
 
           // Broadcasts to Web-App
-          socket.broadcast.emit('/node.js', result);
+          socket.broadcast.emit('node.js', result);
 
           if(!more) {
             console.log("DONE");

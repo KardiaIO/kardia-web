@@ -4,8 +4,6 @@
   angular.module('ekg', [
     'ekg.auth',
     'ekg.analysis',
-    'ekg.api',
-    'ekg.docs',
     'ui.router',
     'ngMaterial'
   ])
@@ -46,41 +44,13 @@
       .state('user.triage', {
         url: '/triage',
         templateUrl: 'components/web/triage/mdTriage.html',
-        controller: 'AuthController'
-        // authenticate: true
+        controller: 'AuthController',
+        authenticate: true
       })
 
       .state('landing', {
         url: '/',
         templateUrl: 'landing/landing.html'
-      })
-
-      .state('developer', {
-        url: '/developer',
-        templateUrl: 'components/developer/dev.html',
-        controller: 'AuthController'
-      })
-
-      .state('developer.documentation', {
-        url: '/documentation',
-        templateUrl: 'components/developer/documentation/documentation.html',
-        controller: 'DocsController'
-      })
-
-      .state('developer.apiKeys', {
-        url: '/api',
-        templateUrl: 'components/developer/api/api.html',
-        controller: 'APIController'     
-      })
-
-      .state('developer.documentation.thing1', {
-        url: '/documentation/topics/thing1',
-        templateUrl: 'components/developer/documentation/topics/thing1.html',
-      })
-
-      .state('developer.documentation.thing2', {
-        url: '/documentation/topics/thing2',
-        templateUrl: 'components/developer/documentation/topics/thing2.html',
       });
 
     // The default route should point to the root page
