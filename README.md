@@ -13,11 +13,19 @@ App Architecture
 
 Server
 ============
-### Web Sockets
-##### Requiring the Socket Functionality
+### Web Sockets: Require the Socket Functionality
 ```javascript
 require('./server/python/pythonComm.js')(io);
 ```
+### Web Sockets: Listen to Swift
+When Swift emits the event 'message', data will be grabbed by the node.js server.
+```javascript
+socket.on('message')
+```
+
+
+
+
 
 
 
