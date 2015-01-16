@@ -71,5 +71,32 @@ socket.emit('node.js', result); //emit to swift app
 socket.broadcast.emit('node.js', result); //emit to webapp and anything else listening
 ```
 
-Demo Web Client
+Web Client(demo)
 ============
+# analysis.html/analysis.js
+The analysis holds and renders data streaming through websockets.
+
+### <rickshaw>
+[Rickshaw](http://code.shutterstock.com/rickshaw/) creates interactive d3.js charts. The logic behind the graph exists within analysis.js, in a variable called graph. 
+```javascript
+var graph = new Rickshaw.Graph({
+  element: element[0],
+  width: scope.width,
+  height: attrs.height,
+  series: [{data: scope.data, color: attrs.color}],
+  renderer: scope.renderer,
+  min: 2.8,
+  max: 7.2
+});
+
+graph.render();
+```
+The data that will be rendered on the graph is stored within the series property of the rickshaw graph, as a data property within an object, in an array.
+
+
+
+
+
+
+
+
