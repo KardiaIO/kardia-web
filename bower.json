@@ -11,19 +11,17 @@
   "dependencies": {
     "angular": "~1.3.1",
     "angular-ui-router": "~0.2.11",
-    "oboe": "~2.0.2",
     "rickshaw": "~1.5.0",
     "underscore": "~1.7.0",
-    "moment": "~2.8.3",
     "jquery": "~2.1.1",
     "angular-material": "~0.5.1",
-    "bootstrap-material-design": "~0.1.6",
     "highcharts": "~4.0.4",
     "angular-mocks": "~1.3.7",
     "es5-shim": "~4.0.5",
     "bootstrap": "~3.3.1",
     "font-awesome": "~4.2.0",
-    "font-awesome-animation": "~0.0.6"
+    "font-awesome-animation": "~0.0.6",
+    "hammerjs": "~2.0.4"
   },
   "resolutions": {
     "angular": "~1.3.1"

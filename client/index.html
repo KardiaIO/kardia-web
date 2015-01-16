@@ -6,26 +6,23 @@
     <title>Kardia Demo</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link href="lib/angular-material/angular-material.css" rel="stylesheet">
     <link href="lib/angular-material/themes/default-theme.css" rel="stylesheet">
     <link href="lib/angular-material/themes/teal-theme.css" rel="stylesheet">
     <link href="lib/rickshaw/rickshaw.css" rel="stylesheet">
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="lib/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
-    <link href="lib/bootstrap-material-design/dist/css/material-wfont.min.css" rel="stylesheet">
     <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="lib/font-awesome-animation/dist/font-awesome-animation.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Yanone Kaffeesatz:400,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
     <link href="styles.css" rel="stylesheet">
-
   </head>
 
   <body>
-
+    <!-- Angular Entry Point -->
     <div ui-view></div>
 
-    <!-- javascript -->
+    <!-- Javascript Dependencies-->
     <script src="https://cdn.socket.io/socket.io-1.2.1.js"></script>
     <script src="lib/jquery/dist/jquery.min.js"></script>
     <script src="lib/angular/angular.js"></script>
@@ -33,32 +30,19 @@
     <script src="lib/underscore/underscore.js"></script>
     <script src="lib/rickshaw/vendor/d3.v3.js"></script>
     <script src="lib/rickshaw/rickshaw.js"></script>
-    <script src="lib/oboe/dist/oboe-browser.js"></script>
-    <script src="lib/moment/min/moment.min.js"></script>
-    <!-- following four are angular material dependencies -->
     <script src="lib/angular-aria/angular-aria.js"></script>
     <script src="lib/angular-animate/angular-animate.js"></script>
+    <!-- Angular-Material depends on Hammerjs-->
     <script src="lib/hammerjs/hammer.js"></script>
     <script src="lib/angular-material/angular-material.js"></script>
-    <!-- bootstrap material design -->
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="lib/bootstrap-material-design/dist/js/ripples.min.js"></script>
-    <script src="lib/bootstrap-material-design/dist/js/material.min.js"></script>
-
+    <script src="lib/highcharts/highcharts.js"></script>
+    <!-- Main App -->
     <script src="app.js"></script>
     <script src="components/web/analysis/analysis.js"></script>
     <script src="components/signin/auth.js"></script>
-    <script src="components/web/analysis/rickshawDirective.js"></script>
     <script src="components/web/analysis/timeShift.js"></script>
     <script src="components/web/analysis/chart.js"></script>
-    <!--<script src="components/web/triage/highcharts/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>-->
-    <script src="lib/highcharts/highcharts.js"></script>
-    <script>
-      $(document).ready(function() {
-          $.material.init();  // required for bootstrap-material-design
-      });
-    </script>
   </body>
 
 </html>

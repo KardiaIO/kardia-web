@@ -122,13 +122,12 @@ form input {
 .landing-title {
   z-index:100;
   text-align: center;
-  font-size: 90px;
-  font-family: 'Yanone Kaffeesatz', serif;
+  font-size: 70px;
+  font-family: 'Raleway', serif;
   letter-spacing: 10px;
 }
 
 .landing-buttons {
-  font-family: 'Raleway', serif;
   z-index:100;
   text-align: center;
   font-size: 16px;
@@ -485,7 +484,7 @@ form input {
   }
 
   .is-live-text {
-    font-size: 3.7em;
+    font-size: 3.4em;
     padding-top: 13%;
   }
 

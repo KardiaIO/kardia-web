@@ -8,13 +8,13 @@ module.exports = function(io) {
     .on('connection', function (socket) {
       console.log('new connection');
         
-      // Talk to Python
+      // Talks to Python
       client.connect(pythonPortURL);
       client.on('error', function(error) {
         console.error("RPC Client Error:", error);
       });
 
-      // Listen to Swift
+      // Listens to Swift
       socket.on('message', function (data) {
 
         data = JSON.stringify(data);
@@ -43,15 +43,15 @@ module.exports = function(io) {
           }
         });
 
-        // Send data to Angular Analysis Chart
+        // Sends data to Angular Analysis Chart
         socket.broadcast.emit('/analysisChart', { "data": data });
       });
 
-      // Send disconnected event
+      // Listens for disconnected event
       socket.on('disconnect', function() {
         socket.broadcast.emit('disconnected');
       });
-
+      // Listens for disconnect when there's no BLE data
       socket.on('/BLEDisconnect', function() {
         socket.broadcast.emit('disconnect');
       });
