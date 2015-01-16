@@ -11,7 +11,7 @@ App Architecture
 ============
 ![alt text](http://res.cloudinary.com/kardia-io/image/upload/v1421366596/Screen_Shot_2015-01-15_at_4_02_38_PM_d3unqx.png "App Architecture")
 
-Server
+Node.js Server
 ============
 
 # server.js
@@ -70,5 +70,5 @@ socket.emit('node.js', result); //emit to swift app
 socket.broadcast.emit('node.js', result); //emit to webapp and anything else listening
 ```
 
-Client
+Demo Web Client
 ============
