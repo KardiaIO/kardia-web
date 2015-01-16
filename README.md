@@ -76,7 +76,7 @@ Web Client(demo)
 # analysis.html/analysis.js
 The analysis holds and renders data streaming through websockets.
 
-### <rickshaw>
+### Rickshaw Chart
 [Rickshaw](http://code.shutterstock.com/rickshaw/) creates interactive d3.js charts. The logic behind the graph exists within analysis.js, in a variable called graph. 
 ```javascript
 var graph = new Rickshaw.Graph({
