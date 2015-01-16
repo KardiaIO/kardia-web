@@ -141,7 +141,7 @@ socket.on('node.js', function (statusCode) {
 });
 ```
 
-# Authentication
+## Authentication
 For documentation regarding our web client demo's authentication, please refer to this [page](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js).
 
 
