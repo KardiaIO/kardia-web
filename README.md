@@ -13,7 +13,14 @@ App Architecture
 
 Server
 ============
-###3Scale
+
+# server.js
+A straight forward Node.js/Express server that takes on the role of traffic control. It relays data to and from the Mobile Swift app, python server, as well as our demo web client. 
+
+### Cloudinary
+[Cloudinary](http://cloudinary.com/) allows webAppEKGAPI to use images while not having to store any locally. Rather all images used are stored in Kardia's cloudinary account. All images are stored and given a url, which can be referred to when needed.
+
+### 3Scale
 [3Scale](http://www.3scale.net/) is third-party API management and authentication. It will keep track of user usage and authenticate users before allowing them access to our API. 
 
 ### Require 3scale and link your account to the node.js server.
@@ -25,29 +32,29 @@ threeScaleClient.authrep({"app_id": process.env.THREE_SCALE_APP_ID, "app_key": p
   sys.log(sys.inspect(response));
 });
 ```
-To add authentication, more work will be necessary. You can read this blog [post](http://http://davidkae.azurewebsites.net/adding-3scale-to-your-node-js-server-2/) to learn how to do so.
+To add authentication, more work will be necessary. You can read this blog [post](http://davidkae.azurewebsites.net/adding-3scale-to-your-node-js-server-2/) to learn how to do so.
 
-### Web Sockets: Require Socket.io and our built out Socket Functionality
+# pythonComm.js
+The pythonComm holds all of the websocket logic alongside communication with the python server using ZeroMQ/ZeroRPC. 
+
+### Socket.emit() && Socket.on()
+ With sockets, there are two major function calls: .emit(), which triggers an event, and .on(), which listens to an event. Our Swift mobile app emits an event called 'message', while the node.js server waits and listens for the 'message' event.
 ```javascript
-var io = require('socket.io')(server);
+socket.emit(message, {'data': data});
 
-require('./server/python/pythonComm.js')(io);
+socket.on('message', function());
 ```
-
-### Socket.on() && Socket.emit()
-In the pythonComm.js file. Whenever our Swift app emits the event 'message', the node.js server will listen for any event called 'message' using socket.on().
-```javascript
-socket.on('message')
-```
-The server can then relay the data to our web app with its own emit labeled '/analysisChart'.
+When the server hears the 'message' it then relays the data to our web app with its own emit labeled '/analysisChart' as well as invokes functions held in our python server, with the data attached.
 ```javascript
 socket.broadcast.emit('/analysisChart', { "data": data });
+
+client.invoke('functionName', data, function());
 ```
 
 ### Client.invoke()
-While listening to the event 'message', node will call the python server's own functions using zeromq/zerorpc's native 'invoke'.
+Using zerorpc's native function invoke, the node server is able to call specific functions that exist in the python server. Here we invoke a function labelled crunch that will take the incoming data and run an analysis over it.
 ```javascript
-client.invoke("functionName", data, function(error, result, more){
+client.invoke('crunch', data, function(error, result, more){
   if (error) {
     console.log('error');
   }
@@ -55,12 +62,11 @@ client.invoke("functionName", data, function(error, result, more){
   console.log('result is whatever the python server returns');
 });
 ```
-
-### Socket.emit('crunch');
-When the invoking our created python function called 'crunch', the python server will send back an analysis of the data it received, which will be emitted in an event called 'node.js'. Anything listening 'on' these emits will receive the result of the 'emit'.
+In turn, the python server will send back an analysis of the data it received, which will be emitted through an event called 'node.js'. Anything listening 'on' these emits will receive the result of the 'emit', in this case, it is both the mobile app and the web client.
 ```javascript
 socket.emit('node.js', result); //emit to swift app
 
+// broadcast allows the emit to be heard by all open sockets
 socket.broadcast.emit('node.js', result); //emit to webapp and anything else listening
 ```
 
