@@ -3,8 +3,6 @@ webAppEKGAPI
 
 [![Stories in Ready](https://badge.waffle.io/ekgapi/webappekgapi.png?label=ready&title=Ready)](https://waffle.io/ekgapi/webappekgapi) [![Build Status](https://travis-ci.org/EKGAPI/webAppEKGAPI.svg?branch=master)](https://travis-ci.org/EKGAPI/webAppEKGAPI)
 
-<!-- To view our commented code, please click [here](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js)! -->
-
 App Architecture
 ============
 ![alt text](http://res.cloudinary.com/kardia-io/image/upload/v1421366596/Screen_Shot_2015-01-15_at_4_02_38_PM_d3unqx.png "App Architecture")
@@ -12,8 +10,8 @@ App Architecture
 # Overview
 webAppEKGAPI is the face of [Kardia](http://kardia.io/). It holds the landing page of the main site, the demo web client, as well as the back end functionality of our sockets. The node.js server communicates with all aspects of Kardia, from the [mobile app](https://github.com/EKGAPI/KardiaApp/), the web client, and our number crunching [python server](https://github.com/EKGAPI/pythonEKGAPI). The web client demonstrates to developers how the Kardiak wearable ECG can be used. It explores the realm of creativity and challenges developers to use our resources to create powerful ECG apps.
 
-Node.js Server
-============
+<!-- Node.js Server
+============ -->
 
 # server.js
 A straight forward Node.js/Express server that takes on the role of traffic control. It relays data to and from the Mobile Swift app, python server, as well as our demo web client. 
@@ -24,7 +22,7 @@ A straight forward Node.js/Express server that takes on the role of traffic cont
 ### 3Scale
 [3Scale](http://www.3scale.net/) is used for third-party API management and authentication. It keeps track of user usage and authenticates users before allowing them access to our API. 
 
-### Require 3scale and link your account to the node.js server.
+3scale is added by requiring 3scale and linking our account to the server.
 ```javascript
 var threeScale = require('3scale').Client;
 
@@ -71,8 +69,8 @@ socket.emit('node.js', result); //emit to swift app
 socket.broadcast.emit('node.js', result); //emit to webapp and anything else listening
 ```
 
-Web Client(demo)
-============
+<!-- Web Client(demo)
+============ -->
 # analysis.html/analysis.js
 The analysis holds and renders data streaming through websockets.
 
@@ -126,10 +124,8 @@ In analysis.html, the rickshaw tag refers its data to $scope.incoming. The ricks
       width: '='
     },
 ```
-# auth.js
-Deals with authentication for the web client demo.
-
-### JWTs
+# Web Client Authentication
+For documentation regarding authentication refer to this [page](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js).
 
 
 
