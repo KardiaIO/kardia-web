@@ -13,8 +13,12 @@ App Architecture
 
 Server
 ============
-Web Sockets
-------------
+### Web Sockets
+##### Requiring the Socket Functionality
+```javascript
+require('./server/python/pythonComm.js')(io);
+```
+
 
 
 Client
