@@ -22,7 +22,7 @@ A straight forward Node.js/Express server that takes on the role of traffic cont
 ### 3Scale
 [3Scale](http://www.3scale.net/) is used for third-party API management and authentication. It keeps track of user usage and authenticates users before allowing them access to our API. 
 
-3scale is added by requiring 3scale and linking our account to the server.
+3scale is added by requiring and linking our account to the server.
 ```javascript
 var threeScale = require('3scale').Client;
 
@@ -148,7 +148,7 @@ socket.on('node.js', function (statusCode) {
 ```
 
 # Authentication
-For documentation regarding authentication, please refer to this [page](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js).
+For documentation regarding our web client demo's authentication, please refer to this [page](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js).
 
 
 
