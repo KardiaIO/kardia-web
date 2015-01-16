@@ -77,7 +77,7 @@ Web Client(demo)
 The analysis holds and renders data streaming through websockets.
 
 ### Rickshaw Chart
-[Rickshaw](http://code.shutterstock.com/rickshaw/) creates interactive d3.js charts. The logic behind the graph exists within analysis.js, in a variable called graph. 
+[Rickshaw](http://code.shutterstock.com/rickshaw/) creates interactive d3.js charts. The logic behind the web client demo graph exists within analysis.js, in a variable called graph. 
 ```javascript
 var graph = new Rickshaw.Graph({
   element: element[0],
@@ -91,7 +91,17 @@ var graph = new Rickshaw.Graph({
 
 graph.render();
 ```
-The data that will be rendered on the graph is stored within the series property of the rickshaw graph, as a data property within an object, in an array.
+The data rendered on the graph is stored within the 'series' property of the rickshaw graph. The data property in series is filled with data points streaming in from the AnalysisController's web socket listen event, and is set to hold up to 25 data points at any time.
+```javascript
+socket.on('/analysisChart')
+
+if ($scope.incoming.length > 25) {
+  $scope.incoming.shift();
+}
+
+$scope.incoming = $scope.incoming.concat(displayData);
+```
+
 
 
 
