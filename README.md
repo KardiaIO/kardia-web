@@ -10,10 +10,10 @@ App Architecture
 # Overview
 webAppEKGAPI is the face of [Kardia](http://kardia.io/). It holds the landing page of the main site, the demo web client, as well as the back end functionality of our sockets. The node.js server communicates with all aspects of Kardia, from the [mobile app](https://github.com/EKGAPI/KardiaApp/), the web client, and our number crunching [python server](https://github.com/EKGAPI/pythonEKGAPI). The web client demonstrates to developers how the Kardiak wearable ECG can be used. It explores the realm of creativity and challenges developers to use our resources to create powerful ECG apps.
 
-<!-- Node.js Server
-============ -->
+Back-end
+============
 
-# server.js
+## server.js
 A straight forward Node.js/Express server that takes on the role of traffic control. It relays data to and from the Mobile Swift app, python server, as well as our demo web client. 
 
 ### Cloudinary
@@ -37,17 +37,11 @@ To add authentication, more work will be necessary. You can read this blog [post
 The pythonComm holds all of the websocket logic alongside communication with the python server using ZeroMQ/ZeroRPC. 
 
 ### Socket.emit() && Socket.on()
- With sockets, there are two major function calls: .emit(), which triggers an event, and .on(), which listens to an event. Our Swift mobile app emits an event called 'message', while the node.js server waits and listens for the 'message' event.
-```javascript
-socket.emit('message', {'data': data});
+With sockets, there are two major function calls: .emit(), which triggers an event, and .on(), which listens to an event. Our Swift mobile app emits an event called 'message', while the node.js server waits and listens for the 'message' event. On the message event, data will be received in a JSON object, with properties of amplitude and time. The amplitude contains a float representing a data point up to 4 significant figures (i.e 4.456); time is represented in ISO 8601 format.
 
-socket.on('message', function());
-```
-When the server hears the 'message' it then relays the data to our web app with its own emit labeled '/analysisChart' as well as invokes functions held in our python server, with the data attached.
+When the server hears the 'message' it then relays the data to our web app with its own emit labeled '/analysisChart' as well as invokes functions held in our python server, with the data attached. 
 ```javascript
 socket.broadcast.emit('/analysisChart', { "data": data });
-
-client.invoke('functionName', data, function());
 ```
 
 ### Client.invoke()
@@ -69,9 +63,9 @@ socket.emit('node.js', result); //emit to swift app
 socket.broadcast.emit('node.js', result); //emit to webapp and anything else listening
 ```
 
-<!-- Web Client(demo)
-============ -->
-# analysis.html/analysis.js
+Front-end
+============
+## analysis.html/analysis.js
 The analysis holds and renders data streaming through websockets.
 
 ### Rickshaw Chart
