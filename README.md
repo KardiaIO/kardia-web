@@ -33,7 +33,7 @@ threeScaleClient.authrep({"app_id": process.env.THREE_SCALE_APP_ID, "app_key": p
 ```
 To add authentication, more work will be necessary. You can read this blog [post](http://davidkae.azurewebsites.net/adding-3scale-to-your-node-js-server-2/) to learn how to do so.
 
-# pythonComm.js
+## pythonComm.js
 The pythonComm holds all of the websocket logic alongside communication with the python server using ZeroMQ/ZeroRPC. 
 
 ### Socket.emit() && Socket.on()
