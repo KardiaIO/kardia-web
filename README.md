@@ -124,7 +124,7 @@ In analysis.html, the rickshaw tag refers its data to $scope.incoming. The ricks
       width: '='
     },
 ```
-# Web Client Authentication
+# Authentication
 For documentation regarding authentication refer to this [page](http://www.explainjs.com/explain?src=https%3A%2F%2Fraw.githubusercontent.com%2FEKGAPI%2FwebAppEKGAPI%2Fmaster%2Fdist%2FnewConcat.js).
 
 
