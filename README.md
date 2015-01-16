@@ -9,4 +9,4 @@ Check out our site [Kardia](http://kardia.io/)!
 
 App Architecture
 ============
-![alt text]("App Architecture")
+![alt text](http://res.cloudinary.com/kardia-io/image/upload/v1421366596/Screen_Shot_2015-01-15_at_4_02_38_PM_d3unqx.png "App Architecture")
