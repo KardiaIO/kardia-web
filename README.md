@@ -17,19 +17,18 @@ Server
 ```javascript
 require('./server/python/pythonComm.js')(io);
 ```
-### Web Sockets: Listen to Swift
 
-#### Socket.on() && Socket.emit()
+### Socket.on() && Socket.emit()
 Whenever our Swift app emits the event 'message', the node.js server will listen for any event called 'message' using socket.on().
 ```javascript
 socket.on('message')
 ```
-The server can then relay the data to our web app with its own emit call.
+The server can then relay the data to our web app with its own emit labeled '/analysisChart'.
 ```javascript
 socket.broadcast.emit('/analysisChart', { "data": data });
 ```
 
-#### Client.invoke()
+### Client.invoke()
 While listening to 'message', node will call the python server's functions using zerorpc's native 'invoke' function.
 ```javascript
 client.invoke("functionName", data, function(error, result, more){
@@ -40,7 +39,7 @@ client.invoke("functionName", data, function(error, result, more){
 });
 ```
 
-#### Socket.emit('crunch');
+### Socket.emit('crunch');
 When the invoking 'crunch', the python server will send back an analysis of the data it received, which will be emitted in an event called '/node.js'. Anything listening 'on' these emits will receive the result of the 'emit'.
 ```javascript
 socket.emit('/node.js', result); //emit to swift app
