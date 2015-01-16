@@ -125,7 +125,7 @@ In analysis.html, the rickshaw tag refers its data to $scope.incoming. The ricks
     },
 ```
 ### Widgets
-The widgets displayed on analysis.html represent the analysis that is sent by the python server. The very top/left widget refers to a status code that indicates whether the data points represent a normal sinus rhythm(NSR) or an arrythmia(ARR). The one on the very bottom/right will display the calculated heart rate. This data is accessed through the socket.on() call on the event 'node.js', mentioned earlier (See pythonComm.js). It checks for the status code and sets the BPM.
+The widgets displayed on analysis.html represent the analysis that is sent by the python server. The very top/left widget refers to a status code that indicates whether the data points represent a normal sinus rhythm(NSR) or an arrythmia(ARR). The one on the very bottom/right will display the calculated heart rate. This data is accessed through the socket.on() call on the event 'node.js', mentioned earlier (See pythonComm.js).
 ```javascript
 socket.on('node.js', function (statusCode) {
 	var status;
