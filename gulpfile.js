@@ -4,7 +4,7 @@ var concat = require('gulp-concat');
 var clean = require('gulp-clean');
 var nodemon = require('gulp-nodemon');
 
-var mocha = require('gulp-mocha');
+var mocha = require('gulp-spawn-mocha');
 var karma = require('karma').server;
 
 /**
@@ -48,7 +48,11 @@ gulp.task('develop', function () {
  */
 
 gulp.task('mocha', function(){
-  
+  return gulp.src('server/test/server.pythonComm.test.js', { read: false })
+    .pipe(mocha({
+      env: {'NODE_ENV': 'test'},
+      reporter: 'nyan'
+    }));
 });
 
 // Karma Single Run Task.  Used for Travis CI

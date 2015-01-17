@@ -82,9 +82,8 @@ angular.module('ekg.analysis', [
   socket.on('/analysisChart', function (data) {
     $scope.isLive = 'Streaming Heartbeat';
     // Convert time and amplitude to numbers for x, y coords
-    var dataObject = data.data;
-    var parsedObject = JSON.parse(dataObject);
-    var amplitude = parsedObject.amplitude;
+    var BLEData = JSON.parse(data.data);
+    var amplitude = BLEData.amplitude;
     var displayData = {};
     displayData.x = count;
     count += 0.3;

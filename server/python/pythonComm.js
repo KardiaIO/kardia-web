@@ -1,13 +1,18 @@
 var zerorpc = require("zerorpc");
 var client = new zerorpc.Client();
-var pythonPortURL = process.env.PYTHON_PORT_URL || 'tcp://127.0.0.1:8000';
+var pythonPortURL = process.env.PYTHON_PORT_URL;
+
+// Tests require our Python port to be local.
+if(process.env.NODE_ENV === 'test') {
+  pythonPortURL = 'tcp://127.0.0.1:8000';
+}
 
 module.exports = function(io) {
 
   var dataCycle = io
     .on('connection', function (socket) {
       console.log('new connection');
-        
+
       // Talks to Python
       client.connect(pythonPortURL);
       client.on('error', function(error) {
@@ -42,7 +47,7 @@ module.exports = function(io) {
             console.log("DONE");
           }
         });
-
+        console.log("NODE " + data);
         // Sends data to Angular Analysis Chart
         socket.broadcast.emit('/analysisChart', { "data": data });
       });
@@ -55,5 +60,6 @@ module.exports = function(io) {
       socket.on('/BLEDisconnect', function() {
         socket.broadcast.emit('disconnect');
       });
+
     });
 };
