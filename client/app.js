@@ -5,7 +5,8 @@
     'ekg.auth',
     'ekg.analysis',
     'ui.router',
-    'ngMaterial'
+    'ngMaterial',
+    'btford.socket-io'
   ])
 
   .run(function($rootScope, $state, Auth){
@@ -27,10 +28,14 @@
     // AngularUI Router uses the concept of states
     // Documentation: https://github.com/angular-ui/ui-router
     $stateProvider
+      .state('landing', {
+        url: '/',
+        templateUrl: 'components/landing/landing.html'
+      })
 
       .state('user', {
         url: '/user',
-        templateUrl: 'components/signin/welcome.html',
+        templateUrl: 'components/login/login.html',
         controller: 'AuthController'
       })
 
@@ -46,11 +51,6 @@
         templateUrl: 'components/web/triage/mdTriage.html',
         controller: 'AuthController',
         authenticate: true
-      })
-
-      .state('landing', {
-        url: '/',
-        templateUrl: 'landing/landing.html'
       });
 
     // The default route should point to the root page
