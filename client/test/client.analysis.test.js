@@ -1,3 +1,5 @@
+/*jshint expr: true*/
+
 /**
  * Analysis Controller
  */

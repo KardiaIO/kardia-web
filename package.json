@@ -8,7 +8,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "postinstall": "bower install"
+    "postinstall": "bower install",
+    "test": "gulp ci"
   },
   "author": "",
   "license": "MIT",

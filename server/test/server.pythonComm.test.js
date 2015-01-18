@@ -1,3 +1,4 @@
+/*jshint expr: true*/
 var chai = require('chai'),
     mocha = require('mocha'),
     sinon = require('sinon'),
