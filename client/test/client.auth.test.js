@@ -126,7 +126,7 @@ describe('Unit: AuthController', function() {
    });
 
 
-  it('should sign a user in and redirect to user.triage', function() {
+  it('should sign a user in and redirect to user.analysis', function() {
     $rootScope.user = { username: 'freddy', password: 'mercury' };
     // Sets up a promise and returns a token from our signin stub. 
     defer = $q.defer();

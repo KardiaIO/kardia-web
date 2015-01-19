@@ -7,7 +7,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'sinon-chai'],
+    frameworks: ['mocha', 'sinon-chai', 'sinon'],
 
 
     // list of files / patterns to load in the browser
@@ -25,10 +25,11 @@ module.exports = function(config) {
       'client/lib/angular-animate/angular-animate.js',
       'client/lib/angular-material/angular-material.js',
       'client/lib/bootstrap/dist/js/bootstrap.min.js',
+      'client/lib/angular-socket-io/socket.min.js',
+      'client/test/socketMock.js',
       'client/app.js',
-      'client/landing/*.js',
-      'client/components/web/**/*.js',
-      'client/components/signin/**/*.js',
+      'client/components/**/*.js',
+      'client/components/**/**/*.js',
       'client/test/*.js'
     ],
 

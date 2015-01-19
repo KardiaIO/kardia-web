@@ -1,5 +1,5 @@
 // Load private .env variables immediately on development only.  Dokku runs its own config on production.
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
   var dotenv = require('dotenv');
   dotenv.load();
 }

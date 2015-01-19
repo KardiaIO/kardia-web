@@ -1,5 +1,6 @@
 angular.module('ekg.analysis', [
-  'ekg.auth'
+  'ekg.auth',
+  'btford.socket-io'
 ])
 .directive('rickshaw', function(){
   return {
@@ -34,8 +35,7 @@ angular.module('ekg.analysis', [
     }
   };
 })
-.controller('AnalysisController', function ($scope, $state, $window) {
-  var socket = io.connect("http://kardia.io");
+.controller('AnalysisController', function ($scope, $state, $window, socket) {
   var count = 0;
   var $statusCodeIcon = $('.status-code-icon');
   var $bpmIcon = $('.bpm-icon');
@@ -50,7 +50,10 @@ angular.module('ekg.analysis', [
   $scope.bpmTitle = '--';
   $scope.isLive = 'Awaiting Heartbeat';
   
-  // Socket Events
+  /**
+   * Socket Events
+   */
+  
   socket.on('connect', function () {
     console.log('new connection in client!');
   });
@@ -79,9 +82,8 @@ angular.module('ekg.analysis', [
   socket.on('/analysisChart', function (data) {
     $scope.isLive = 'Streaming Heartbeat';
     // Convert time and amplitude to numbers for x, y coords
-    var dataObject = data.data;
-    var parsedObject = JSON.parse(dataObject);
-    var amplitude = parsedObject.amplitude;
+    var BLEData = JSON.parse(data.data);
+    var amplitude = BLEData.amplitude;
     var displayData = {};
     displayData.x = count;
     count += 0.3;
@@ -91,7 +93,7 @@ angular.module('ekg.analysis', [
     if ($scope.incoming.length > 25) {
       $scope.incoming.shift();
     }
-
+    
     $scope.incoming = $scope.incoming.concat(displayData);
     $scope.$apply();
   });
@@ -110,4 +112,9 @@ angular.module('ekg.analysis', [
     $scope.$apply();
   });
 
+})
+.factory('socket', function(socketFactory) {
+  return socketFactory({
+    ioSocket: io.connect('http://kardia.io')
+  });
 });
