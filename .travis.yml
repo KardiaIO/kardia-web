@@ -10,7 +10,9 @@ node_js:
 services: mongodb
 env:
   global:
-    - NODE_ENV=test
+    - secure: "aZrwPH6T889WMbsBSBqc6ImnTX4AtTsuGPvZLb+y02Bz9CV+SFRUf+BSQN32QMQCTdj8gVwBb6ASa1kF4dkVtA360kY7PrRy2kvcejedCUHWn6vWgWwuU6KyrhvW7bdnvnioTEzuF9L20JdjokxS/x+ekcNkoZdktsTshnMZqx0="
+    - secure: "FagF39qa4sYWaeHTVXYljDfC3pVZ3eeKzQ2lE7pecTo+j+msvO7boDKhDgJQIKzWJpJ7gnLL9kuNg8SILmFzEl4CAAilWjHZwutZvnPwFHKr81A3oV0cysuDpbn25mi7zA89VNwuKKk7cbK96bIifs8z+5wfN9b1170LNcbp4Ho="
+    - secure: "ED8wZ98Mfk0KOEarArzEOCpS5YsrURNTl8ajUUNtxyTEtw5IdLekKYuBt60XN4xLn0JcaUB4jhG84szLZOC6FSQCJzR7eyT/wFN06Xh2Ib8cxk9Afg5i1xw/afpnZaB7P8G5EJfE6xT1WtBXTEBchc1RFxO6NcQj2P9FMqUrG4Q="
 branches:
   only:
     - master
