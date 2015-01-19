@@ -10,9 +10,13 @@ node_js:
 services: mongodb
 env:
   global:
+  # Encrypted Environment Variables
     - secure: "aZrwPH6T889WMbsBSBqc6ImnTX4AtTsuGPvZLb+y02Bz9CV+SFRUf+BSQN32QMQCTdj8gVwBb6ASa1kF4dkVtA360kY7PrRy2kvcejedCUHWn6vWgWwuU6KyrhvW7bdnvnioTEzuF9L20JdjokxS/x+ekcNkoZdktsTshnMZqx0="
     - secure: "FagF39qa4sYWaeHTVXYljDfC3pVZ3eeKzQ2lE7pecTo+j+msvO7boDKhDgJQIKzWJpJ7gnLL9kuNg8SILmFzEl4CAAilWjHZwutZvnPwFHKr81A3oV0cysuDpbn25mi7zA89VNwuKKk7cbK96bIifs8z+5wfN9b1170LNcbp4Ho="
     - secure: "ED8wZ98Mfk0KOEarArzEOCpS5YsrURNTl8ajUUNtxyTEtw5IdLekKYuBt60XN4xLn0JcaUB4jhG84szLZOC6FSQCJzR7eyT/wFN06Xh2Ib8cxk9Afg5i1xw/afpnZaB7P8G5EJfE6xT1WtBXTEBchc1RFxO6NcQj2P9FMqUrG4Q="
+    - secure: "hGdxxh21gL8E930mSG211BRPSng4CzuXFgZn4uDGlugYL1ZRyhLw8/5pbs8V0FYfvPzI/eGl6NDT/slpdwayGZggg5l8z7C66Bof52dz8gqKcoThdpAcGvCF1jBmc96wApwognrqc7GkfnGrENLXvC8YGy0hLdPuBOYWSLFGcFA="
+    - secure: "HD0n9suinSQpN56AytTvT52AG3O3n58EPnwZTmI7lffSDmKe1L+mbAPzcj9p9F08Hsps7CFHIxu/VAsLaXMvIH/BuhHAhTSin7b2xGrXs6FuoCvkAAtj7zwK0ZZC30PrbKyHZLQ4Q+kMX8VSqCvSVbcfGhdit93OpJPOPUrAIaQ="
+    - secure: "O7VaUcrYDMTcSQvnS0IuUhKAiljMc9h2Rk6aq3f/GYxMzxuczwXqsC+wpGhLhdKjWXy44RhHot+q2p25acabRYYfT6yXQ42iuv5arYIeDTqNFfvkf4JAdZpfAmf39k0904uqiehRnVu0wTtTsS/RYEE+0Q9CvEX4nkc3T+GJbaA="
 branches:
   only:
     - master

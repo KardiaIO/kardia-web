@@ -64,7 +64,7 @@ gulp.task('karma', function(done) {
 });
 
 // Travis CI testing task.  .travis.yml calls this task.
-gulp.task('ci', ['lint', 'karma', 'mocha']);
+gulp.task('ci', ['lint', 'karma']);
 
 /**
  * Main Tasks

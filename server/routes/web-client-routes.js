@@ -13,10 +13,6 @@ module.exports = function(app) {
   // This route is for data queries
   webRouter.post('/users/data', data.getData);
 
-  // This route is for data analysis results
-  webRouter.post('/users/analysis', data.getAnalysisResults);
-  webRouter.post('/users/lorenz', data.getLorenzResults);
-
   // If incoming request is not pinging a user authentication route
   // then we make sure they are signed in by getting the token from
   // the header

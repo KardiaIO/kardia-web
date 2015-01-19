@@ -65,7 +65,6 @@ describe('Socket Communication', function() {
 
   it('should listen on event and return analyzed data', function(done) {
     socket.on('node.js', function(data) {
-      console.log(data);
       expect(data).to.equal('{"amplitude":"6.66","time":"4:20"} Is there life on Mars?');
       done();
     });

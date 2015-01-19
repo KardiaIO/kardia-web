@@ -85,10 +85,4 @@ describe('Server Tests', function(){
 
   });
 
-  describe('EKG Data', function(){    
-    it('should receive a json object', function(done){
-      expect(3).to.equal(3);
-      done();
-    });
-  });
 });
